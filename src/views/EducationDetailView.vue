@@ -20,7 +20,7 @@ const documents = computed(() => {
       {
         title: 'Bachelor of Science in Civil Engineering Degree',
         type: 'Official Degree Certificate',
-        serial: 'Serial No. 127867 · Reg No. CIIT/FA22-CVE-055/WAH',
+        serial: 'Serial No. 127867 · Reg No. FA22-CVE-055/WAH',
         date: 'July 20, 2026',
         authority: 'COMSATS University Islamabad, Wah Campus',
         conferred: 'Conferred with Distinction (Gold Medalist)',
