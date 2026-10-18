@@ -65,10 +65,13 @@ function reset() {
 
     <div class="link-row" style="margin-top: 40px;">
       <RouterLink class="text-link" to="/experience">
-        Work Experience <span aria-hidden="true">↗</span>
+        Work <span aria-hidden="true">↗</span>
       </RouterLink>
       <RouterLink class="text-link" to="/research">
-        Research Work <span aria-hidden="true">↗</span>
+        Research <span aria-hidden="true">↗</span>
+      </RouterLink>
+      <RouterLink class="text-link" to="/recognition">
+        Honours and Awards <span aria-hidden="true">↗</span>
       </RouterLink>
       <RouterLink class="text-link" to="/#contact">
         Discuss a project <span aria-hidden="true">↗</span>

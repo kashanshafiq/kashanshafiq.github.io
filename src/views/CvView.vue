@@ -1,25 +1,96 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import PageIntro from '../components/PageIntro.vue'
 import { academicCv } from '../content/academicCv'
+import { academicItems } from '../content/academicItems'
+import { educationList } from '../content/education'
 
 const navItems = [
   { id: 'personal-info', num: '01', label: 'Personal Information' },
-  { id: 'education', num: '02', label: 'Education & Training' },
+  { id: 'education', num: '02', label: 'Education' },
   { id: 'research-experience', num: '03', label: 'Research Experience' },
   { id: 'work-experience', num: '04', label: 'Work Experience' },
-  { id: 'projects', num: '05', label: 'Projects' },
+  { id: 'projects', num: '05', label: 'Academic Projects' },
   { id: 'certifications', num: '06', label: 'Certifications' },
-  { id: 'professional-trainings', num: '07', label: 'Professional Trainings & CPD Seminars' },
-  { id: 'skills', num: '08', label: 'Skills' },
-  { id: 'honors-awards', num: '09', label: 'Honours & Awards' },
-  { id: 'volunteering', num: '10', label: 'Volunteering' },
-  { id: 'extracurricular', num: '11', label: 'Extracurricular Activities & Leadership' },
-  { id: 'languages', num: '12', label: 'Language Skills' },
+  { id: 'professional-trainings', num: '07', label: 'Professional training & CPD' },
+  { id: 'conferences', num: '08', label: 'Conferences' },
+  { id: 'skills', num: '09', label: 'Skills' },
+  { id: 'honors-awards', num: '10', label: 'Honours & Awards' },
+  { id: 'volunteering', num: '11', label: 'Volunteering' },
+  { id: 'extracurricular', num: '12', label: 'Extracurricular Activities & Leadership' },
+  { id: 'languages', num: '13', label: 'Language Skills' },
 ]
 
 const activeId = ref('personal-info')
 let observer: IntersectionObserver | null = null
+
+const getSectionItems = (sectionId: string) =>
+  academicItems.filter((i) => i.sectionId === sectionId)
+
+const expandedSections = ref<Record<string, boolean>>({
+  'projects': false,
+  'certifications': false,
+  'professional-trainings': false,
+  'honors-awards': false,
+  'extracurricular': false,
+})
+
+const isExpanded = (sectionId: string) => !!expandedSections.value[sectionId]
+
+const toggleSection = (sectionId: string) => {
+  expandedSections.value[sectionId] = !expandedSections.value[sectionId]
+}
+
+const getVisibleItems = (sectionId: string) => {
+  const items = getSectionItems(sectionId)
+  if (items.length <= 6 || isExpanded(sectionId)) {
+    return items
+  }
+  return items.slice(0, 6)
+}
+
+const skillsCategories = [
+  {
+    title: 'Core Competencies',
+    badge: 'Structural & Construction',
+    skills: [
+      'Structural Analysis & Design',
+      'Reinforced Concrete Design (ACI 318-19)',
+      'Steel Structure Design (AISC)',
+      'Seismic & Gravity Load Analysis (ASCE 7-16, UBC 97)',
+      'Reinforcement Detailing & Foundation Design',
+      'Post-Tensioned Slab Coordination',
+      'Manual & Software-Based Structural Verification',
+      'BIM-Integrated Structural Coordination',
+      'Quantity Takeoff & Cost Estimation',
+      'Site QA/QC Inspection',
+    ],
+  },
+  {
+    title: 'Software & Tools',
+    badge: 'BIM & Computation',
+    skills: [
+      'ETABS',
+      'SAFE',
+      'RISA 2D',
+      'Autodesk Revit (Structure & Architecture, LOD 200–400)',
+      'AutoCAD 2D',
+      'Microsoft Office',
+      'Microsoft Excel (Parametric Design Sheets)',
+    ],
+  },
+  {
+    title: 'Soft Skills',
+    badge: 'Leadership & Collaboration',
+    skills: [
+      'Leadership & Team Coordination',
+      'Critical Thinking & Problem-Solving',
+      'Cross-Disciplinary Collaboration',
+      'Sustainability-Driven Design Thinking',
+      'Public Speaking & Technical Communication',
+      'Independent Research & Self-Directed Learning',
+    ],
+  },
+]
 
 function scrollToSection(id: string) {
   activeId.value = id
@@ -57,20 +128,8 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="shell page-body cv-layout-wrapper">
-    <PageIntro
-      eyebrow="Academics / Comprehensive Curriculum Vitae"
-      :title="academicCv.personalInfo.name"
-      :description="academicCv.personalInfo.keywords"
-    >
-      <div class="hero-actions">
-        <RouterLink class="button primary" to="/#contact">
-          Get in touch <span aria-hidden="true">↓</span>
-        </RouterLink>
-      </div>
-    </PageIntro>
-
     <div class="cv-body-grid">
-      <!-- Left Sticky Navigation Panel -->
+      <!-- Left Sticky Navigation Panel (aligned right from top to maximize space utilization) -->
       <aside class="cv-nav-panel no-print" aria-label="Curriculum Vitae section directory">
         <div class="nav-panel-sticky">
           <p class="panel-eyebrow">ACADEMIC PROFILE</p>
@@ -89,8 +148,20 @@ onBeforeUnmount(() => {
         </div>
       </aside>
 
-      <!-- Main Profile Sections -->
+      <!-- Main Profile Sections (Right Column) -->
       <main class="cv-main-content">
+        <!-- Top Title & Eyebrow Header Block aligned as column with Personal Info -->
+        <header class="cv-header-block">
+          <p class="cv-eyebrow">ACADEMICS / COMPREHENSIVE CURRICULUM VITAE</p>
+          <h1 class="cv-hero-title">{{ academicCv.personalInfo.name }}</h1>
+          <p class="cv-hero-role">{{ academicCv.personalInfo.keywords }}</p>
+          <div class="cv-hero-actions">
+            <RouterLink class="button primary" to="/#contact">
+              Get in touch <span aria-hidden="true">↓</span>
+            </RouterLink>
+          </div>
+        </header>
+
         <!-- 01. Personal Information -->
         <section id="personal-info" class="cv-section">
           <div class="section-badge-header">
@@ -98,90 +169,67 @@ onBeforeUnmount(() => {
             <h2>Personal Information</h2>
           </div>
           <div class="card personal-card">
-            <div class="personal-top-row">
-              <div>
-                <h3 class="person-name">{{ academicCv.personalInfo.name }}</h3>
-                <p class="person-role">{{ academicCv.personalInfo.keywords }}</p>
-                <p class="person-degree">{{ academicCv.personalInfo.degreeSummary }}</p>
+            <!-- Horizontal Contact Meta Bar to maximize space and eliminate redundant names/degrees -->
+            <div class="personal-meta-horizontal">
+              <div class="meta-item">
+                <span class="meta-label">Location</span>
+                <span class="meta-val">{{ academicCv.personalInfo.location }}</span>
               </div>
-              <div class="personal-meta-list">
-                <div>
-                  <span class="meta-label">Location</span>
-                  <span class="meta-val">{{ academicCv.personalInfo.location }}</span>
-                </div>
-                <div>
-                  <span class="meta-label">Direct Email</span>
-                  <a :href="`mailto:${academicCv.personalInfo.email}`" class="meta-val link-val">
-                    {{ academicCv.personalInfo.email }} ↗
-                  </a>
-                </div>
-                <div>
-                  <span class="meta-label">Phone / WhatsApp</span>
-                  <a :href="`tel:${academicCv.personalInfo.phone}`" class="meta-val link-val">
-                    {{ academicCv.personalInfo.phone }}
-                  </a>
-                </div>
-                <div>
-                  <span class="meta-label">LinkedIn</span>
-                  <a
-                    :href="academicCv.personalInfo.linkedin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="meta-val link-val"
-                  >
-                    linkedin.com/in/kashan-shafiq ↗
-                  </a>
-                </div>
-                <div>
-                  <span class="meta-label">Institution</span>
-                  <span class="meta-val">{{ academicCv.personalInfo.institution }}</span>
-                </div>
+              <div class="meta-item">
+                <span class="meta-label">Direct Email</span>
+                <a :href="`mailto:${academicCv.personalInfo.email}`" class="meta-val link-val">
+                  {{ academicCv.personalInfo.email }} ↗
+                </a>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Phone / WhatsApp</span>
+                <a :href="`tel:${academicCv.personalInfo.phone}`" class="meta-val link-val">
+                  {{ academicCv.personalInfo.phone }}
+                </a>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">LinkedIn</span>
+                <a
+                  :href="academicCv.personalInfo.linkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="meta-val link-val"
+                >
+                  linkedin.com/in/kashan-shafiq ↗
+                </a>
               </div>
             </div>
             <p class="personal-summary-text">{{ academicCv.personalInfo.summary }}</p>
           </div>
         </section>
 
-        <!-- 02. Education & Training -->
+        <!-- 02. Education -->
         <section id="education" class="cv-section">
           <div class="section-badge-header">
             <span class="section-num">02</span>
-            <h2>Education &amp; Training</h2>
+            <h2>Education</h2>
           </div>
           <p class="section-subtext">Undergraduate engineering degree with top academic honors and core technical coursework.</p>
 
-          <div class="timeline-list">
-            <article
-              v-for="edu in academicCv.education"
-              :key="edu.degree"
-              class="card entry-card"
+          <div class="education-interactive-list">
+            <RouterLink
+              v-for="edu in educationList"
+              :key="edu.slug"
+              :to="`/education/${edu.slug}`"
+              class="education-row"
+              :aria-label="`View details for ${edu.shortDegree} at ${edu.institution}`"
             >
-              <div class="entry-header">
-                <div>
-                  <h3 class="entry-title">{{ edu.degree }}</h3>
-                  <p class="entry-org">{{ edu.institution }} · {{ edu.location }}</p>
-                </div>
-                <span class="entry-period">{{ edu.period }}</span>
+              <div class="edu-row-years">
+                {{ edu.years }}
               </div>
-              <div v-if="edu.distinction" class="distinction-highlight">
-                <span class="gold-badge" aria-hidden="true">★</span>
-                <strong>{{ edu.distinction }}</strong>
+              <div class="edu-row-content">
+                <h3 class="edu-row-title">{{ edu.shortDegree }}</h3>
+                <p class="edu-row-institution">{{ edu.institution }}</p>
               </div>
-              <p class="entry-metrics">
-                <strong>Field:</strong> {{ edu.fieldOfStudy }} &nbsp;|&nbsp;
-                <strong>Grade:</strong> {{ edu.grade }} &nbsp;|&nbsp;
-                <strong>Level:</strong> {{ edu.eqfLevel }}
-              </p>
-              <p v-if="edu.thesis" class="entry-scope">
-                <strong>Thesis:</strong> {{ edu.thesis }}
-              </p>
-              <div v-if="edu.courses && edu.courses.length" class="edu-courses-block">
-                <span class="meta-label">Core Coursework</span>
-                <div class="tag-list mini-tags">
-                  <span v-for="c in edu.courses" :key="c" class="tag">{{ c }}</span>
-                </div>
+              <div class="edu-row-arrow" aria-hidden="true">
+                ↗
               </div>
-            </article>
+            </RouterLink>
           </div>
         </section>
 
@@ -193,38 +241,25 @@ onBeforeUnmount(() => {
           </div>
           <p class="section-subtext">Undergraduate thesis research, mobile augmented reality development, and engineering visualization frameworks.</p>
 
-          <div class="timeline-list">
-            <article
-              v-for="res in academicCv.researchExperience"
-              :key="res.title"
-              class="card entry-card"
+          <div class="education-interactive-list">
+            <RouterLink
+              v-for="item in getSectionItems('research-experience')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="education-row"
+              :aria-label="`View details for ${item.title}`"
             >
-              <div class="entry-header">
-                <div>
-                  <h3 class="entry-title">{{ res.title }}</h3>
-                  <p class="entry-org">{{ res.role }} · {{ res.organization }}</p>
-                </div>
-                <span class="entry-period">{{ res.period }}</span>
+              <div class="edu-row-years">
+                {{ item.period }}
               </div>
-              <p class="entry-scope">{{ res.summary }}</p>
-              <ul class="entry-bullets">
-                <li v-for="hl in res.highlights" :key="hl">{{ hl }}</li>
-              </ul>
-              <div class="research-actions">
-                <RouterLink v-if="res.link" class="button" :to="res.link">
-                  Read research details ↗
-                </RouterLink>
-                <a
-                  v-if="res.doi"
-                  class="text-link"
-                  :href="res.doi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SSRN Preprint DOI ↗
-                </a>
+              <div class="edu-row-content">
+                <h3 class="edu-row-title">{{ item.title }}</h3>
+                <p class="edu-row-institution">{{ item.organization }}</p>
               </div>
-            </article>
+              <div class="edu-row-arrow" aria-hidden="true">
+                ↗
+              </div>
+            </RouterLink>
           </div>
         </section>
 
@@ -236,50 +271,68 @@ onBeforeUnmount(() => {
           </div>
           <p class="section-subtext">Professional practice, Scan-to-BIM modeling, high-rise tower management, and site engineering.</p>
 
-          <div class="timeline-list">
-            <article
-              v-for="job in academicCv.workExperience"
-              :key="job.organization"
-              class="card entry-card"
+          <div class="education-interactive-list">
+            <RouterLink
+              v-for="item in getSectionItems('work-experience')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="education-row"
+              :aria-label="`View details for ${item.title}`"
             >
-              <div class="entry-header">
-                <div>
-                  <h3 class="entry-title">{{ job.role }}</h3>
-                  <p class="entry-org">{{ job.organization }} · {{ job.location }}</p>
-                </div>
-                <span class="entry-period">{{ job.period }}</span>
+              <div class="edu-row-years">
+                {{ item.period }}
               </div>
-              <p class="entry-scope"><strong>Focus:</strong> {{ job.scope }}</p>
-              <ul class="entry-bullets">
-                <li v-for="resp in job.responsibilities" :key="resp">{{ resp }}</li>
-              </ul>
-              <div class="tag-list mini-tags">
-                <span v-for="t in job.tools" :key="t" class="tag">{{ t }}</span>
+              <div class="edu-row-content">
+                <h3 class="edu-row-title">{{ item.title }}</h3>
+                <p class="edu-row-institution">{{ item.organization }}</p>
               </div>
-            </article>
+              <div class="edu-row-arrow" aria-hidden="true">
+                ↗
+              </div>
+            </RouterLink>
           </div>
         </section>
 
-        <!-- 05. Projects -->
+        <!-- 05. Academic Projects -->
         <section id="projects" class="cv-section">
           <div class="section-badge-header">
             <span class="section-num">05</span>
-            <h2>Projects</h2>
+            <h2>Academic Projects</h2>
           </div>
           <p class="section-subtext">Structural design, numerical modeling, BIM, hydraulic analysis, and engineering calculation projects.</p>
 
-          <div class="projects-cv-grid">
-            <article
-              v-for="p in academicCv.projects"
-              :key="p.title"
-              class="card mini-project-card"
+          <div class="cv-grid-two-col">
+            <RouterLink
+              v-for="item in getVisibleItems('projects')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="cv-grid-item"
+              :aria-label="`View details for ${item.title}`"
             >
-              <h3 class="card-project-title">{{ p.title }}</h3>
-              <p class="card-project-desc">{{ p.description }}</p>
-              <div class="tag-list mini-tags">
-                <span v-for="tool in p.tools" :key="tool" class="tag">{{ tool }}</span>
+              <div class="grid-item-year">{{ item.period }}</div>
+              <div class="grid-item-body">
+                <div class="grid-item-header">
+                  <h3 class="grid-item-title">{{ item.title }}</h3>
+                  <span class="grid-item-arrow" aria-hidden="true">↗</span>
+                </div>
+                <p class="grid-item-summary">{{ item.summary }}</p>
               </div>
-            </article>
+            </RouterLink>
+          </div>
+
+          <div v-if="getSectionItems('projects').length > 6" class="section-show-more-bar">
+            <button
+              type="button"
+              class="show-more-btn"
+              @click="toggleSection('projects')"
+              :aria-expanded="isExpanded('projects')"
+            >
+              <span>{{ isExpanded('projects') ? 'Show Less' : 'Show More' }}</span>
+              <span class="btn-symbol">{{ isExpanded('projects') ? '−' : '+' }}</span>
+            </button>
+            <span class="showing-counter">
+              Showing {{ getVisibleItems('projects').length }} of {{ getSectionItems('projects').length }}
+            </span>
           </div>
         </section>
 
@@ -291,231 +344,262 @@ onBeforeUnmount(() => {
           </div>
           <p class="section-subtext">Specialized technical credentials, BIM certifications, and structural design training.</p>
 
-          <div class="cert-grid">
-            <article
-              v-for="cert in academicCv.certifications"
-              :key="cert.title"
-              class="card cert-card"
+          <div class="cv-grid-two-col">
+            <RouterLink
+              v-for="item in getVisibleItems('certifications')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="cv-grid-item"
+              :aria-label="`View details for ${item.title}`"
             >
-              <div class="cert-header">
-                <div>
-                  <h3 class="cert-title-text">{{ cert.title }}</h3>
-                  <p class="cert-issuer">{{ cert.issuer }}</p>
+              <div class="grid-item-year">{{ item.period }}</div>
+              <div class="grid-item-body">
+                <div class="grid-item-header">
+                  <h3 class="grid-item-title">{{ item.title }}</h3>
+                  <span class="grid-item-arrow" aria-hidden="true">↗</span>
                 </div>
-                <span v-if="cert.date" class="cert-date">{{ cert.date }}</span>
+                <p class="grid-item-summary">{{ item.summary }}</p>
               </div>
-              <p class="cert-detail">{{ cert.detail }}</p>
-              <div v-if="cert.link" class="cert-link-row">
-                <a :href="cert.link" target="_blank" rel="noopener noreferrer" class="text-link cert-link">
-                  View certificate ↗
-                </a>
-              </div>
-            </article>
+            </RouterLink>
+          </div>
+
+          <div v-if="getSectionItems('certifications').length > 6" class="section-show-more-bar">
+            <button
+              type="button"
+              class="show-more-btn"
+              @click="toggleSection('certifications')"
+              :aria-expanded="isExpanded('certifications')"
+            >
+              <span>{{ isExpanded('certifications') ? 'Show Less' : 'Show More' }}</span>
+              <span class="btn-symbol">{{ isExpanded('certifications') ? '−' : '+' }}</span>
+            </button>
+            <span class="showing-counter">
+              Showing {{ getVisibleItems('certifications').length }} of {{ getSectionItems('certifications').length }}
+            </span>
           </div>
         </section>
 
-        <!-- 07. Professional Trainings & CPD Seminars -->
+        <!-- 07. Professional training & CPD -->
         <section id="professional-trainings" class="cv-section">
           <div class="section-badge-header">
             <span class="section-num">07</span>
-            <h2>Professional Trainings &amp; CPD Seminars</h2>
+            <h2>Professional training &amp; CPD</h2>
           </div>
-          <p class="section-subtext">PEC-accredited Continuing Professional Development (CPD) seminars, technical workshops, and conferences.</p>
+          <p class="section-subtext">PEC-accredited Continuing Professional Development (CPD) seminars and technical workshops.</p>
 
-          <h3 class="subsection-title">Continuing Professional Development (CPD) Seminars</h3>
-          <div class="cpd-table-wrapper">
-            <table class="cpd-table">
-              <thead>
-                <tr>
-                  <th>Topic / Seminar Title</th>
-                  <th>Keynote Speaker</th>
-                  <th>Credit</th>
-                  <th>Date</th>
-                  <th>Certificate</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="cpd in academicCv.professionalTrainings.cpdSeminars" :key="cpd.title">
-                  <td class="cpd-title-cell">
-                    <strong>{{ cpd.title }}</strong>
-                    <p class="cpd-detail-text">{{ cpd.detail }}</p>
-                  </td>
-                  <td class="cpd-speaker-cell">{{ cpd.speaker }}</td>
-                  <td class="cpd-point-cell"><span class="point-badge">{{ cpd.points }}</span></td>
-                  <td class="cpd-date-cell">{{ cpd.date }}</td>
-                  <td class="cpd-link-cell">
-                    <a v-if="cpd.link" :href="cpd.link" target="_blank" rel="noopener noreferrer" class="text-link">
-                      View ↗
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="cv-grid-two-col">
+            <RouterLink
+              v-for="item in getVisibleItems('professional-trainings')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="cv-grid-item"
+              :aria-label="`View details for ${item.title}`"
+            >
+              <div class="grid-item-year">{{ item.period }}</div>
+              <div class="grid-item-body">
+                <div class="grid-item-header">
+                  <h3 class="grid-item-title">{{ item.title }}</h3>
+                  <span class="grid-item-arrow" aria-hidden="true">↗</span>
+                </div>
+                <p class="grid-item-summary">{{ item.summary }}</p>
+              </div>
+            </RouterLink>
           </div>
 
-          <h3 class="subsection-title" style="margin-top: 36px;">Technical Workshops &amp; Conferences</h3>
-          <div class="workshop-grid">
-            <article
-              v-for="ws in academicCv.professionalTrainings.workshops"
-              :key="ws.title"
-              class="card workshop-card"
+          <div v-if="getSectionItems('professional-trainings').length > 6" class="section-show-more-bar">
+            <button
+              type="button"
+              class="show-more-btn"
+              @click="toggleSection('professional-trainings')"
+              :aria-expanded="isExpanded('professional-trainings')"
             >
-              <h3 class="ws-title-text">{{ ws.title }}</h3>
-              <p class="ws-org">{{ ws.organizer }}</p>
-              <p class="ws-detail">{{ ws.detail }}</p>
-              <div class="ws-bottom">
-                <span class="ws-date">{{ ws.date }}</span>
-                <a v-if="ws.link" :href="ws.link" target="_blank" rel="noopener noreferrer" class="text-link">
-                  View certificate ↗
-                </a>
-              </div>
-            </article>
-            <article
-              v-for="conf in academicCv.professionalTrainings.conferences"
-              :key="conf.title"
-              class="card workshop-card"
-            >
-              <h3 class="ws-title-text">{{ conf.title }}</h3>
-              <p class="ws-org">{{ conf.role }} · {{ conf.organizer }}</p>
-              <p class="ws-detail">{{ conf.detail }}</p>
-              <div class="ws-bottom">
-                <span class="ws-date">{{ conf.date }}</span>
-                <a v-if="conf.link" :href="conf.link" target="_blank" rel="noopener noreferrer" class="text-link">
-                  View certificate ↗
-                </a>
-              </div>
-            </article>
+              <span>{{ isExpanded('professional-trainings') ? 'Show Less' : 'Show More' }}</span>
+              <span class="btn-symbol">{{ isExpanded('professional-trainings') ? '−' : '+' }}</span>
+            </button>
+            <span class="showing-counter">
+              Showing {{ getVisibleItems('professional-trainings').length }} of {{ getSectionItems('professional-trainings').length }}
+            </span>
           </div>
         </section>
 
-        <!-- 08. Skills -->
-        <section id="skills" class="cv-section">
+        <!-- 08. Conferences -->
+        <section id="conferences" class="cv-section">
           <div class="section-badge-header">
             <span class="section-num">08</span>
+            <h2>Conferences</h2>
+          </div>
+          <p class="section-subtext">Academic and industrial research conferences, technical proceedings, and symposiums.</p>
+
+          <div class="education-interactive-list">
+            <RouterLink
+              v-for="item in getSectionItems('conferences')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="education-row"
+              :aria-label="`View details for ${item.title}`"
+            >
+              <div class="edu-row-years">
+                {{ item.period }}
+              </div>
+              <div class="edu-row-content">
+                <h3 class="edu-row-title">{{ item.title }}</h3>
+                <p class="edu-row-institution">{{ item.organization || item.subtitle }}</p>
+              </div>
+              <div class="edu-row-arrow" aria-hidden="true">
+                ↗
+              </div>
+            </RouterLink>
+          </div>
+        </section>
+
+        <!-- 09. Skills -->
+        <section id="skills" class="cv-section">
+          <div class="section-badge-header">
+            <span class="section-num">09</span>
             <h2>Skills</h2>
           </div>
           <p class="section-subtext">Core civil engineering competencies, specialized modeling software, and professional soft skills.</p>
 
-          <div class="skills-cv-grid">
-            <div class="card skill-category-card">
-              <h3 class="skill-cat-title">Core Competencies</h3>
-              <div class="tag-list">
-                <span v-for="s in academicCv.skills.coreCompetencies" :key="s" class="tag skill-tag">{{ s }}</span>
+          <div class="skills-three-col">
+            <div
+              v-for="cat in skillsCategories"
+              :key="cat.title"
+              class="skill-box-card"
+            >
+              <div class="skill-box-top">
+                <span class="skill-box-badge">{{ cat.badge }}</span>
+                <h3 class="skill-box-title">{{ cat.title }}</h3>
               </div>
-            </div>
-            <div class="card skill-category-card">
-              <h3 class="skill-cat-title">Software &amp; Tools</h3>
-              <div class="tag-list">
-                <span v-for="s in academicCv.skills.softwareAndTools" :key="s" class="tag skill-tag">{{ s }}</span>
-              </div>
-            </div>
-            <div class="card skill-category-card">
-              <h3 class="skill-cat-title">Soft Skills</h3>
-              <div class="tag-list">
-                <span v-for="s in academicCv.skills.softSkills" :key="s" class="tag skill-tag">{{ s }}</span>
-              </div>
+              <ul class="skill-items-list">
+                <li v-for="skill in cat.skills" :key="skill" class="skill-item">
+                  <span class="skill-bullet" aria-hidden="true">✦</span>
+                  <span class="skill-text">{{ skill }}</span>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
-        <!-- 09. Honours & Awards -->
+        <!-- 10. Honours & Awards -->
         <section id="honors-awards" class="cv-section">
           <div class="section-badge-header">
-            <span class="section-num">09</span>
+            <span class="section-num">10</span>
             <h2>Honours &amp; Awards</h2>
           </div>
           <p class="section-subtext">University Gold Medal, competitive merit scholarships, academic distinctions, and engineering competitions.</p>
 
-          <div class="honors-list">
-            <article
-              v-for="award in academicCv.honorsAndAwards"
-              :key="award.title"
-              :class="['card honor-card', { 'honor-gold': award.category === 'Gold Medal' }]"
+          <div class="cv-grid-two-col">
+            <RouterLink
+              v-for="item in getVisibleItems('honors-awards')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="cv-grid-item"
+              :aria-label="`View details for ${item.title}`"
             >
-              <div class="honor-header">
-                <div class="honor-title-group">
-                  <span v-if="award.category === 'Gold Medal'" class="gold-star" aria-hidden="true">★</span>
-                  <span class="badge honor-cat-badge">{{ award.category }}</span>
-                  <h3 class="honor-title-text">{{ award.title }}</h3>
+              <div class="grid-item-year">{{ item.period }}</div>
+              <div class="grid-item-body">
+                <div class="grid-item-header">
+                  <h3 class="grid-item-title">{{ item.title }}</h3>
+                  <span class="grid-item-arrow" aria-hidden="true">↗</span>
                 </div>
-                <span class="honor-period">{{ award.period }}</span>
+                <p class="grid-item-summary">{{ item.summary }}</p>
               </div>
-              <p class="honor-awarder"><strong>Conferred by:</strong> {{ award.awarder }}</p>
-              <p class="honor-detail">{{ award.detail }}</p>
-              <div v-if="award.link" class="honor-link-row">
-                <a :href="award.link" target="_blank" rel="noopener noreferrer" class="text-link">
-                  View certificate / recognition ↗
-                </a>
-              </div>
-            </article>
+            </RouterLink>
+          </div>
+
+          <div v-if="getSectionItems('honors-awards').length > 6" class="section-show-more-bar">
+            <button
+              type="button"
+              class="show-more-btn"
+              @click="toggleSection('honors-awards')"
+              :aria-expanded="isExpanded('honors-awards')"
+            >
+              <span>{{ isExpanded('honors-awards') ? 'Show Less' : 'Show More' }}</span>
+              <span class="btn-symbol">{{ isExpanded('honors-awards') ? '−' : '+' }}</span>
+            </button>
+            <span class="showing-counter">
+              Showing {{ getVisibleItems('honors-awards').length }} of {{ getSectionItems('honors-awards').length }}
+            </span>
           </div>
         </section>
 
-        <!-- 10. Volunteering -->
+        <!-- 11. Volunteering -->
         <section id="volunteering" class="cv-section">
           <div class="section-badge-header">
-            <span class="section-num">10</span>
+            <span class="section-num">11</span>
             <h2>Volunteering</h2>
           </div>
           <p class="section-subtext">Community welfare initiatives, educational outreach, public awareness campaigns, and open academic resources.</p>
 
-          <div class="volunteer-grid">
-            <article
-              v-for="v in academicCv.volunteering"
-              :key="v.title"
-              class="card vol-card"
+          <div class="education-interactive-list">
+            <RouterLink
+              v-for="item in getSectionItems('volunteering')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="education-row"
+              :aria-label="`View details for ${item.title}`"
             >
-              <div class="vol-header">
-                <div>
-                  <h3 class="vol-title-text">{{ v.title }}</h3>
-                  <p v-if="v.organization || v.location" class="vol-role">
-                    {{ [v.organization, v.location].filter(Boolean).join(' · ') }}
-                  </p>
-                </div>
-                <span class="vol-period">{{ v.period }}</span>
+              <div class="edu-row-years">
+                {{ item.period }}
               </div>
-              <p class="vol-detail">{{ v.detail }}</p>
-              <div v-if="v.link" class="vol-link-row">
-                <a :href="v.link" target="_blank" rel="noopener noreferrer" class="text-link">
-                  View initiative link ↗
-                </a>
+              <div class="edu-row-content">
+                <h3 class="edu-row-title">{{ item.title }}</h3>
+                <p class="edu-row-institution">{{ item.organization || item.subtitle }}</p>
               </div>
-            </article>
+              <div class="edu-row-arrow" aria-hidden="true">
+                ↗
+              </div>
+            </RouterLink>
           </div>
         </section>
 
-        <!-- 11. Extracurricular Activities & Leadership -->
+        <!-- 12. Extracurricular Activities & Leadership -->
         <section id="extracurricular" class="cv-section">
           <div class="section-badge-header">
-            <span class="section-num">11</span>
+            <span class="section-num">12</span>
             <h2>Extracurricular Activities &amp; Leadership</h2>
           </div>
           <p class="section-subtext">Global leadership fellowships, engineering hackathons, mental well-being initiatives, and technical symposiums.</p>
 
-          <div class="extracurricular-grid">
-            <article
-              v-for="e in academicCv.extracurricular"
-              :key="e.title"
-              class="card extra-card"
+          <div class="cv-grid-two-col">
+            <RouterLink
+              v-for="item in getVisibleItems('extracurricular')"
+              :key="item.slug"
+              :to="`/academic/${item.sectionId}/${item.slug}`"
+              class="cv-grid-item"
+              :aria-label="`View details for ${item.title}`"
             >
-              <div class="extra-header">
-                <h3 class="extra-title-text">{{ e.title }}</h3>
-                <span v-if="e.period" class="extra-period">{{ e.period }}</span>
+              <div class="grid-item-year">{{ item.period }}</div>
+              <div class="grid-item-body">
+                <div class="grid-item-header">
+                  <h3 class="grid-item-title">{{ item.title }}</h3>
+                  <span class="grid-item-arrow" aria-hidden="true">↗</span>
+                </div>
+                <p class="grid-item-summary">{{ item.summary }}</p>
               </div>
-              <p class="extra-detail">{{ e.detail }}</p>
-              <div v-if="e.link" class="extra-link-row">
-                <a :href="e.link" target="_blank" rel="noopener noreferrer" class="text-link">
-                  View certificate / initiative link ↗
-                </a>
-              </div>
-            </article>
+            </RouterLink>
+          </div>
+
+          <div v-if="getSectionItems('extracurricular').length > 6" class="section-show-more-bar">
+            <button
+              type="button"
+              class="show-more-btn"
+              @click="toggleSection('extracurricular')"
+              :aria-expanded="isExpanded('extracurricular')"
+            >
+              <span>{{ isExpanded('extracurricular') ? 'Show Less' : 'Show More' }}</span>
+              <span class="btn-symbol">{{ isExpanded('extracurricular') ? '−' : '+' }}</span>
+            </button>
+            <span class="showing-counter">
+              Showing {{ getVisibleItems('extracurricular').length }} of {{ getSectionItems('extracurricular').length }}
+            </span>
           </div>
         </section>
 
-        <!-- 12. Language Skills -->
+        <!-- 13. Language Skills (Clean display in-place without sub-pages) -->
         <section id="languages" class="cv-section">
           <div class="section-badge-header">
-            <span class="section-num">12</span>
+            <span class="section-num">13</span>
             <h2>Language Skills</h2>
           </div>
           <p class="section-subtext">Mother tongue proficiency and international English language immersion qualifications.</p>
@@ -542,68 +626,68 @@ onBeforeUnmount(() => {
 <style scoped>
 .cv-layout-wrapper {
   max-width: 1360px;
+  padding-top: 24px;
 }
 
 .cv-body-grid {
   display: grid;
-  grid-template-columns: 290px 1fr;
-  gap: 56px;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
   align-items: start;
-  margin-top: 48px;
 }
 
 /* Sticky Left Panel */
 .cv-nav-panel {
   position: sticky;
-  top: 86px;
-  max-height: calc(100vh - 110px);
+  top: 84px;
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
-  padding-right: 12px;
+  padding-right: 8px;
 }
 
 .nav-panel-sticky {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 22px 18px;
+  border-radius: 4px;
+  padding: 20px 16px;
 }
 
 .panel-eyebrow {
   font-family: var(--mono);
-  font-size: var(--text-eyebrow);
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
 .cv-toc-nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .toc-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 44px;
+  min-height: 40px;
   padding: 8px 12px;
   border-radius: 2px;
   text-decoration: none;
   color: var(--muted);
-  font-size: 0.9375rem;
-  line-height: 1.40;
+  font-size: 0.88rem;
+  line-height: 1.35;
   transition: all 140ms ease;
   border-left: 3px solid transparent;
 }
 
 .toc-num {
   font-family: var(--mono);
-  font-size: var(--text-badge, 0.75rem);
+  font-size: 0.75rem;
   color: var(--line-strong);
   flex-shrink: 0;
 }
@@ -633,15 +717,50 @@ onBeforeUnmount(() => {
 .cv-main-content {
   display: flex;
   flex-direction: column;
-  gap: 68px;
+  gap: 56px;
   min-width: 0;
+}
+
+/* Header block aligned at top of main column */
+.cv-header-block {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cv-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+.cv-hero-title {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 10px 0;
+}
+
+.cv-hero-role {
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin: 0 0 20px 0;
+}
+
+.cv-hero-actions {
+  display: flex;
+  gap: 14px;
 }
 
 .cv-section {
   scroll-margin-top: 92px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .section-badge-header {
@@ -654,109 +773,70 @@ onBeforeUnmount(() => {
 
 .section-num {
   font-family: var(--mono);
-  font-size: var(--text-meta-value, 0.875rem);
+  font-size: 0.85rem;
   color: var(--accent);
-  background: var(--accent-soft);
+  border: 1px solid var(--line);
   padding: 3px 8px;
   border-radius: 2px;
-  font-weight: 500;
+  background: var(--surface);
 }
 
-.section-badge-header h2 {
-  font-size: var(--text-section-title);
+.cv-section h2 {
+  font-size: 1.65rem;
   font-weight: 600;
-  line-height: 1.18;
   color: var(--text);
   margin: 0;
-  letter-spacing: -0.015em;
-}
-
-.section-subtext {
-  font-size: var(--text-card-desc, 1rem);
-  color: var(--muted);
-  line-height: 1.60;
-  margin-top: -6px;
-  margin-bottom: 4px;
-}
-
-.subsection-title {
-  font-size: var(--text-subsection-title);
-  color: var(--text);
-  margin-top: 24px;
-  margin-bottom: 4px;
-  font-weight: 580;
-  line-height: 1.28;
   letter-spacing: -0.01em;
 }
 
-/* Cards General */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 24px 26px;
-  transition: border-color 160ms ease;
-}
-
-.card:hover {
-  border-color: var(--line-strong);
-}
-
-/* Section 1: Personal Info */
-.personal-top-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 32px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 22px;
-  margin-bottom: 20px;
-}
-
-.person-name {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-
-.person-role {
-  font-size: 1.05rem;
-  color: var(--accent);
-  margin-top: 4px;
-  font-weight: 500;
-}
-
-.person-degree {
-  font-family: var(--mono);
-  font-size: 0.82rem;
+.section-subtext {
+  font-size: 0.95rem;
   color: var(--muted);
-  margin-top: 8px;
+  line-height: 1.5;
+  margin: -6px 0 6px 0;
 }
 
-.personal-meta-list {
+/* Personal Information Card */
+.personal-card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.personal-meta-horizontal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 20px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.meta-item {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  font-size: 0.88rem;
+  gap: 4px;
 }
 
 .meta-label {
-  display: block;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--line-strong);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 2px;
+  letter-spacing: 0.06em;
 }
 
 .meta-val {
+  font-size: 0.9rem;
   color: var(--text);
+  word-break: break-word;
 }
 
 .link-val {
   color: var(--accent);
   text-decoration: none;
+  transition: color 140ms ease;
 }
 
 .link-val:hover {
@@ -764,612 +844,379 @@ onBeforeUnmount(() => {
 }
 
 .personal-summary-text {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--muted);
   line-height: 1.65;
+  margin: 0;
 }
 
-/* Timeline / Entry Cards */
-.timeline-list {
+/* Interactive List Rows (Used consistently across sections 02 to 11) */
+.education-interactive-list {
   display: flex;
   flex-direction: column;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.education-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 12px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 160ms ease, padding-left 160ms ease, border-color 160ms ease;
+  border-radius: 2px;
+}
+
+.education-row:hover {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.18);
+  padding-left: 18px;
+}
+
+.education-row:hover .edu-row-title {
+  color: var(--accent);
+}
+
+.education-row:hover .edu-row-arrow {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+.edu-row-years {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.edu-row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edu-row-title {
+  font-size: 1.08rem;
+  font-weight: 580;
+  color: var(--text);
+  margin: 0;
+  transition: color 160ms ease;
+}
+
+.edu-row-institution {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.edu-row-arrow {
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  color: var(--line-strong);
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+/* 2-Column Grid Layout matching screenshot */
+.cv-grid-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 52px;
+  row-gap: 0;
+  margin-top: 8px;
+}
+
+.cv-grid-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
   gap: 18px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease;
 }
 
-.entry-card {
+.cv-grid-item:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+.grid-item-year {
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.45);
+  padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+.grid-item-body {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.grid-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 12px;
 }
 
-.entry-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
+.grid-item-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.35;
+  margin: 0;
+  transition: color 0.2s ease;
 }
 
-.entry-title {
-  font-size: 1.25rem;
-  font-weight: 580;
-  color: var(--text);
+.cv-grid-item:hover .grid-item-title {
+  color: var(--accent, #ff6b35);
 }
 
-.entry-org {
-  font-size: 0.92rem;
-  color: var(--accent);
-  margin-top: 2px;
+.grid-item-arrow {
+  color: var(--accent, #ff6b35);
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  line-height: 1.2;
 }
 
-.entry-period {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--muted);
-  white-space: nowrap;
+.cv-grid-item:hover .grid-item-arrow {
+  transform: translate(2px, -2px);
 }
 
-.entry-scope {
-  font-size: 0.92rem;
-  color: var(--muted);
-}
-
-.entry-bullets {
-  padding-left: 20px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.entry-metrics {
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--accent);
-}
-
-.distinction-highlight {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
-  color: var(--text);
-  padding: 6px 12px;
-  border-radius: 2px;
+.grid-item-summary {
   font-size: 0.88rem;
-  width: fit-content;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.55;
+  margin: 0;
 }
 
-.gold-badge {
-  color: var(--accent);
-}
-
-.edu-courses-block {
-  margin-top: 4px;
-}
-
-.research-actions {
+/* Show More / Counter Bar */
+.section-show-more-bar {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-top: 8px;
-  flex-wrap: wrap;
+  margin-top: 28px;
 }
 
-/* Projects Grid */
-.projects-cv-grid {
+.show-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f0f0f0;
+  padding: 9px 18px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.show-more-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.btn-symbol {
+  color: var(--accent, #ff6b35);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.showing-counter {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Section 09: Skills Three Boxes (Horizontal Layout) */
+.skills-three-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 18px;
 }
 
-.mini-project-card {
+.skill-box-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.card-project-title {
+.skill-box-card:hover {
+  border-color: rgba(255, 107, 53, 0.4);
+  transform: translateY(-2px);
+}
+
+.skill-box-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.skill-box-badge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.skill-box-title {
   font-size: 1.15rem;
+  font-weight: 600;
   color: var(--text);
-  font-weight: 580;
-  line-height: 1.30;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.card-project-desc {
-  font-size: 0.92rem;
-  color: var(--muted);
-  line-height: 1.58;
-  flex-grow: 1;
-}
-
-/* Certifications */
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
-  gap: 18px;
-}
-
-.cert-card {
+.skill-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.cert-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   gap: 12px;
 }
 
-.cert-title-text {
-  font-size: 1.1rem;
-  color: var(--text);
-  font-weight: 580;
-  line-height: 1.30;
-}
-
-.cert-issuer {
-  font-size: 0.85rem;
-  color: var(--accent);
-  margin-top: 2px;
-}
-
-.cert-date {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.cert-detail {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.55;
-  flex-grow: 1;
-}
-
-.cert-link-row,
-.honor-link-row,
-.vol-link-row,
-.extra-link-row {
-  margin-top: 4px;
-}
-
-/* CPD Table */
-.cpd-table-wrapper {
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--surface);
-}
-
-.cpd-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-  text-align: left;
-}
-
-.cpd-table th {
-  background: var(--surface-input);
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--line);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.cpd-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
-  vertical-align: top;
-}
-
-.cpd-title-cell {
-  font-weight: 500;
-  max-width: 340px;
-}
-
-.cpd-detail-text {
-  font-size: 0.82rem;
-  color: var(--muted);
-  margin-top: 4px;
+.skill-item {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  align-items: start;
   line-height: 1.45;
 }
 
-.cpd-speaker-cell {
-  color: var(--muted);
-  font-size: 0.82rem;
-  white-space: nowrap;
-}
-
-.point-badge {
-  background: var(--accent-soft);
+.skill-bullet {
   color: var(--accent);
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  padding: 3px 7px;
-  border-radius: 2px;
-  white-space: nowrap;
-}
-
-.cpd-date-cell {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.cpd-link-cell {
-  white-space: nowrap;
-}
-
-/* Workshops Grid */
-.workshop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: 16px;
-}
-
-.workshop-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.ws-title-text {
-  font-size: 1.1rem;
-  color: var(--text);
-  font-weight: 580;
-  line-height: 1.30;
-}
-
-.ws-org {
-  font-size: 0.86rem;
-  color: var(--accent);
-}
-
-.ws-detail {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.50;
-  flex-grow: 1;
-}
-
-.ws-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-top: 6px;
-  flex-wrap: wrap;
-}
-
-.ws-date {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-/* Skills Category Grid */
-.skills-cv-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: 18px;
-}
-
-.skill-category-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.skill-cat-title {
-  font-size: 1.15rem;
-  font-weight: 580;
-  color: var(--text);
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 8px;
-}
-
-.skill-tag {
-  font-size: 0.85rem;
-}
-
-/* Honors List */
-.honors-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.honor-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.honor-gold {
-  border-color: var(--accent);
-  background: var(--surface);
-}
-
-.honor-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.honor-title-group {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.gold-star {
-  color: var(--accent);
-  font-size: 1.1rem;
-}
-
-.honor-cat-badge {
-  margin-left: 0;
   font-size: 0.72rem;
+  padding-top: 3px;
+  flex-shrink: 0;
 }
 
-.honor-title-text {
-  font-size: 1.15rem;
-  color: var(--text);
-  font-weight: 580;
-}
-
-.honor-period {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.honor-awarder {
+.skill-text {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.honor-detail {
-  font-size: 0.92rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* Volunteers */
-.volunteer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
-  gap: 18px;
-}
-
-.vol-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.vol-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.vol-title-text {
-  font-size: 1.1rem;
-  color: var(--text);
-  font-weight: 580;
-  line-height: 1.30;
-}
-
-.vol-role {
-  font-size: 0.85rem;
-  color: var(--accent);
-  margin-top: 3px;
-}
-
-.vol-period {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.vol-detail {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.55;
-  flex-grow: 1;
-}
-
-/* Extracurricular Grid */
-.extracurricular-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: 18px;
-}
-
-.extra-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.extra-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.extra-title-text {
-  font-size: 1.1rem;
-  color: var(--text);
-  font-weight: 580;
-  line-height: 1.30;
-}
-
-.extra-period {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.extra-detail {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.55;
-  flex-grow: 1;
-}
-
-/* Languages */
+/* Section 12: Languages Grid */
 .languages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
 }
 
 .lang-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
 }
 
 .lang-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  margin-bottom: 10px;
 }
 
 .lang-name {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--text);
-  font-weight: 580;
+  margin: 0;
 }
 
 .lang-pill {
-  background: var(--accent-soft);
-  color: var(--accent);
   font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 4px 10px;
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: var(--accent-surface);
+  border: 1px solid var(--line);
+  padding: 3px 8px;
   border-radius: 2px;
 }
 
 .lang-note {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+/* Responsive Styles */
+@media (max-width: 1100px) {
+  .personal-meta-horizontal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
   .cv-body-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
   .cv-nav-panel {
-    position: static;
-    max-height: none;
-    overflow: visible;
+    display: none;
   }
 
-  .cv-toc-nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-    gap: 6px;
-  }
-
-  .personal-top-row {
+  .cv-grid-two-col {
     grid-template-columns: 1fr;
-    gap: 20px;
+    column-gap: 0;
+  }
+
+  .skills-three-col {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 }
 
 @media (max-width: 640px) {
-  .cv-toc-nav {
+  .personal-meta-horizontal {
     grid-template-columns: 1fr;
   }
 
-  .entry-header,
-  .honor-header,
-  .cert-header,
-  .extra-header,
-  .vol-header {
+  .education-row {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+
+  .edu-row-years {
+    grid-column: 1 / -1;
+    font-size: 0.8rem;
+  }
+
+  .cv-grid-item {
+    grid-template-columns: 46px 1fr;
+    gap: 14px;
+    padding: 16px 0;
+  }
+
+  .section-show-more-bar {
     flex-direction: column;
-    gap: 6px;
-  }
-}
-
-/* Print Styles */
-@media print {
-  .no-print,
-  .cv-nav-panel {
-    display: none !important;
-  }
-
-  .cv-body-grid {
-    display: block !important;
-    margin-top: 0 !important;
-  }
-
-  .cv-main-content {
-    gap: 28px !important;
-  }
-
-  .card {
-    background: transparent !important;
-    border: 1px solid #ccc !important;
-    color: #000 !important;
-    page-break-inside: avoid;
-    padding: 14px !important;
-  }
-
-  .section-badge-header {
-    border-bottom: 2px solid #000 !important;
-  }
-
-  .section-badge-header h2,
-  .person-name,
-  .entry-title,
-  .card-project-title,
-  .cert-title-text,
-  .ws-title-text,
-  .extra-title-text,
-  .vol-title-text,
-  .honor-title-text {
-    color: #000 !important;
-  }
-
-  .person-role,
-  .entry-org,
-  .section-num,
-  .toc-num,
-  .meta-val,
-  .point-badge {
-    color: #222 !important;
-  }
-
-  .cpd-table th {
-    background: #eee !important;
-    color: #000 !important;
+    align-items: flex-start;
+    gap: 12px;
   }
 }
 </style>

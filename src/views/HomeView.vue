@@ -103,9 +103,9 @@ const featured = projects[0]!
         <p>BS Civil Engineering · 2022–2026</p>
       </RouterLink>
       <RouterLink to="/experience">
-        <span class="eyebrow">Work Experience</span>
+        <span class="eyebrow">Work</span>
         <h3>Scan-to-BIM <span aria-hidden="true">↗</span></h3>
-        <p>Junior BIM Modeler · Archnetix</p>
+        <p>BIM Modeler – Junior · Archnetix</p>
       </RouterLink>
       <RouterLink to="/community">
         <span class="eyebrow">Volunteering</span>

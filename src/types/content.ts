@@ -3,14 +3,22 @@ export interface Project {
   slug: string
   title: string
   category: 'Structures' | 'Water' | 'Planning' | 'Transportation'
-  tools: string[]
+  period?: string
+  subtitle?: string
+  domain?: string
+  organization?: string
+  badge?: string
   summary: string
   context: string
   scope: string[]
   outcome: string
   contribution: string
+  details?: string[]
   diagram: DiagramKind
   source: string[]
+  tools: string[]
+  link?: string
+  linkLabel?: string
 }
 export interface Experience {
   slug: string
@@ -48,3 +56,48 @@ export interface ResearchItem {
   tools: string[]
   citation: string
 }
+
+export interface EducationSubject {
+  name: string
+  maxMarks?: number
+  obtainedMarks?: number
+  grade?: string
+}
+
+export interface EducationSemester {
+  semester: string
+  sgpa?: string
+  meritPosition?: string
+  courses: Array<{
+    code?: string
+    name: string
+    credits?: string | number
+    grade?: string
+  }>
+}
+
+export interface EducationItem {
+  slug: string
+  degree: string
+  shortDegree: string
+  institution: string
+  institutionUrl?: string
+  boardOrUniversity?: string
+  period: string
+  years: string
+  location: string
+  grade: string
+  distinction?: string
+  summary: string
+  context: string
+  rollNumber?: string
+  registrationNumber?: string
+  certificateNumber?: string
+  dateIssued?: string
+  thesis?: string
+  subjects?: EducationSubject[]
+  semesters?: EducationSemester[]
+  courses?: string[]
+  achievements?: string[]
+}
+

@@ -5,6 +5,7 @@ export interface AcademicCvData {
     keywords: string
     degreeSummary: string
     institution: string
+    institutionUrl?: string
     email: string
     phone: string
     whatsapp: string
@@ -17,11 +18,12 @@ export interface AcademicCvData {
   education: Array<{
     degree: string
     institution: string
+    institutionUrl?: string
     period: string
     location: string
-    fieldOfStudy: string
+    fieldOfStudy?: string
     grade: string
-    eqfLevel: string
+    eqfLevel?: string
     distinction?: string
     thesis?: string
     courses?: string[]
@@ -123,13 +125,14 @@ export const academicCv: AcademicCvData = {
   personalInfo: {
     name: 'Kashan Shafiq',
     title: 'Civil Engineer',
-    keywords: 'Gold Medalist · Civil Engineer',
+    keywords: 'Civil Engineer',
     degreeSummary: 'BS in Civil Engineering · CGPA 3.95/4.00 (98%) · Gold Medalist',
     institution: 'COMSATS University Islamabad, Wah Campus',
+    institutionUrl: 'https://cuiwah.edu.pk/',
     email: 'kashankashi27@gmail.com',
     phone: '(+92) 3155915676',
     whatsapp: '+923155915676',
-    location: '47040, Wah Cantt / Islamabad, Pakistan',
+    location: 'Wah Cantt / Islamabad, Pakistan',
     nationality: 'Pakistani',
     linkedin: 'https://www.linkedin.com/in/kashan-shafiq-11764229b/',
     portfolioUrl: 'https://kashanshafiq.com',
@@ -141,11 +144,10 @@ export const academicCv: AcademicCvData = {
     {
       degree: 'BS IN CIVIL ENGINEERING',
       institution: 'Comsats University Islamabad, Wah Campus',
+      institutionUrl: 'https://cuiwah.edu.pk/',
       period: '2022/09/12 – 2026/07/06',
       location: 'Wah Cantt, Pakistan',
-      fieldOfStudy: 'Building and civil engineering',
-      grade: 'Final grade 3.95/4 (98%)',
-      eqfLevel: 'EQF level 6',
+      grade: '3.95/4 (98%)',
       distinction: 'Gold Medalist · 1st in Graduating Class across all 8 Semesters',
       thesis: 'BIM-to-AR Integration for Construction Layout Visualization',
       courses: [
@@ -183,45 +185,48 @@ export const academicCv: AcademicCvData = {
 
   workExperience: [
     {
-      role: 'Junior BIM Modeler (Scan-to-BIM Specialist)',
+      role: 'BIM Modeler – Junior',
       organization: 'Archnetix',
       location: 'Islamabad, Pakistan',
-      period: '2026 – Present',
-      scope: 'Laser Scan Point Cloud to High-Precision Autodesk Revit Models',
+      period: 'Jul 2026 – Present',
+      scope: 'Scan-to-BIM Projects, Point Cloud Registration & LOD 300/350 Revit Modeling',
       responsibilities: [
-        'Converts 3D terrestrial laser scan point cloud datasets into coordinated Autodesk Revit building models.',
-        'Develops structural, architectural, and MEP components to LOD 300 and LOD 350 specifications for retrofit, renovation, and as-built documentation.',
-        'Executes multi-discipline clash detection, quality assurance checks, and strict conformance with client BIM execution plans.',
+        'Worked on Scan-to-BIM projects, converting point cloud data into coordinated 3D Revit models to LOD 300/350.',
+        'Verified model accuracy against scan data and coordinated deliverables across Structural, Architectural, and MEP disciplines.',
+        'Worked alongside the registration team on registering raw point cloud data using Leica Cyclone, with some exposure to Autodesk ReCap.',
+        'Responsible for building accurate BIM models in Autodesk Revit in line with modeling standards and project specifications.',
       ],
-      tools: ['Autodesk Revit', 'Point Cloud Data', 'AutoCAD', 'LOD 300/350'],
+      tools: ['Autodesk Revit', 'Point Cloud Data', 'Leica Cyclone', 'Autodesk ReCap', 'LOD 300/350', 'BIM Coordination'],
     },
     {
-      role: 'ENGINEERING INTERNEE',
-      organization: 'MOUNT KHALID',
-      location: 'ISLAMABAD, PAKISTAN',
-      period: '2025/07/07 – 2025/08/25',
+      role: 'Engineering Internee',
+      organization: 'Mount Khalid',
+      location: 'Islamabad, Pakistan',
+      period: 'Jul 2025 – Aug 2025',
       scope: '45-Storey High-Rise Residential Tower Construction & BIM Coordination',
       responsibilities: [
         'Supported field and technical teams on a 45-storey high-rise residential tower, coordinating BIM information with site execution requirements.',
         'Modeled 70,000+ structural and architectural elements to LOD 300 in Autodesk Revit, including RC columns, beams, posttensioned slabs, and facades.',
         'Gained hands-on exposure to post-tensioned slab construction, including coordination of PT slab elements with structural and architectural requirements.',
         'Reviewed clash-detection outputs and supported Structural–Architectural coordination for a post-tensioned, high-strength concrete building using concrete strengths of approximately 5,000–10,600 psi.',
+        'Extracted model-based quantities and area take-offs from Revit to support BOQ verification and project cost-estimation workflows.',
       ],
-      tools: ['Autodesk Revit', 'PT Slab Coordination', 'LOD 300', 'Clash Detection', 'High-Rise Construction'],
+      tools: ['Autodesk Revit', 'PT Slab Coordination', 'LOD 300', 'Clash Detection', 'High-Rise Construction', 'BOQ Verification'],
     },
     {
-      role: 'ENGINEERING INTERNEE',
-      organization: 'SIMCO',
-      location: 'ISLAMABAD, PAKISTAN',
-      period: '2024/07/01 – 2024/07/31',
+      role: 'Engineering Internee',
+      organization: 'Resolve & NSTP Tower, NUST University',
+      location: 'Islamabad, Pakistan',
+      period: 'Jul 2024',
       scope: 'Site Management, Field Execution, QA/QC Inspection & Quantity Take-offs',
       responsibilities: [
         'Interpreted and cross-checked structural, architectural, and site-layout drawings against live construction activities, identifying discrepancies for engineer review.',
         'Supported field execution and inspection activities, including slab-related construction exposure, reinforcement, formwork, and concrete works.',
         'Performed QA/QC checks on concrete curing, formwork, and rebar cover and reported observations to improve compliance with construction requirements.',
         'Calculated full-floor steel reinforcement weights and performed quantity take-offs for bricks, steel, and concrete, supporting material requisition and BOQ reconciliation.',
+        'Coordinated with site personnel and gained cross-functional exposure to site management, project documentation, and cost estimation on live NUST projects.',
       ],
-      tools: ['Drawing Interpretation', 'Site QA/QC', 'Reinforcement Inspection', 'Quantity Take-offs', 'BOQ Reconciliation'],
+      tools: ['Drawing Interpretation', 'Site QA/QC', 'Reinforcement Inspection', 'Quantity Take-offs', 'BOQ Reconciliation', 'Site Management'],
     },
   ],
 
@@ -251,10 +256,10 @@ export const academicCv: AcademicCvData = {
       tools: ['CAD Takeoffs', 'BOQ Formulation', 'Reinforcement Estimation', 'Costing'],
     },
     {
-      title: 'Haroon Residence — BIM Design & Modeling',
+      title: 'Tahir Residency — BIM & Architectural Modeling',
       description:
-        'Designed a CDA-compliant double-storey residence in Revit, producing full 2D/3D documentation and material take-offs while optimizing space utilization.',
-      tools: ['Autodesk Revit', 'CDA Guidelines', '2D/3D Documentation', 'Space Optimization'],
+        'Collaborative project contributed by Faizan Manshad and Haider Ali. Executed end-to-end parametric modeling and technical documentation for a contemporary multi-level residential dwelling in Autodesk Revit, including structural coordination, solar orientation analysis in Insight 360, and drawing sets.',
+      tools: ['Autodesk Revit', 'Insight 360', 'Structural Coordination', 'Solar Studies', 'BOQ & Schedules'],
     },
     {
       title: 'Primavera P6 Construction Scheduling — Tricon Villa',
@@ -530,6 +535,30 @@ export const academicCv: AcademicCvData = {
       period: '2026/06/03',
       detail: 'Secured 3rd position for Final Year Project at the departmental Open House and Job Fair.',
       link: 'https://drive.google.com/file/d/1IfROBA17znbjOd4-LIZgQRv7wAfdpcRZ/view?usp=sharing',
+    },
+    {
+      title: 'Prime Minister’s National Laptop Scheme Award – HEC & Government of Pakistan',
+      category: 'Scholarship',
+      awarder: 'Higher Education Commission (HEC) & Government of Pakistan',
+      period: '2023',
+      detail:
+        'Awarded a high-performance laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted strictly on academic merit and top CGPA departmental standing at COMSATS University Islamabad, Wah Campus.',
+    },
+    {
+      title: '3rd Position in Class — Grade 8 Annual Examination – Sir Syed College, Wah Cantt',
+      category: 'Merit Position',
+      awarder: 'Sir Syed College, Wah Cantt',
+      period: '2018',
+      detail:
+        'Secured 3rd Position in class in the Grade 8 annual academic examinations, demonstrating strong foundational aptitude in science and mathematics.',
+    },
+    {
+      title: '3rd Position in Class — Grade 4 Annual Examination – Sir Syed School, Wah Cantt',
+      category: 'Merit Position',
+      awarder: 'Sir Syed School, Wah Cantt',
+      period: '2014',
+      detail:
+        'Secured 3rd Position in the Grade 4 annual examinations, reflecting consistent academic dedication from early primary education.',
     },
     {
       title: 'SFD & BMD Winner, Civil Mania 2024 – Wah Engineering College',

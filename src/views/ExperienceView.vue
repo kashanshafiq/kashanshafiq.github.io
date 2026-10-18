@@ -1,34 +1,36 @@
 <script setup lang="ts">
 import PageIntro from '../components/PageIntro.vue'
-import { experience } from '../content/experience'
+import { academicItems } from '../content/academicItems'
+
+const workExperience = academicItems.filter(item => item.sectionId === 'work-experience')
 </script>
 
 <template>
   <div class="shell page-body">
     <PageIntro
-      eyebrow="Work Experience / Professional practice"
+      eyebrow="Work / Professional practice"
       title="From drawings to real conditions."
       description="Experience across BIM modelling, construction workflows and site engineering. Select any role below to view responsibilities, technical workflows, and deliverables in detail."
     />
 
     <div class="record-list">
       <RouterLink
-        v-for="item in experience"
+        v-for="item in workExperience"
         :key="item.slug"
-        :to="`/experience/${item.slug}`"
+        :to="`/academic/work-experience/${item.slug}`"
         class="record record-interactive"
-        :aria-label="`View details for ${item.role} at ${item.organization}`"
+        :aria-label="`View details for ${item.title} at ${item.organization}`"
       >
         <div class="record-meta">
           <p class="eyebrow">{{ item.period }}</p>
-          <p class="location-label">{{ item.location }}</p>
+          <p class="location-label">{{ item.subtitle || item.domain }}</p>
         </div>
 
         <div class="record-content">
           <div class="record-header">
             <div>
               <h2>{{ item.organization }}</h2>
-              <h3>{{ item.role }}</h3>
+              <h3>{{ item.title }}</h3>
             </div>
             <span class="view-indicator" aria-hidden="true">
               View details ↗
@@ -38,7 +40,7 @@ import { experience } from '../content/experience'
           <p class="record-summary">{{ item.summary }}</p>
 
           <div class="tag-list mini-tags">
-            <span v-for="tool in item.tools.slice(0, 4)" :key="tool" class="tag">
+            <span v-for="tool in (item.tools || []).slice(0, 4)" :key="tool" class="tag">
               {{ tool }}
             </span>
           </div>
@@ -47,6 +49,12 @@ import { experience } from '../content/experience'
     </div>
 
     <div class="link-row" style="margin-top: 30px;">
+      <RouterLink class="text-link" to="/research">
+        Research <span aria-hidden="true">↗</span>
+      </RouterLink>
+      <RouterLink class="text-link" to="/recognition">
+        Honours and Awards <span aria-hidden="true">↗</span>
+      </RouterLink>
       <RouterLink class="text-link" to="/work">
         Featured Projects <span aria-hidden="true">↗</span>
       </RouterLink>

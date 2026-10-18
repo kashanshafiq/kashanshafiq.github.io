@@ -21,10 +21,10 @@ watch(() => route.fullPath, () => { open.value = false })
       {{ open ? 'Close' : 'Menu' }} <span aria-hidden="true">{{ open ? '−' : '+' }}</span>
     </button>
     <nav id="main-navigation" aria-label="Main navigation" :class="{ open }">
-      <RouterLink to="/experience">Work Experience</RouterLink>
-      <RouterLink to="/research">Research Work</RouterLink>
-      <RouterLink to="/work">Featured Projects</RouterLink>
+      <RouterLink to="/experience">Work</RouterLink>
+      <RouterLink to="/research">Research</RouterLink>
       <RouterLink to="/recognition">Honours and Awards</RouterLink>
+      <RouterLink to="/work">Featured Projects</RouterLink>
       <RouterLink to="/community">Volunteering</RouterLink>
       <RouterLink to="/cv">Academics</RouterLink>
     </nav>

@@ -1,38 +1,40 @@
 <script setup lang="ts">
 import PageIntro from '../components/PageIntro.vue'
-import { researchProjects } from '../content/research'
+import { academicItems } from '../content/academicItems'
+
+const researchItems = academicItems.filter(item => item.sectionId === 'research-experience')
 </script>
 
 <template>
   <div class="shell page-body">
     <PageIntro
-      eyebrow="Research Work / Academic Inquiries & Publications"
+      eyebrow="Research / Academic Inquiries & Publications"
       title="Beyond the drawing."
       description="Exploring how digital models, mobile augmented reality, and computational simulations bridge the gap between design engineering and physical construction conditions."
     />
 
     <p class="result-count" aria-live="polite">
-      {{ researchProjects.length }} {{ researchProjects.length === 1 ? 'research project' : 'research projects' }}
+      {{ researchItems.length }} {{ researchItems.length === 1 ? 'research project' : 'research projects' }}
     </p>
 
     <div class="record-list">
       <RouterLink
-        v-for="item in researchProjects"
+        v-for="item in researchItems"
         :key="item.slug"
-        :to="`/research/${item.slug}`"
+        :to="`/academic/research-experience/${item.slug}`"
         class="record record-interactive"
-        :aria-label="`View details for ${item.shortTitle}`"
+        :aria-label="`View details for ${item.title}`"
       >
         <div class="record-meta">
           <p class="eyebrow period-text">{{ item.period }}</p>
-          <span class="badge status-pill">{{ item.venue }}</span>
+          <span class="badge status-pill">{{ item.subtitle || 'Preprint' }}</span>
         </div>
 
         <div class="record-content">
           <div class="record-header">
             <div>
               <h2 class="research-item-title">{{ item.title }}</h2>
-              <p class="author-subline">{{ item.authors.join(' · ') }}</p>
+              <p class="author-subline">{{ item.organization }}</p>
             </div>
             <span class="view-indicator" aria-hidden="true">
               View research details ↗
@@ -42,7 +44,7 @@ import { researchProjects } from '../content/research'
           <p class="record-summary">{{ item.summary }}</p>
 
           <div class="tag-list mini-tags">
-            <span v-for="tool in item.tools" :key="tool" class="tag">
+            <span v-for="tool in (item.tools || [])" :key="tool" class="tag">
               {{ tool }}
             </span>
           </div>
@@ -51,11 +53,14 @@ import { researchProjects } from '../content/research'
     </div>
 
     <div class="link-row" style="margin-top: 36px;">
+      <RouterLink class="text-link" to="/experience">
+        Work <span aria-hidden="true">↗</span>
+      </RouterLink>
+      <RouterLink class="text-link" to="/recognition">
+        Honours and Awards <span aria-hidden="true">↗</span>
+      </RouterLink>
       <RouterLink class="text-link" to="/work">
         Featured Projects <span aria-hidden="true">↗</span>
-      </RouterLink>
-      <RouterLink class="text-link" to="/experience">
-        Work Experience <span aria-hidden="true">↗</span>
       </RouterLink>
       <RouterLink class="text-link" to="/#contact">
         Get in touch <span aria-hidden="true">↗</span>

@@ -3,86 +3,85 @@ import type { Experience } from '../types/content'
 export const experience: Experience[] = [
   {
     slug: 'archnetix-bim-modeler',
-    organization: 'Archnetix',
-    role: 'Junior BIM Modeler',
-    period: 'Current role',
+    organization: 'Archnetix, Islamabad',
+    role: 'BIM Modeler – Junior',
+    period: 'Jul 2026 – Present',
     location: 'Islamabad, Pakistan',
     domain: 'Scan-to-BIM & Digital Documentation',
-    summary: 'Scan-to-BIM modelling of existing buildings in Islamabad.',
-    context: 'Archnetix specializes in digital construction, high-precision laser scanning, and BIM implementations. In this current professional position, the primary focus is processing terrestrial LiDAR and laser-scanned point clouds to construct coordinated, high-fidelity Autodesk Revit models for existing facilities, structural renovations, and as-built verification.',
+    summary: 'Scan-to-BIM modeling, point cloud registration, and multi-disciplinary Revit coordination.',
+    context: 'Archnetix specializes in digital construction, high-precision laser scanning, and BIM implementations. Responsible for registering raw point cloud data and building coordinated 3D Revit models to LOD 300/350 in line with modeling standards and project specifications.',
     details: [
-      'Convert raw laser-scanned 3D point-cloud data into coordinated Revit models for existing facilities and renovations.',
-      'Model architectural, structural, and MEP components to LOD 300 and LOD 350 specifications with precise spatial registration.',
-      'Perform multi-disciplinary clash detection and eliminate spatial routing conflicts between services and load-bearing framing.',
-      'Maintain rigorous compliance with client BIM Execution Plans (BEP), parameter standards, and LOD definitions.',
-      'Produce comprehensive 2D as-built documentation, detail drawings, and schedules directly extracted from federated BIM models.'
+      'Worked on Scan-to-BIM projects, converting point cloud data into coordinated 3D Revit models to LOD 300/350.',
+      'Verified model accuracy against scan data and coordinated deliverables across Structural, Architectural, and MEP disciplines.',
+      'Worked alongside the registration team on registering raw point cloud data using Leica Cyclone, with some exposure to Autodesk ReCap.',
+      'Responsible for building accurate BIM models in Autodesk Revit in line with modeling standards and project specifications.',
     ],
-    tools: ['Autodesk Revit', 'Point Cloud Processing', 'AutoCAD', 'LOD 300 / LOD 350', 'BIM Coordination'],
+    tools: ['Autodesk Revit', 'Point Cloud Processing', 'Leica Cyclone', 'Autodesk ReCap', 'LOD 300 / LOD 350', 'BIM Coordination'],
     achievements: [
       'Successfully delivered coordinated Scan-to-BIM models for complex existing commercial and institutional structures.',
-      'Achieved strict geometric tolerances matching real-world point-cloud data down to millimeter accuracy.',
-      'Standardized Revit family parameters across MEP and structural categories, improving team coordination speed.'
+      'Verified model accuracy against scan data with millimeter-level geometric precision across disciplines.',
+      'Standardized Revit family parameters across MEP and structural categories, improving team coordination speed.',
     ],
     learnings: [
       'Advanced methodologies for point-cloud noise reduction, spatial alignment, and feature segmentation in Revit.',
-      'Rigorous application of BIM Forum LOD specifications between design intent and physical as-built conditions.',
-      'Resolving structural deviations and non-orthogonal geometries found in older existing structures.'
-    ]
+      'Rigorous application of BIM Forum LOD 300/350 specifications between design intent and physical as-built conditions.',
+      'Resolving structural deviations and non-orthogonal geometries found in older existing structures.',
+    ],
   },
   {
     slug: 'mount-khalid-bim-intern',
-    organization: 'Mount Khalid',
-    role: 'BIM Engineering Intern',
-    period: 'Jul–Aug 2025',
-    location: 'Gulberg Greens, Islamabad, Pakistan',
+    organization: 'Mount Khalid, Islamabad',
+    role: 'Engineering Internee',
+    period: 'Jul 2025 – Aug 2025',
+    location: 'Islamabad, Pakistan',
     domain: 'High-Rise Residential BIM & Site Coordination',
-    summary: 'BIM and site exposure on a high-rise residential project.',
-    context: 'Mount Khalid is a landmark 45-storey high-rise residential development located in Gulberg Greens, Islamabad. During this 8-week intensive engineering internship, I worked within the project management and architectural engineering teams to develop, maintain, and audit large-scale federated BIM models while observing actual site execution.',
+    summary: 'BIM modeling and site engineering on a 45-storey high-rise residential tower.',
+    context: 'Mount Khalid is a landmark 45-storey high-rise residential tower located in Islamabad. Supported field and technical teams in coordinating BIM information with site execution, modeling 70,000+ elements in Revit, and auditing post-tensioned slab construction.',
     details: [
-      'Contributed directly to structural and architectural BIM workflows adhering to LOD 300 documentation standards.',
-      'Modeled and coordinated over 70,000 individual BIM elements across tower floor plans, core walls, and structural slabs.',
-      'Participated in weekly multidisciplinary design coordination reviews with the General Manager, Senior Project Manager, and Project Architect.',
-      'Conducted field inspections to compare physical floor progress and rebar layouts against 3D Revit models, flagging construction deviations.',
-      'Assisted in extracting material takeoffs, schedule sheets, and architectural detail packages directly from Revit.'
+      'Supported field and technical teams on a 45-storey high-rise residential tower, coordinating BIM information with site execution requirements.',
+      'Modeled 70,000+ structural and architectural elements to LOD 300 in Autodesk Revit, including RC columns, beams, posttensioned slabs, and facades.',
+      'Gained hands-on exposure to post-tensioned slab construction, including coordination of PT slab elements with structural and architectural requirements.',
+      'Reviewed clash-detection outputs and supported Structural–Architectural coordination for a post-tensioned, high-strength concrete building using concrete strengths of approximately 5,000–10,600 psi.',
+      'Extracted model-based quantities and area take-offs from Revit to support BOQ verification and project cost-estimation workflows.',
     ],
-    tools: ['Autodesk Revit', 'AutoCAD', 'LOD 300 Standards', 'MS Project / Primavera', 'Site Verification'],
+    tools: ['Autodesk Revit', 'PT Slab Coordination', 'LOD 300 Standards', 'Clash Detection', 'High-Rise Construction', 'BOQ Verification'],
     achievements: [
       'Independently developed and verified 70,000+ BIM elements in Autodesk Revit across complex residential floor plates.',
-      'Awarded an official commendation letter from General Manager Imran Mumtaz and project leadership for technical diligence.',
+      'Awarded an official commendation letter from project leadership for technical diligence.',
       'Identified and resolved multiple spatial conflicts between structural beams and architectural openings prior to site execution.',
     ],
     learnings: [
       'Collaborative worksharing with centralized Revit project files (.rvt) in a demanding high-rise commercial setting.',
       'Deepened comprehension of high-rise structural behavior: shear core walls, load distribution, and vertical service shafts.',
-      'The critical interface between digital BIM design representations and ground-level site reality.'
-    ]
+      'The critical interface between digital BIM design representations and ground-level site reality.',
+    ],
   },
   {
-    slug: 'simco-trainee-engineer',
-    organization: 'SIMCO',
-    role: 'Management Trainee Engineer',
+    slug: 'resolve-nstp-tower-intern',
+    organization: 'Resolve & NSTP Tower, NUST University Islamabad',
+    role: 'Engineering Internee',
     period: 'Jul 2024',
-    location: 'Taxila / Rawalpindi Region, Pakistan',
-    domain: 'Site Management, Surveying & Cost Estimation',
-    summary: 'Site management, drawing interpretation and estimation.',
-    context: 'Shoukat Iqbal Mir & Co. (SIMCO, License No. CB/372) is a licensed construction and civil engineering contracting firm. This month-long field traineeship provided first-hand exposure to live construction supervision, site surveying controls, engineering drawing interpretation, and material cost estimation.',
+    location: 'Islamabad, Pakistan',
+    domain: 'Site Management, Field Engineering & Cost Estimation',
+    summary: 'Site supervision, drawing interpretation, QA/QC and quantity take-offs at NSTP Tower, NUST.',
+    context: 'During this engineering traineeship at Resolve & NSTP Tower, NUST University Islamabad, gained comprehensive hands-on exposure to live construction supervision, structural drawing verification, QA/QC controls, and material quantity take-offs.',
     details: [
-      'Interpreted structural engineering working drawings, foundation details, column schedules, and bar bending details.',
-      'Assisted in establishing site benchmarks, leveling surveys, and grid line transfers for structural footings and plinth beams.',
-      'Prepared detailed quantity takeoffs and material cost estimates for concrete volume, steel reinforcement, cement, and aggregates.',
-      'Supervised on-site concrete mixing and casting, conducting slump tests and verifying formwork alignment and clear cover.',
-      'Supported site foremen in organizing workforce allocations, daily labor logs, and site safety protocols.'
+      'Interpreted and cross-checked structural, architectural, and site-layout drawings against live construction activities, identifying discrepancies for engineer review.',
+      'Supported field execution and inspection activities, including slab-related construction exposure, reinforcement, formwork, and concrete works.',
+      'Performed QA/QC checks on concrete curing, formwork, and rebar cover and reported observations to improve compliance with construction requirements.',
+      'Calculated full-floor steel reinforcement weights and performed quantity take-offs for bricks, steel, and concrete, supporting material requisition and BOQ reconciliation.',
+      'Coordinated with site personnel and gained cross-functional exposure to site management, project documentation, and cost estimation on live NUST projects.',
     ],
-    tools: ['AutoCAD', 'Optical Level / Surveying Tools', 'MS Excel Quantity Takeoff', 'Quality Control (QC)', 'Construction Supervision'],
+    tools: ['Drawing Interpretation', 'Site QA/QC', 'Reinforcement Inspection', 'Quantity Take-offs', 'BOQ Reconciliation', 'Site Management'],
     achievements: [
-      'Ensured accurate foundation bench leveling and column alignment matching structural blueprint tolerances.',
-      'Produced comprehensive itemized bill of quantities (BOQ) estimates, minimizing material wastage on foundation pours.',
-      'Successfully earned official completion certification signed by SIMCO administration.'
+      'Cross-checked architectural and structural drawings against live execution, identifying discrepancies for engineer resolution.',
+      'Performed full-floor steel reinforcement weight calculations and material take-offs for accurate BOQ reconciliation.',
+      'Maintained high QA/QC standards for concrete curing, formwork alignment, and rebar clear cover on live project slabs.',
     ],
     learnings: [
-      'Hands-on expertise translating 2D civil engineering blueprints into physical, accurately positioned field structures.',
-      'Essential quality assurance principles: concrete slump limits, rebar spacing integrity, and proper curing methods.',
-      'Managing fast-paced on-site communication between consulting engineers, sub-contractors, and trade labor.'
-    ]
-  }
+      'Translating 2D engineering blueprints into accurate physical field execution on live institutional high-profile projects.',
+      'Concrete quality assurance procedures: slump monitoring, curing regimens, and rebar cover verification.',
+      'Cross-functional site coordination between engineering consultants, project managers, and trade labor teams.',
+    ],
+  },
 ]
