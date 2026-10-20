@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { academicCv } from '../content/academicCv'
 import { academicItems } from '../content/academicItems'
 import { educationList } from '../content/education'
+
+const route = useRoute()
 
 const navItems = [
   { id: 'personal-info', num: '01', label: 'Personal Information' },
@@ -101,6 +104,13 @@ function scrollToSection(id: string) {
 }
 
 onMounted(() => {
+  if (route.hash) {
+    const rawId = route.hash.replace('#', '')
+    setTimeout(() => {
+      scrollToSection(rawId)
+    }, 120)
+  }
+
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -120,6 +130,15 @@ onMounted(() => {
     if (el) observer?.observe(el)
   })
 })
+
+watch(
+  () => route.hash,
+  (newHash) => {
+    if (newHash) {
+      scrollToSection(newHash.replace('#', ''))
+    }
+  }
+)
 
 onBeforeUnmount(() => {
   observer?.disconnect()
@@ -245,7 +264,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('research-experience')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -275,7 +294,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('work-experience')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -305,7 +324,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('projects')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -348,7 +367,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('certifications')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -391,7 +410,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('professional-trainings')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -434,7 +453,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('conferences')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -492,7 +511,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('honors-awards')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -535,7 +554,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('volunteering')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -565,7 +584,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('extracurricular')"
               :key="item.slug"
-              :to="`/academic/${item.sectionId}/${item.slug}`"
+              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >

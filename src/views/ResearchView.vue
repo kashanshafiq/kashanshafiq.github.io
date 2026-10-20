@@ -21,7 +21,7 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
       <RouterLink
         v-for="item in researchItems"
         :key="item.slug"
-        :to="`/academic/research-experience/${item.slug}`"
+        :to="{ path: `/academic/research-experience/${item.slug}`, query: { from: 'research' } }"
         class="record record-interactive"
         :aria-label="`View details for ${item.title}`"
       >
@@ -49,21 +49,6 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
             </span>
           </div>
         </div>
-      </RouterLink>
-    </div>
-
-    <div class="link-row" style="margin-top: 36px;">
-      <RouterLink class="text-link" to="/experience">
-        Work <span aria-hidden="true">↗</span>
-      </RouterLink>
-      <RouterLink class="text-link" to="/recognition">
-        Honours and Awards <span aria-hidden="true">↗</span>
-      </RouterLink>
-      <RouterLink class="text-link" to="/work">
-        Featured Projects <span aria-hidden="true">↗</span>
-      </RouterLink>
-      <RouterLink class="text-link" to="/#contact">
-        Get in touch <span aria-hidden="true">↗</span>
       </RouterLink>
     </div>
   </div>

@@ -40,44 +40,101 @@ const nextItem = computed(() =>
 const isModalOpen = ref(false)
 
 function prevRecord() {
+  const q = route.query.from ? { from: route.query.from as string } : undefined
   if (prevItem.value) {
-    router.push(`/academic/${item.value?.sectionId}/${prevItem.value.slug}`)
+    router.push({ path: `/academic/${item.value?.sectionId}/${prevItem.value.slug}`, query: q })
   } else if (sectionItems.value.length > 1) {
-    router.push(`/academic/${item.value?.sectionId}/${sectionItems.value[sectionItems.value.length - 1].slug}`)
+    router.push({ path: `/academic/${item.value?.sectionId}/${sectionItems.value[sectionItems.value.length - 1].slug}`, query: q })
   }
 }
 
 function nextRecord() {
+  const q = route.query.from ? { from: route.query.from as string } : undefined
   if (nextItem.value) {
-    router.push(`/academic/${item.value?.sectionId}/${nextItem.value.slug}`)
+    router.push({ path: `/academic/${item.value?.sectionId}/${nextItem.value.slug}`, query: q })
   } else if (sectionItems.value.length > 1) {
-    router.push(`/academic/${item.value?.sectionId}/${sectionItems.value[0].slug}`)
+    router.push({ path: `/academic/${item.value?.sectionId}/${sectionItems.value[0].slug}`, query: q })
   }
 }
 
-const backTarget = computed(() => {
+const sourceContext = computed(() => {
+  const fromQuery = route.query.from as string | undefined
+  if (fromQuery) return fromQuery
+
+  if (typeof window !== 'undefined' && window.history?.state?.back) {
+    const backUrl = String(window.history.state.back)
+    if (backUrl.includes('/cv')) return 'cv'
+    if (backUrl.includes('/community')) return 'community'
+    if (backUrl.includes('/recognition')) return 'recognition'
+    if (backUrl.includes('/experience')) return 'experience'
+    if (backUrl.includes('/research')) return 'research'
+  }
+  return null
+})
+
+const backTarget = computed<{ to: string | { path: string; hash?: string }; label: string }>(() => {
   if (!item.value) return { to: '/cv', label: 'Academics' }
-  switch (item.value.sectionId) {
+  const sec = item.value.sectionId
+  const secTitle = item.value.sectionTitle || 'Academics'
+  const isFromCv = sourceContext.value === 'cv'
+
+  // If user came from Academics (/cv):
+  if (isFromCv) {
+    return {
+      to: { path: '/cv', hash: `#${sec}` },
+      label: `${secTitle} (Academics)`,
+    }
+  }
+
+  // If user came from main web pages, or direct fallback:
+  switch (sec) {
+    case 'volunteering':
+      return { to: '/community', label: 'Volunteering' }
+    case 'honors-awards':
+      return { to: '/recognition', label: 'Honours and Awards' }
     case 'work-experience':
       return { to: '/experience', label: 'Work' }
     case 'research-experience':
       return { to: '/research', label: 'Research' }
-    case 'honors-awards':
-      return { to: '/recognition', label: 'Honours and Awards' }
-    case 'volunteering':
-      return { to: '/community', label: 'Volunteering' }
     case 'projects':
-      return { to: '/cv#projects', label: 'Academic Projects' }
+      return { to: { path: '/cv', hash: '#projects' }, label: 'Academic Projects' }
     case 'certifications':
-      return { to: '/cv#certifications', label: 'Certifications' }
+      return { to: { path: '/cv', hash: '#certifications' }, label: 'Certifications' }
     case 'professional-trainings':
-      return { to: '/cv#professional-trainings', label: 'Professional training & CPD' }
+      return { to: { path: '/cv', hash: '#professional-trainings' }, label: 'Professional training & CPD' }
     case 'conferences':
-      return { to: '/cv#conferences', label: 'Conferences' }
+      return { to: { path: '/cv', hash: '#conferences' }, label: 'Conferences' }
     case 'extracurricular':
-      return { to: '/cv#extracurricular', label: 'Extracurricular Activities' }
+      return { to: { path: '/cv', hash: '#extracurricular' }, label: 'Extracurricular Activities' }
     default:
-      return { to: `/cv#${item.value.sectionId}`, label: item.value.sectionTitle || 'Academics' }
+      return { to: { path: '/cv', hash: `#${sec}` }, label: secTitle }
+  }
+})
+
+const breadcrumbTarget = computed<{ to: string | { path: string; hash?: string }; label: string }>(() => {
+  if (!item.value) return { to: '/cv', label: 'Academics' }
+  const sec = item.value.sectionId
+  const secTitle = item.value.sectionTitle || 'Academics'
+  const isFromCv = sourceContext.value === 'cv'
+
+  if (isFromCv) {
+    return {
+      to: { path: '/cv', hash: `#${sec}` },
+      label: `Academics / ${secTitle}`,
+    }
+  }
+
+  switch (sec) {
+    case 'volunteering':
+      return { to: '/community', label: 'Volunteering / Academic archive' }
+    case 'honors-awards':
+      return { to: '/recognition', label: 'Honours and Awards / Academic archive' }
+    case 'work-experience':
+      return { to: '/experience', label: 'Work / Academic archive' }
+    case 'research-experience':
+      return { to: '/research', label: 'Research / Academic archive' }
+    default:
+      return { to: { path: '/cv', hash: `#${sec}` }, label: `${secTitle} / Academic archive` }
   }
 })
 
@@ -99,13 +156,13 @@ watchEffect(() => {
     <div class="archive-split-layout">
       <!-- Left Column: Academic Metadata & Highlights -->
       <section class="archive-content-col">
-        <!-- Breadcrumb back link matching reference image -->
+        <!-- Breadcrumb back link matching current context -->
         <div class="archive-breadcrumb">
           <RouterLink
-            :to="item.sectionId === 'work-experience' ? '/experience' : item.sectionId === 'research-experience' ? '/research' : item.sectionId === 'honors-awards' ? '/recognition' : `/cv#${item.sectionId}`"
+            :to="breadcrumbTarget.to"
             class="breadcrumb-link"
           >
-            {{ item.sectionId === 'work-experience' ? 'Work' : item.sectionId === 'research-experience' ? 'Research' : item.sectionId === 'honors-awards' ? 'Honours and Awards' : item.sectionTitle }} / Academic archive <span aria-hidden="true">↗</span>
+            {{ breadcrumbTarget.label }} <span aria-hidden="true">↗</span>
           </RouterLink>
         </div>
 
