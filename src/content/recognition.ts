@@ -1,5 +1,6 @@
 export const recognition = [
   { title: 'University Gold Medal', type: 'Award', detail: 'First in the BS Civil Engineering graduating class, COMSATS Wah · 2026.' },
+  { title: 'Skill Advancement Grant', type: 'Grant', detail: 'Awarded $155 grant by Aspire Institute for ACI 440.11-22 GFRP reinforced concrete design · 2026.' },
   { title: 'POF Merit Scholarship', type: 'Scholarship', detail: '50% tuition waiver received in five undergraduate semesters.' },
   { title: 'Final-year project recognition', type: 'Award', detail: 'Third position at the departmental Open House & Job Fair · 2026.' },
   { title: 'SFD / BMD competition', type: 'Award', detail: 'First position, Civil Mania · 2024.' },

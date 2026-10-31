@@ -1,34 +1,78 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import PageIntro from '../components/PageIntro.vue'
 import { projects } from '../content/projects'
+import type { Project } from '../types/content'
+
+const selectedCategory = ref('All')
+const categories = ['All', 'Featured Projects']
+
+function matchesCategory(project: Project, cat: string): boolean {
+  if (cat === 'All') return true
+  if (cat === 'Featured Projects') return !!project.featured
+  return true
+}
+
+function getBadge(project: Project): { label: string; isPrimary: boolean } {
+  if (project.featured) {
+    return { label: 'FEATURED', isPrimary: true }
+  }
+  return { label: (project.categoryBadge || project.category).toUpperCase(), isPrimary: false }
+}
+
+const filtered = computed(() => {
+  if (selectedCategory.value === 'All') return projects
+  return projects.filter(p => matchesCategory(p, selectedCategory.value))
+})
+
+function reset() {
+  selectedCategory.value = 'All'
+}
 </script>
 
 <template>
   <div class="shell page-body">
     <PageIntro
-      eyebrow="Featured Projects / Engineering Case Studies"
-      title="Selected engineering projects across structural design, building quantity estimation, and construction planning."
+      eyebrow="Projects / Engineering Archive &amp; Case Studies"
+      title="Engineering in practice."
+      description="Engineering projects across structural design, building information modeling, quantity estimation, and environmental engineering."
     />
 
-    <p class="result-count" aria-live="polite">
-      {{ projects.length }} projects
-    </p>
+    <!-- Filter Controls Row (matches Honours & Awards section) -->
+    <div class="filter-controls-row">
+      <div class="filter-group" aria-label="Filter projects">
+        <button
+          v-for="cat in categories"
+          :key="cat"
+          type="button"
+          class="filter-button"
+          :aria-pressed="selectedCategory === cat"
+          @click="selectedCategory = cat"
+        >
+          {{ cat }}
+        </button>
+      </div>
+
+      <p class="result-count" aria-live="polite">
+        {{ filtered.length }} {{ filtered.length === 1 ? 'project' : 'projects' }}
+      </p>
+    </div>
 
     <!-- Compact 4 in a row project grid (pure information, matching Honours & Awards) -->
-    <div class="project-grid">
+    <div v-if="filtered.length" class="project-grid">
       <RouterLink
-        v-for="(project, index) in projects"
+        v-for="project in filtered"
         :key="project.slug"
         :to="`/projects/${project.slug}`"
         class="project-card"
         :aria-label="`View case study for ${project.title}`"
       >
-        <!-- Card Header: Index #01, Category Badge, and Year -->
+        <!-- Card Header: Index, Category Badge, and Year -->
         <div class="card-header">
           <div class="header-left">
-            <span class="card-index">#{{ String(index + 1).padStart(2, '0') }}</span>
-            <span class="card-badge" :class="{ 'badge-primary': index === 0 }">
-              {{ project.category.toUpperCase() }}
+            <span class="card-index">#{{ String(projects.findIndex(p => p.slug === project.slug) + 1).padStart(2, '0') }}</span>
+            <span class="card-badge" :class="{ 'badge-primary': getBadge(project).isPrimary }">
+              {{ getBadge(project).label }}
             </span>
           </div>
           <span class="card-period">{{ project.period }}</span>
@@ -64,42 +108,94 @@ import { projects } from '../content/projects'
         </div>
       </RouterLink>
     </div>
+
+    <div v-else class="empty-state">
+      <h2>No projects found in this category.</h2>
+      <p>Select another category or view all projects.</p>
+      <button class="button" @click="reset">Show all projects</button>
+    </div>
   </div>
 </template>
 
 <style scoped>
-/* Page Intro font size override - matches Honours & Awards and utilizes full horizontal space */
+/* Page Intro font size override & gap elimination - matches Volunteering (Second Image Reference) */
 :deep(.page-intro) {
-  padding-block: 20px 10px;
+  padding-block: 20px 8px;
   max-width: 100%;
 }
 
 :deep(.page-intro h1) {
-  font-size: clamp(1.2rem, 1.3vw + 0.45rem, 1.5rem);
+  font-size: clamp(1.5rem, 2vw + 0.4rem, 2.15rem);
   font-weight: 600;
-  line-height: 1.28;
+  line-height: 1.26;
   letter-spacing: -0.015em;
-  margin-top: 4px;
+  margin-top: 6px;
   margin-bottom: 0;
   max-width: 100%;
-  width: 100%;
 }
 
-@media (min-width: 1180px) {
-  :deep(.page-intro h1) {
-    white-space: nowrap;
-  }
+:deep(.intro-text) {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: var(--prose-max-width, 68ch);
+}
+
+/* ==========================================================================
+   FILTER CONTROLS ROW (MATCHING HONOURS & AWARDS)
+   ========================================================================== */
+.filter-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  margin-bottom: 22px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  min-height: 38px;
+  font-size: 0.85rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  line-height: 1.40;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.filter-button:hover {
+  border-color: var(--accent);
+}
+
+.filter-button[aria-pressed=true] {
+  background: var(--accent-primary);
+  color: var(--text-on-primary);
+  border-color: var(--accent-primary-border);
 }
 
 .result-count {
   font-family: var(--mono);
   font-size: var(--text-helper, 0.875rem);
   color: var(--muted);
-  margin: 14px 0 16px;
+  margin: 0;
 }
 
 /* ==========================================================================
-   FEATURED PROJECTS COMPACT 4-IN-A-ROW GRID
+   PROJECTS COMPACT 4-IN-A-ROW GRID
    ========================================================================== */
 .project-grid {
   display: grid;
@@ -272,6 +368,28 @@ import { projects } from '../content/projects'
 .project-card:hover .card-arrow {
   transform: translate(2px, -2px);
   color: var(--accent-link-hover);
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+.empty-state {
+  padding: 48px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  text-align: center;
+  border-radius: 2px;
+  margin-top: 24px;
+}
+
+.empty-state h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--muted);
+  margin-bottom: 20px;
 }
 
 /* Responsive Queries */

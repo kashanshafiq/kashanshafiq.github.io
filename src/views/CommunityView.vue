@@ -3,7 +3,8 @@ import { computed, ref } from 'vue'
 import PageIntro from '../components/PageIntro.vue'
 import { academicItems, type AcademicItem } from '../content/academicItems'
 
-const selectedCategory = ref<'all' | 'volunteering' | 'leadership'>('all')
+const selectedCategory = ref('All')
+const categories = ['All', 'Volunteering', 'Leadership & Outreach']
 
 const volunteeringItems = academicItems.filter((i) => i.sectionId === 'volunteering')
 const leadershipItems = academicItems.filter((i) => i.sectionId === 'extracurricular')
@@ -13,46 +14,43 @@ const allCommunityItems = computed<AcademicItem[]>(() => {
 })
 
 const filteredItems = computed<AcademicItem[]>(() => {
-  if (selectedCategory.value === 'volunteering') return volunteeringItems
-  if (selectedCategory.value === 'leadership') return leadershipItems
+  if (selectedCategory.value === 'Volunteering') return volunteeringItems
+  if (selectedCategory.value === 'Leadership & Outreach') return leadershipItems
   return allCommunityItems.value
 })
+
+function getBadge(item: AcademicItem): { label: string; isPrimary: boolean } {
+  if (item.sectionId === 'volunteering') {
+    return { label: 'VOLUNTEERING', isPrimary: true }
+  }
+  return { label: 'LEADERSHIP', isPrimary: false }
+}
+
+function reset() {
+  selectedCategory.value = 'All'
+}
 </script>
 
 <template>
   <div class="shell page-body community-page">
     <PageIntro
-      eyebrow="Volunteering / Community & Leadership"
+      eyebrow="Volunteering / Community &amp; Leadership"
       title="Engineering begins with people."
       description="Community welfare initiatives, educational outreach, public awareness campaigns, and open academic resources."
     />
 
-    <!-- Filter Category Pills -->
-    <div class="community-toolbar">
-      <div class="filter-pills" role="tablist" aria-label="Filter community activities">
+    <!-- Filter Controls Row (matches Honours & Awards and Projects) -->
+    <div class="filter-controls-row">
+      <div class="filter-group" aria-label="Filter community activities">
         <button
+          v-for="cat in categories"
+          :key="cat"
           type="button"
-          class="pill-btn"
-          :class="{ active: selectedCategory === 'all' }"
-          @click="selectedCategory = 'all'"
+          class="filter-button"
+          :aria-pressed="selectedCategory === cat"
+          @click="selectedCategory = cat"
         >
-          All Contributions ({{ allCommunityItems.length }})
-        </button>
-        <button
-          type="button"
-          class="pill-btn"
-          :class="{ active: selectedCategory === 'volunteering' }"
-          @click="selectedCategory = 'volunteering'"
-        >
-          Volunteering ({{ volunteeringItems.length }})
-        </button>
-        <button
-          type="button"
-          class="pill-btn"
-          :class="{ active: selectedCategory === 'leadership' }"
-          @click="selectedCategory = 'leadership'"
-        >
-          Leadership &amp; Outreach ({{ leadershipItems.length }})
+          {{ cat }}
         </button>
       </div>
 
@@ -61,240 +59,352 @@ const filteredItems = computed<AcademicItem[]>(() => {
       </p>
     </div>
 
-    <!-- Interactive Activity List linking to AcademicDetailView subpages -->
-    <div class="record-list">
+    <!-- Compact 4 in a row box grid (pure information, matching Honours & Awards and Projects) -->
+    <div v-if="filteredItems.length" class="community-grid">
       <RouterLink
-        v-for="(item, index) in filteredItems"
+        v-for="item in filteredItems"
         :key="item.slug"
         :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'community' } }"
-        class="record record-interactive"
+        class="community-card"
         :aria-label="`View details for ${item.title}`"
       >
-        <div class="record-meta">
-          <span class="activity-index">#{{ String(index + 1).padStart(2, '0') }}</span>
-          <p class="eyebrow period-text">{{ item.period }}</p>
-          <span
-            class="badge status-pill"
-            :class="{ 'badge-volunteer': item.sectionId === 'volunteering' }"
-          >
-            {{ item.sectionId === 'volunteering' ? 'VOLUNTEERING' : 'LEADERSHIP' }}
-          </span>
-          <p v-if="item.subtitle || item.domain" class="location-label">
-            {{ item.subtitle || item.domain }}
-          </p>
-        </div>
-
-        <div class="record-content">
-          <div class="record-header">
-            <div>
-              <h2 class="activity-title">{{ item.title }}</h2>
-              <p v-if="item.organization" class="activity-org">{{ item.organization }}</p>
-            </div>
-            <span class="view-indicator" aria-hidden="true">
-              View details ↗
+        <!-- Card Header: Index, Category Badge, and Year -->
+        <div class="card-header">
+          <div class="header-left">
+            <span class="card-index">#{{ String(allCommunityItems.findIndex(i => i.slug === item.slug) + 1).padStart(2, '0') }}</span>
+            <span class="card-badge" :class="{ 'badge-primary': getBadge(item).isPrimary }">
+              {{ getBadge(item).label }}
             </span>
           </div>
+          <span class="card-period">{{ item.period }}</span>
+        </div>
 
-          <p class="record-summary">{{ item.summary }}</p>
+        <!-- Eyebrow Subtitle -->
+        <p class="card-eyebrow">{{ item.subtitle || item.domain || 'Community Welfare' }}</p>
 
-          <div v-if="item.tools && item.tools.length" class="tag-list mini-tags">
-            <span v-for="tool in item.tools" :key="tool" class="tag">
+        <!-- Title -->
+        <h2 class="card-title">{{ item.title }}</h2>
+
+        <!-- Organization / Institution -->
+        <p class="card-org">{{ item.organization || 'COMSATS University Islamabad' }}</p>
+
+        <!-- Summary Description -->
+        <p class="card-desc">{{ item.summary }}</p>
+
+        <!-- Subtle Card Divider -->
+        <div class="card-divider" aria-hidden="true"></div>
+
+        <!-- Footer: Tags + Arrow Link -->
+        <div class="card-footer-row">
+          <div class="card-tags">
+            <span
+              v-for="tool in (item.tools || []).slice(0, 2)"
+              :key="tool"
+              class="tag-pill"
+            >
               {{ tool }}
             </span>
           </div>
+          <span class="card-arrow" aria-hidden="true">↗</span>
         </div>
       </RouterLink>
+    </div>
+
+    <div v-else class="empty-state">
+      <h2>No activities found in this category.</h2>
+      <p>Select another category or view all community activities.</p>
+      <button class="button" @click="reset">Show all contributions</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.community-toolbar {
+/* Page Intro font size override & gap elimination - matches Honours & Awards and Projects */
+:deep(.page-intro) {
+  padding-block: 20px 8px;
+  max-width: 100%;
+}
+
+:deep(.page-intro h1) {
+  font-size: clamp(1.5rem, 2vw + 0.4rem, 2.15rem);
+  font-weight: 600;
+  line-height: 1.26;
+  letter-spacing: -0.015em;
+  margin-top: 6px;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+:deep(.intro-text) {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: var(--prose-max-width, 68ch);
+}
+
+/* ==========================================================================
+   FILTER CONTROLS ROW (MATCHING HONOURS & AWARDS AND PROJECTS)
+   ========================================================================== */
+.filter-controls-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 32px;
-  margin-bottom: 24px;
+  margin-top: 14px;
+  margin-bottom: 22px;
 }
 
-.filter-pills {
+.filter-group {
   display: flex;
-  align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.pill-btn {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  padding: 6px 14px;
-  border-radius: 20px;
+.filter-button {
+  padding: 8px 16px;
+  min-height: 38px;
+  font-size: 0.85rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  line-height: 1.40;
   background: var(--surface);
   border: 1px solid var(--line);
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.pill-btn:hover {
-  border-color: var(--line-strong);
   color: var(--text);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
-.pill-btn.active {
-  background: var(--accent-soft);
-  border-color: rgba(33, 166, 93, 0.45);
-  color: var(--accent-link);
-  font-weight: 600;
+.filter-button:hover {
+  border-color: var(--accent);
+}
+
+.filter-button[aria-pressed=true] {
+  background: var(--accent-primary);
+  color: var(--text-on-primary);
+  border-color: var(--accent-primary-border);
 }
 
 .result-count {
   font-family: var(--mono);
   font-size: var(--text-helper, 0.875rem);
   color: var(--muted);
+  margin: 0;
 }
 
-.record-list {
+/* ==========================================================================
+   VOLUNTEERING COMPACT 4-IN-A-ROW BOX GRID
+   ========================================================================== */
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.community-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.record-interactive {
-  text-decoration: none;
-  color: inherit;
-  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
-  position: relative;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 32px;
-  padding: 28px 24px;
+  height: 100%;
   background: var(--surface);
   border: 1px solid var(--line);
+  padding: 16px 15px 14px;
   border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: border-color 180ms ease, transform 160ms ease, box-shadow 180ms ease;
 }
 
-.record-interactive:hover {
+.community-card:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
-.record-interactive:hover .activity-title {
-  color: var(--accent);
-}
-
-.record-interactive:hover .view-indicator {
-  color: var(--accent-link-hover);
-  transform: translate(2px, -2px);
-}
-
-.record-meta {
+.card-header {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
-  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
-.activity-index {
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.card-index {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--accent-link);
 }
 
-.period-text {
+.card-badge {
   font-family: var(--mono);
-  font-size: 0.88rem;
-  color: var(--text);
-  margin: 0;
-}
-
-.status-pill {
   font-size: 0.625rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
-  padding: 2px 7px;
+  text-transform: uppercase;
+  padding: 2px 6px;
   border-radius: 2px;
-  border: 1px solid var(--line);
   color: var(--muted);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
 }
 
-.badge-volunteer {
+.card-badge.badge-primary {
   color: var(--accent-link);
-  border-color: rgba(33, 166, 93, 0.4);
+  border: 1px solid rgba(33, 166, 93, 0.45);
   background: var(--accent-soft);
 }
 
-.location-label {
+.card-period {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--muted);
-  line-height: 1.4;
-  margin: 0;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
-.record-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 0;
+.card-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: rgba(181, 195, 191, 0.7);
+  margin: 0 0 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.record-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.activity-title {
-  font-size: 1.25rem;
+.card-title {
+  font-size: 1.02rem;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.32;
   letter-spacing: -0.015em;
   color: var(--text);
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
+  min-height: 2.64em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   transition: color 160ms ease;
 }
 
-.activity-org {
-  font-size: 0.875rem;
+.community-card:hover .card-title {
+  color: var(--accent);
+}
+
+.card-org {
+  font-size: 0.78rem;
+  line-height: 1.4;
   color: var(--muted);
-  margin: 0;
-}
-
-.view-indicator {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--accent-link);
+  margin: 0 0 10px 0;
   white-space: nowrap;
-  transition: transform 160ms ease, color 160ms ease;
-  flex-shrink: 0;
-  padding-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.record-summary {
-  font-size: 0.875rem;
-  line-height: 1.6;
+.card-desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
   color: rgba(230, 240, 237, 0.85);
-  margin: 0;
+  margin: 0 0 12px 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.65em;
 }
 
-.tag-list.mini-tags {
+.card-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.card-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
+  gap: 5px;
+  overflow: hidden;
 }
 
-@media (max-width: 860px) {
-  .record-interactive {
+.tag-pill {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.card-arrow {
+  color: var(--accent-link);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 160ms ease, color 160ms ease;
+  flex-shrink: 0;
+}
+
+.community-card:hover .card-arrow {
+  transform: translate(2px, -2px);
+  color: var(--accent-link-hover);
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+.empty-state {
+  padding: 48px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  text-align: center;
+  border-radius: 2px;
+  margin-top: 24px;
+}
+
+.empty-state h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* Responsive Queries */
+@media (max-width: 1140px) {
+  .community-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 680px) {
+  .community-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 20px 16px;
+    gap: 14px;
   }
 }
 </style>

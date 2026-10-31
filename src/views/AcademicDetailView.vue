@@ -68,6 +68,7 @@ const sourceContext = computed(() => {
     if (backUrl.includes('/recognition')) return 'recognition'
     if (backUrl.includes('/experience')) return 'experience'
     if (backUrl.includes('/research')) return 'research'
+    if (backUrl.includes('/work')) return 'work'
   }
   return null
 })
@@ -77,6 +78,16 @@ const backTarget = computed<{ to: string | { path: string; hash?: string }; labe
   const sec = item.value.sectionId
   const secTitle = item.value.sectionTitle || 'Academics'
   const isFromCv = sourceContext.value === 'cv'
+  const isFromWork = sourceContext.value === 'work'
+  const isFromCommunity = sourceContext.value === 'community'
+
+  if (isFromWork) {
+    return { to: '/work', label: 'Projects' }
+  }
+
+  if (isFromCommunity) {
+    return { to: '/community', label: 'Volunteering' }
+  }
 
   // If user came from Academics (/cv):
   if (isFromCv) {
@@ -97,7 +108,7 @@ const backTarget = computed<{ to: string | { path: string; hash?: string }; labe
     case 'research-experience':
       return { to: '/research', label: 'Research' }
     case 'projects':
-      return { to: { path: '/cv', hash: '#projects' }, label: 'Academic Projects' }
+      return { to: '/work', label: 'Projects' }
     case 'certifications':
       return { to: { path: '/cv', hash: '#certifications' }, label: 'Certifications' }
     case 'professional-trainings':
@@ -116,6 +127,16 @@ const breadcrumbTarget = computed<{ to: string | { path: string; hash?: string }
   const sec = item.value.sectionId
   const secTitle = item.value.sectionTitle || 'Academics'
   const isFromCv = sourceContext.value === 'cv'
+  const isFromWork = sourceContext.value === 'work'
+  const isFromCommunity = sourceContext.value === 'community'
+
+  if (isFromWork) {
+    return { to: '/work', label: 'Projects / Academic archive' }
+  }
+
+  if (isFromCommunity) {
+    return { to: '/community', label: 'Volunteering / Academic archive' }
+  }
 
   if (isFromCv) {
     return {
@@ -133,6 +154,8 @@ const breadcrumbTarget = computed<{ to: string | { path: string; hash?: string }
       return { to: '/experience', label: 'Work / Academic archive' }
     case 'research-experience':
       return { to: '/research', label: 'Research / Academic archive' }
+    case 'projects':
+      return { to: '/work', label: 'Projects / Academic archive' }
     default:
       return { to: { path: '/cv', hash: `#${sec}` }, label: `${secTitle} / Academic archive` }
   }

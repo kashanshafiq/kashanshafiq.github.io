@@ -723,6 +723,26 @@ export const academicItems: AcademicItem[] = [
   {
     sectionId: 'honors-awards',
     sectionTitle: 'Honours & Awards',
+    slug: 'award-aspire-skill-advancement-grant',
+    title: 'Skill Advancement Grant Winner — Aspire Institute',
+    period: '2026',
+    subtitle: 'International Academic & Skill Grant ($155)',
+    domain: 'GFRP Reinforced Concrete Design, ACI 440.11-22, Structural Innovation',
+    organization: 'Aspire Institute (Founded at Harvard University) & Aspire Leaders Program',
+    badge: 'International Merit Grant',
+    summary:
+      'Awarded the competitive Skill Advancement Grant ($155) by Aspire Institute to support specialized professional training in "Designing Concrete Structures Reinforced with GFRP Bars Using the ACI CODE-440.11-22".',
+    details: [
+      'Selected as a Skill Advancement Grant winner by Aspire Institute among international alumni of the Aspire Leaders Program (Cohort 01, 2026).',
+      'Grant funding ($155) allocated towards advanced specialized credentialing in designing structural concrete elements reinforced with Glass Fiber Reinforced Polymer (GFRP) bars per ACI 440.11-22 code standards.',
+      'Recognized by Aspire Leaders Program - Pakistan for turning leadership and engineering learning into impactful technical practice and community contribution.',
+      'Featured by Aspire Institute in an official alumni spotlight celebrating leadership growth, technical advancement, and social impact.',
+    ],
+    tools: ['Aspire Institute', 'Skill Advancement Grant', 'GFRP Concrete', 'ACI 440.11-22', '$155 Grant'],
+  },
+  {
+    sectionId: 'honors-awards',
+    sectionTitle: 'Honours & Awards',
     slug: 'award-pof-scholarship',
     title: 'Pakistan Ordnance Factory (POF) Merit Scholarship',
     period: '2022 – 2026',

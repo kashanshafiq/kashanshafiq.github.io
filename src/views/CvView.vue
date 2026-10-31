@@ -26,6 +26,34 @@ const navItems = [
 const activeId = ref('personal-info')
 let observer: IntersectionObserver | null = null
 
+const copiedEmail = ref(false)
+let copyTimeout: number | undefined
+
+async function copyEmail(email: string) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(email)
+    } else {
+      const textarea = document.createElement('textarea')
+      textarea.value = email
+      textarea.style.position = 'fixed'
+      textarea.style.opacity = '0'
+      document.body.appendChild(textarea)
+      textarea.focus()
+      textarea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textarea)
+    }
+    copiedEmail.value = true
+    if (copyTimeout) clearTimeout(copyTimeout)
+    copyTimeout = window.setTimeout(() => {
+      copiedEmail.value = false
+    }, 2000)
+  } catch {
+    copiedEmail.value = false
+  }
+}
+
 const getSectionItems = (sectionId: string) =>
   academicItems.filter((i) => i.sectionId === sectionId)
 
@@ -196,9 +224,33 @@ onBeforeUnmount(() => {
               </div>
               <div class="meta-item">
                 <span class="meta-label">Direct Email</span>
-                <a :href="`mailto:${academicCv.personalInfo.email}`" class="meta-val link-val">
-                  {{ academicCv.personalInfo.email }} ↗
-                </a>
+                <div class="meta-email-row">
+                  <a
+                    :href="`https://mail.google.com/mail/?view=cm&fs=1&to=${academicCv.personalInfo.email}`"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="meta-val link-val"
+                    aria-label="Compose email to Kashan Shafiq on Gmail (opens in new tab)"
+                  >
+                    {{ academicCv.personalInfo.email }} ↗
+                  </a>
+                  <button
+                    type="button"
+                    class="meta-copy-btn"
+                    :class="{ copied: copiedEmail }"
+                    @click="copyEmail(academicCv.personalInfo.email)"
+                    :aria-label="copiedEmail ? 'Email copied to clipboard' : 'Copy email address to clipboard'"
+                  >
+                    <svg v-if="!copiedEmail" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg v-else viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>{{ copiedEmail ? 'Copied' : 'Copy' }}</span>
+                  </button>
+                </div>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Phone / WhatsApp</span>
@@ -860,6 +912,51 @@ onBeforeUnmount(() => {
 
 .link-val:hover {
   text-decoration: underline;
+}
+
+.meta-email-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.meta-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+.meta-copy-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.meta-copy-btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.meta-copy-btn.copied {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.meta-copy-btn svg {
+  color: currentColor;
+  flex-shrink: 0;
 }
 
 .personal-summary-text {

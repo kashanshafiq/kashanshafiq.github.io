@@ -93,7 +93,7 @@ export interface AcademicCvData {
   }
   honorsAndAwards: Array<{
     title: string
-    category: 'Gold Medal' | 'Scholarship' | 'Merit Position' | 'Competition' | 'FYP Award'
+    category: 'Gold Medal' | 'Scholarship' | 'Merit Position' | 'Competition' | 'FYP Award' | 'Grant'
     awarder: string
     period: string
     detail: string
@@ -511,6 +511,14 @@ export const academicCv: AcademicCvData = {
       awarder: 'COMSATS University Islamabad, Wah Campus',
       period: '2026/07/06',
       detail: 'Graduated top of class (CGPA 3.95/4.0) from COMSATS University Islamabad, Wah Campus.',
+    },
+    {
+      title: 'Skill Advancement Grant Winner — Aspire Institute',
+      category: 'Grant',
+      awarder: 'Aspire Institute (Founded at Harvard University) & Aspire Leaders Program',
+      period: '2026',
+      detail:
+        'Awarded competitive Skill Advancement Grant ($155) among international Aspire alumni for advanced coursework in "Designing Concrete Structures Reinforced with GFRP Bars Using the ACI CODE-440.11-22".',
     },
     {
       title: 'Pakistan Ordnance Factory (POF) Scholarship – Comsats University Islamabad, Wah Campus',

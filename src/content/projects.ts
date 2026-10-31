@@ -3,8 +3,12 @@ import type { Project } from '../types/content'
 export const projects: Project[] = [
   {
     slug: 'structural-design',
+    aliases: ['structural-commercial-building'],
     title: 'Structural Analysis & Design of Commercial Building',
     category: 'Structures',
+    categoryBadge: 'STRUCTURES',
+    filterCategories: ['Featured Projects', 'Structural Engineering'],
+    featured: true,
     period: '2026',
     subtitle: 'Structural Engineering Project',
     domain: 'Finite Element Modeling, Seismic Lateral Loads, RC Design',
@@ -34,8 +38,12 @@ export const projects: Project[] = [
   },
   {
     slug: 'school-building-design',
+    aliases: ['three-story-school-building'],
     title: 'Three-Story RC School Building Design',
     category: 'Structures',
+    categoryBadge: 'STRUCTURES',
+    filterCategories: ['Featured Projects', 'Structural Engineering'],
+    featured: true,
     period: '2025',
     subtitle: 'Complex Engineering Problem (CEP)',
     domain: 'ACI 318-14, ASCE 7-10, Concrete Member Sizing',
@@ -65,8 +73,12 @@ export const projects: Project[] = [
   },
   {
     slug: 'retaining-walls',
+    aliases: ['retaining-walls-design'],
     title: 'Design of Gravity and Cantilever Retaining Walls',
     category: 'Structures',
+    categoryBadge: 'STRUCTURES',
+    filterCategories: ['Featured Projects', 'Structural Engineering', 'Geotechnical & Materials'],
+    featured: true,
     period: '2025',
     subtitle: 'Geotechnical & Structural Design',
     domain: 'Rankine Earth Pressure, Parametric Spreadsheets, Stability Analysis',
@@ -98,8 +110,12 @@ export const projects: Project[] = [
   },
   {
     slug: 'quantity-surveying',
+    aliases: ['quantity-surveying-takeoff'],
     title: 'Quantity Surveying & Complete Building Quantity Takeoff',
     category: 'Planning',
+    categoryBadge: 'PLANNING',
+    filterCategories: ['Featured Projects', 'Construction Planning'],
+    featured: true,
     period: '2025',
     subtitle: 'Cost Engineering & Estimation',
     domain: 'Bar Bending Schedules (BBS), Material Takeoffs, Cost Analysis',
@@ -129,8 +145,12 @@ export const projects: Project[] = [
   },
   {
     slug: 'construction-planning',
+    aliases: ['primavera-p6-scheduling'],
     title: 'Primavera P6 Construction Scheduling — Residential Villa',
     category: 'Planning',
+    categoryBadge: 'PLANNING',
+    filterCategories: ['Featured Projects', 'Construction Planning'],
+    featured: true,
     period: '2025',
     subtitle: 'Project Planning & Management',
     domain: 'Primavera P6, WBS/OBS, Critical Path Method (CPM)',
@@ -155,5 +175,250 @@ export const projects: Project[] = [
     contribution:
       'Team project with Faizan Manshad, Fahad Bin Rasheed, and Muhammad Ali under supervision of Dr. Hassan Ashraf.',
     source: ['Documents/Semester Projects/PPM CEP.pdf'],
+  },
+  {
+    slug: 'tahir-residency-bim',
+    aliases: ['haroon-residence-bim'],
+    title: 'Tahir Residency — BIM & Architectural Modeling',
+    category: 'BIM & Modeling',
+    categoryBadge: 'BIM & MODELING',
+    filterCategories: ['BIM & Modeling'],
+    featured: false,
+    period: '2025',
+    subtitle: 'Residential Architecture & BIM (Collaborative Project)',
+    domain: 'Autodesk Revit, Insight 360, Structural Coordination, Solar Analysis',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Collaborative Project',
+    tools: ['Autodesk Revit', 'Insight 360', 'BIM Coordination', 'Solar Path Analysis', 'Drawing Documentation', 'BOQ Schedules'],
+    diagram: 'structure',
+    summary:
+      'Collaborative project contributed by Faizan Manshad and Haider Ali. Executed end-to-end parametric modeling, structural coordination, solar orientation analysis, and technical documentation for a contemporary multi-level residential dwelling.',
+    context:
+      'Comprehensive BIM development and multi-disciplinary coordination project for a multi-story residential building, resolving spatial clashes and optimizing solar exposure.',
+    scope: [
+      'Collaborative Project: Developed in collaboration and contributed by Faizan Manshad and Haider Ali.',
+      'Parametric Architectural Modeling: Developed architectural envelopes, internal layouts, curtain glazing, and custom families in Autodesk Revit.',
+      'Structural Coordination: Aligned reinforced concrete columns, beams, and slab systems in 3D to resolve spatial clashes prior to construction.',
+      'Solar Path & Insolation Studies: Performed dynamic solar trajectory simulations in Insight 360 to optimize passive daylighting and shading louvers.',
+      'Drawing Documentation: Generated tagged floor plans, building elevations, callout wall sections, and itemized material takeoff schedules.',
+    ],
+    details: [
+      'Collaborative Project: Developed in collaboration and contributed by Faizan Manshad and Haider Ali.',
+      'Parametric Architectural Modeling: Developed architectural envelopes, internal layouts, curtain glazing, and custom families in Autodesk Revit.',
+      'Structural Coordination: Aligned reinforced concrete columns, beams, and slab systems in 3D to resolve spatial clashes prior to construction.',
+      'Solar Path & Insolation Studies: Performed dynamic solar trajectory simulations in Insight 360 to optimize passive daylighting and shading louvers.',
+      'Drawing Documentation: Generated tagged floor plans, building elevations, callout wall sections, and itemized material takeoff schedules.',
+    ],
+    outcome:
+      'Full architectural and structural BIM models, solar analysis reports, and verified drawing sets ready for construction documentation.',
+    contribution:
+      'Collaborative project contributed by Faizan Manshad and Haider Ali.',
+    source: ['https://faizanmanshad.com/projects/tahir-residency/'],
+    link: 'https://faizanmanshad.com/projects/tahir-residency/',
+    linkLabel: 'View Live Project Details ↗',
+  },
+  {
+    slug: 'epa-swmm-sewerage-design',
+    title: 'Hydraulic Design of Combined Sewerage System',
+    category: 'Water',
+    categoryBadge: 'WATER & ENV',
+    filterCategories: ['Water & Environmental'],
+    featured: false,
+    period: '2025',
+    subtitle: 'Water Resources & Municipal Hydraulics',
+    domain: 'EPA SWMM, Dynamic Wave Routing, Urban Catchments',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Municipal Hydraulics Project',
+    tools: ['EPA-SWMM', 'Dynamic Wave Routing', 'Drop Manholes', 'Sewerage Networks'],
+    diagram: 'water',
+    summary:
+      'Hydrodynamic modeling of a combined sanitary and stormwater sewerage network for a 102-hectare urban catchment in Wah Cantt.',
+    context:
+      'A municipal hydraulic engineering project modeling combined gravity sewer networks under intense precipitation events using EPA SWMM.',
+    scope: [
+      'Modeled runoff flows under extreme precipitation events up to 60 mm/hr using EPA SWMM dynamic wave hydraulic routing.',
+      'Addressed 47-foot elevation drops through drop manhole optimization and pipe slope control to ensure self-cleansing velocity (>= 0.6 m/s).',
+      'Checked pipe capacity, surcharge risks, and outfall hydraulic parameters across the urban subcatchment.',
+    ],
+    details: [
+      'Modeled runoff flows under extreme precipitation events up to 60 mm/hr using EPA SWMM dynamic wave hydraulic routing.',
+      'Addressed 47-foot elevation drops through drop manhole optimization and pipe slope control to ensure self-cleansing velocity (>= 0.6 m/s).',
+      'Checked pipe capacity, surcharge risks, and outfall hydraulic parameters across the urban subcatchment.',
+    ],
+    outcome:
+      'A validated hydraulic model and conduit profile ensuring zero flooding under design storm recurrence intervals.',
+    contribution:
+      'Hydraulic modeling and network simulation project as part of municipal water engineering coursework.',
+    source: ['Documents/Semester Projects/SWMM Sewerage Network Report.pdf'],
+  },
+  {
+    slug: 'recycled-aggregate-concrete',
+    title: 'Evaluation of Recycled Aggregate Concrete',
+    category: 'Materials',
+    categoryBadge: 'MATERIALS',
+    filterCategories: ['Geotechnical & Materials'],
+    featured: false,
+    period: '2024',
+    subtitle: 'Materials Science & Sustainable Concrete',
+    domain: 'Properties of Concrete, Mix Design, Compressive Testing',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Materials Science Project',
+    tools: ['Compressive Testing', 'Workability Tests', 'Recycled Aggregates', 'Sustainable Concrete'],
+    diagram: 'wall',
+    summary:
+      'Experimental study investigating the mechanical behavior of structural concrete incorporating 50% recycled coarse aggregate.',
+    context:
+      'Concrete materials laboratory research evaluating the viability of demolished concrete rubble as coarse aggregates in structural concrete.',
+    scope: [
+      'Prepared concrete test specimens at varying water-cement ratios and tested workability, slump, and density.',
+      'Conducted destructive compressive strength tests at 7 and 28 days to formulate sustainable concrete replacement guidelines.',
+      'Analyzed stress-strain behavior, failure modes, and density trade-offs of recycled aggregate concrete.',
+    ],
+    details: [
+      'Prepared concrete test specimens at varying water-cement ratios and tested workability, slump, and density.',
+      'Conducted destructive compressive strength tests at 7 and 28 days to formulate sustainable concrete replacement guidelines.',
+      'Analyzed stress-strain behavior, failure modes, and density trade-offs of recycled aggregate concrete.',
+    ],
+    outcome:
+      'Empirical recommendations for optimizing water-cement ratios and target strengths when substituting 50% virgin aggregates with recycled concrete.',
+    contribution:
+      'Laboratory experimental investigation conducted at the Civil Engineering Concrete Laboratory.',
+    source: ['Documents/Semester Projects/Recycled Aggregate Concrete Testing.pdf'],
+  },
+  {
+    slug: 'indeterminate-frame-analysis',
+    title: 'Indeterminate Structural Analysis (RISA-2D vs. Manual)',
+    category: 'Structures',
+    categoryBadge: 'STRUCTURES',
+    filterCategories: ['Structural Engineering'],
+    featured: false,
+    period: '2024',
+    subtitle: 'Structural Mechanics & Computation',
+    domain: 'Matrix Displacement Method, Slope Deflection, RISA-2D',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Structural Mechanics Project',
+    tools: ['RISA-2D', 'Manual Calculations', 'Matrix Methods', 'SFD & BMD'],
+    diagram: 'structure',
+    summary:
+      'Verification of indeterminate frame behavior comparing hand matrix slope-deflection solutions against RISA-2D computer models.',
+    context:
+      'Advanced structural analysis project comparing classical hand methods (slope deflection and moment distribution) against computerized matrix stiffness modeling.',
+    scope: [
+      'Computed support reactions, axial force diagrams (AFD), shear force diagrams (SFD), and bending moment diagrams (BMD).',
+      'Achieved close correlation between hand calculations and numerical simulations across non-sway and sway frames.',
+      'Evaluated joint rotations and member end displacements under combined vertical and lateral load patterns.',
+    ],
+    details: [
+      'Computed support reactions, axial force diagrams (AFD), shear force diagrams (SFD), and bending moment diagrams (BMD).',
+      'Achieved close correlation between hand calculations and numerical simulations across non-sway and sway frames.',
+      'Evaluated joint rotations and member end displacements under combined vertical and lateral load patterns.',
+    ],
+    outcome:
+      'Comprehensive verification comparative report establishing exact precision between theoretical matrix formulations and software outputs.',
+    contribution:
+      'Analytical mechanics project completed under Structural Analysis II curriculum.',
+    source: ['Documents/Semester Projects/RISA-2D Structural Analysis.pdf'],
+  },
+  {
+    slug: 'soil-bearing-capacity-analysis',
+    title: 'Soil Bearing Capacity & Direct Shear Testing',
+    category: 'Geotechnical',
+    categoryBadge: 'GEOTECHNICAL',
+    filterCategories: ['Geotechnical & Materials'],
+    featured: false,
+    period: '2024',
+    subtitle: 'Geotechnical Engineering',
+    domain: 'ASTM D3080, Terzaghi Equations, Shear Strength',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Geotechnical Testing Project',
+    tools: ['ASTM D3080', 'Terzaghi Theory', 'Direct Shear Test', 'Bearing Capacity'],
+    diagram: 'wall',
+    summary:
+      'Laboratory determination of soil cohesion and internal friction angle to establish safe bearing capacity for column footings.',
+    context:
+      'Geotechnical engineering lab investigation deriving shear strength parameters (c, φ) to calculate shallow foundation bearing capacities under Terzaghi failure theory.',
+    scope: [
+      'Conducted direct shear lab testing on three soil specimens under normal stresses of 50, 100, and 150 kPa.',
+      'Applied Terzaghi bearing capacity equations to determine ultimate and allowable bearing pressures for shallow footing design.',
+      'Evaluated settlement limitations and factor of safety criteria for square and strip foundation profiles.',
+    ],
+    details: [
+      'Conducted direct shear lab testing on three soil specimens under normal stresses of 50, 100, and 150 kPa.',
+      'Applied Terzaghi bearing capacity equations to determine ultimate and allowable bearing pressures for shallow footing design.',
+      'Evaluated settlement limitations and factor of safety criteria for square and strip foundation profiles.',
+    ],
+    outcome:
+      'Allowable soil bearing pressure curves and recommendations for foundation depth and dimensions.',
+    contribution:
+      'Laboratory testing and geotechnical calculation report executed in Soil Mechanics laboratory.',
+    source: ['Documents/Semester Projects/Soil Bearing Capacity Analysis.pdf'],
+  },
+  {
+    slug: 'water-treatment-jar-testing',
+    title: 'Water Treatment Sedimentation & Jar Testing',
+    category: 'Water',
+    categoryBadge: 'WATER & ENV',
+    filterCategories: ['Water & Environmental'],
+    featured: false,
+    period: '2025',
+    subtitle: 'Environmental Engineering',
+    domain: 'Coagulation, Jar Testing, Municipal Treatment Sizing',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Environmental Engineering Project',
+    tools: ['Jar Testing', 'Alum Dosage', 'Sedimentation Design', 'WASA Guidelines'],
+    diagram: 'water',
+    summary:
+      'Raw water characterization and jar test optimization to design a scalable municipal sedimentation tank for Faisal Hills.',
+    context:
+      'Environmental engineering project examining physical-chemical water treatment, coagulation dynamics, and sedimentation tank geometry.',
+    scope: [
+      'Analyzed raw water parameters (pH 7.23, TDS 413 mg/L, TSS 2 mg/L).',
+      'Identified optimum alum coagulant dosage of 2 mg/L achieving 250 FTU turbidity reduction and scaled tank dimensions per WASA standards.',
+      'Calculated surface overflow rates, weir loading rates, and detention times for rapid settling basins.',
+    ],
+    details: [
+      'Analyzed raw water parameters (pH 7.23, TDS 413 mg/L, TSS 2 mg/L).',
+      'Identified optimum alum coagulant dosage of 2 mg/L achieving 250 FTU turbidity reduction and scaled tank dimensions per WASA standards.',
+      'Calculated surface overflow rates, weir loading rates, and detention times for rapid settling basins.',
+    ],
+    outcome:
+      'Design package for a municipal clarification tank with optimal coagulant dosing protocol.',
+    contribution:
+      'Environmental laboratory testing and process design report.',
+    source: ['Documents/Semester Projects/Jar Testing & Sedimentation Design.pdf'],
+  },
+  {
+    slug: 'colorado-river-hydrology',
+    title: 'Hydrological Analysis of Colorado River Catchment',
+    category: 'Water',
+    categoryBadge: 'WATER & ENV',
+    filterCategories: ['Water & Environmental'],
+    featured: false,
+    period: '2024',
+    subtitle: 'Surface Water Hydrology',
+    domain: 'SCS-CN Method, Unit Hydrographs, Catchment Modeling',
+    organization: 'COMSATS University Islamabad, Wah Campus',
+    badge: 'Hydrological Modeling Project',
+    tools: ['SCS-CN Method', 'Hydrographs', 'Discharge Estimation', 'Hydrology'],
+    diagram: 'water',
+    summary:
+      'Precipitation and stream discharge modeling for a 600 sq-km watershed in the Colorado River Grand Valley.',
+    context:
+      'Hydrological watershed modeling assessing spatial rainfall distribution and streamflow hydrographs across a major river catchment.',
+    scope: [
+      'Applied Thiessen polygon weighting across 6 rain gauge stations, derived synthetic and S-curve unit hydrographs, and estimated peak runoff discharges.',
+      'Calculated cumulative runoff depths and time of concentration using the SCS Curve Number (CN) methodology.',
+      'Formulated peak discharge hydrographs for design storm events to evaluate downstream flood mitigation requirements.',
+    ],
+    details: [
+      'Applied Thiessen polygon weighting across 6 rain gauge stations, derived synthetic and S-curve unit hydrographs, and estimated peak runoff discharges.',
+      'Calculated cumulative runoff depths and time of concentration using the SCS Curve Number (CN) methodology.',
+      'Formulated peak discharge hydrographs for design storm events to evaluate downstream flood mitigation requirements.',
+    ],
+    outcome:
+      'A synthetic hydrograph model and discharge estimation suite for flood forecasting and hydraulic infrastructure planning.',
+    contribution:
+      'Catchment hydrological study completed under Engineering Hydrology coursework.',
+    source: ['Documents/Semester Projects/Colorado River Catchment Hydrology.pdf'],
   },
 ]

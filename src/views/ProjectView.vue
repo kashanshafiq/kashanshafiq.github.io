@@ -21,7 +21,7 @@ const canonicalSlug = computed(() => {
 })
 
 const project = computed(() =>
-  projects.find(p => p.slug === canonicalSlug.value || p.slug === route.params.slug)
+  projects.find(p => p.slug === canonicalSlug.value || p.slug === route.params.slug || (p.aliases && p.aliases.includes(route.params.slug as string)))
 )
 
 const currentIndex = computed(() =>
@@ -58,7 +58,7 @@ function nextRecord() {
 
 watchEffect(() => {
   document.title = project.value
-    ? `${project.value.title} · Featured Projects — Kashan Shafiq`
+    ? `${project.value.title} · Projects — Kashan Shafiq`
     : 'Project not found — Kashan Shafiq'
 })
 </script>
@@ -71,13 +71,13 @@ watchEffect(() => {
         <!-- Breadcrumb back link -->
         <div class="archive-breadcrumb">
           <RouterLink to="/work" class="breadcrumb-link">
-            Featured Projects / Academic archive <span aria-hidden="true">↗</span>
+            Projects / Academic archive <span aria-hidden="true">↗</span>
           </RouterLink>
         </div>
 
         <!-- Eyebrow Category / Period -->
         <div class="archive-eyebrow">
-          <span class="eyebrow-category">{{ (project.domain || project.category || 'Featured Projects').toUpperCase() }}</span>
+          <span class="eyebrow-category">{{ (project.domain || project.category || 'Projects').toUpperCase() }}</span>
           <span class="eyebrow-sep">/</span>
           <span class="eyebrow-year">{{ project.period || '2026' }}</span>
         </div>
@@ -124,10 +124,23 @@ watchEffect(() => {
           </div>
         </div>
 
+        <!-- External Link (e.g. for collaborative/live projects) -->
+        <div v-if="project.link" class="project-external-link-row" style="margin-top: 18px;">
+          <a
+            :href="project.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button primary"
+            style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; font-size: 0.85rem;"
+          >
+            {{ project.linkLabel || 'View Live Project Details' }} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
         <!-- Bottom Navigation -->
         <nav class="archive-bottom-nav" aria-label="Section navigation">
           <RouterLink to="/work" class="text-link">
-            ← Back to Featured Projects
+            ← Back to Projects
           </RouterLink>
         </nav>
       </section>
@@ -158,7 +171,7 @@ watchEffect(() => {
               <p class="doc-sheet-type">{{ project.subtitle || project.category || 'Engineering Case Study' }}</p>
               <div class="doc-sheet-meta-box">
                 <p><strong>Candidate:</strong> Kashan Shafiq</p>
-                <p><strong>Section:</strong> Featured Projects</p>
+                <p><strong>Section:</strong> Projects</p>
                 <p><strong>Standing / Metric:</strong> {{ project.badge || 'Verified Engineering Record' }}</p>
                 <p><strong>Period / Date:</strong> {{ project.period || '2026' }}</p>
               </div>
@@ -231,7 +244,7 @@ watchEffect(() => {
           <p class="modal-sub">{{ project.subtitle || project.period }}</p>
           <div class="modal-specs">
             <p><strong>Candidate:</strong> Kashan Shafiq</p>
-            <p><strong>Section:</strong> Featured Projects</p>
+            <p><strong>Section:</strong> Projects</p>
             <p><strong>Scope / Domain:</strong> {{ project.domain || project.category || 'Civil Engineering' }}</p>
             <p><strong>Timeline:</strong> {{ project.period || '2026' }}</p>
           </div>

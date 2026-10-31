@@ -1,8 +1,12 @@
 export type DiagramKind = 'structure' | 'wall' | 'water' | 'schedule' | 'quantity' | 'road'
 export interface Project {
   slug: string
+  aliases?: string[]
   title: string
-  category: 'Structures' | 'Water' | 'Planning' | 'Transportation'
+  category: 'Structures' | 'Water' | 'Planning' | 'Transportation' | 'BIM & Modeling' | 'Geotechnical' | 'Materials' | string
+  categoryBadge?: string
+  filterCategories?: string[]
+  featured?: boolean
   period?: string
   subtitle?: string
   domain?: string

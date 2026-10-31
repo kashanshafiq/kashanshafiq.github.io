@@ -33,7 +33,7 @@ export const router = createRouter({
       }
     },
     { path: '/recognition', component: () => import('./views/RecognitionView.vue'), meta: { title: 'Honours and Awards' } },
-    { path: '/work', component: () => import('./views/WorkView.vue'), meta: { title: 'Featured Projects' } },
+    { path: '/work', component: () => import('./views/WorkView.vue'), meta: { title: 'Projects' } },
     { path: '/projects/:slug', component: () => import('./views/ProjectView.vue'), meta: { title: 'Project' } },
     { path: '/about', redirect: '/' },
     { path: '/community', component: () => import('./views/CommunityView.vue'), meta: { title: 'Volunteering' } },

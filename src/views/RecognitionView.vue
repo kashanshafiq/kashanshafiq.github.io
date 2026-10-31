@@ -32,6 +32,10 @@ function getBadge(item: AcademicItem): { label: string; isPrimary: boolean } {
   }
   const type = getAwardType(item)
   if (type === 'scholarship') {
+    const t = `${item.title} ${item.subtitle || ''}`.toLowerCase()
+    if (t.includes('grant')) {
+      return { label: 'MERIT GRANT', isPrimary: false }
+    }
     return { label: 'SCHOLARSHIP', isPrimary: false }
   }
   if (type === 'competition') {
