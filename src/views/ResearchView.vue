@@ -7,11 +7,7 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
 
 <template>
   <div class="shell page-body">
-    <PageIntro
-      eyebrow="Research / Academic Inquiries & Publications"
-      title="Beyond the drawing."
-      description="Exploring how digital models, mobile augmented reality, and computational simulations bridge the gap between design engineering and physical construction conditions."
-    />
+    <PageIntro eyebrow="Research / Academic Inquiries & Publications" />
 
     <p class="result-count" aria-live="polite">
       {{ researchItems.length }} {{ researchItems.length === 1 ? 'research project' : 'research projects' }}
@@ -55,33 +51,53 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
 </template>
 
 <style scoped>
+.record-list {
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .period-text {
-  font-family: var(--mono);
-  font-size: 0.95rem;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
   color: var(--accent);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .status-pill {
   margin-left: 0;
-  display: inline-block;
+  display: inline-flex;
   margin-top: 8px;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  background: var(--accent);
+  color: #FFFFFF;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-label);
+  font-weight: 700;
+  padding: 3px 8px;
 }
 
 .record-interactive {
   text-decoration: none;
   color: inherit;
-  transition: background-color 160ms ease, border-color 160ms ease;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 180ms ease;
   position: relative;
   display: grid;
-  padding: 32px 18px;
-  border-radius: 2px;
+  padding: 28px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius-card);
 }
 
 .record-interactive:hover {
-  background: var(--surface);
+  background: var(--surface-raised);
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .record-interactive:hover .research-item-title {
@@ -89,7 +105,7 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
 }
 
 .record-interactive:hover .view-indicator {
-  color: var(--accent);
+  color: var(--accent-hover);
   transform: translate(2px, -2px);
 }
 
@@ -113,25 +129,28 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
 }
 
 .research-item-title {
+  font-family: var(--font-headline);
   font-size: clamp(1.35rem, 2vw, 1.65rem);
-  font-weight: 500;
+  font-weight: 850;
   line-height: 1.25;
   color: var(--text);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
   transition: color 160ms ease;
 }
 
 .author-subline {
-  font-family: var(--mono);
+  font-family: var(--font-label);
   font-size: 0.8rem;
   color: var(--muted);
-  margin-top: 8px;
+  font-weight: 600;
+  margin-top: 6px;
 }
 
 .view-indicator {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--line-strong);
+  font-family: var(--font-headline);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
   white-space: nowrap;
   transition: transform 160ms ease, color 160ms ease;
   padding-top: 6px;

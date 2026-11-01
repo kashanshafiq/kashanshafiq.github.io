@@ -34,7 +34,7 @@ function reset() {
 <template>
   <div class="shell page-body community-page">
     <PageIntro
-      eyebrow="Volunteering / Community &amp; Leadership"
+      eyebrow="Extracurriculars / Community &amp; Leadership"
       title="Engineering begins with people."
       description="Community welfare initiatives, educational outreach, public awareness campaigns, and open academic resources."
     />
@@ -211,8 +211,9 @@ function reset() {
   height: 100%;
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: 16px 15px 14px;
-  border-radius: 4px;
+  border-top: 2px solid var(--accent);
+  padding: 18px 16px 16px;
+  border-radius: var(--radius-card);
   text-decoration: none;
   color: inherit;
   position: relative;
@@ -220,9 +221,10 @@ function reset() {
 }
 
 .community-card:hover {
-  border-color: var(--accent);
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .card-header {
@@ -236,38 +238,38 @@ function reset() {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .card-index {
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--accent-link);
+  font-family: var(--font-headline);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
 }
 
 .card-badge {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  font-weight: 600;
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 2px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
   color: var(--muted);
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-raised);
   white-space: nowrap;
 }
 
 .card-badge.badge-primary {
-  color: var(--accent-link);
-  border: 1px solid rgba(33, 166, 93, 0.45);
-  background: var(--accent-soft);
+  color: #FFFFFF;
+  border: none;
+  background: var(--accent);
 }
 
 .card-period {
-  font-family: var(--mono);
+  font-family: var(--font-label);
   font-size: 0.72rem;
   color: var(--muted);
   letter-spacing: 0.02em;
@@ -275,10 +277,12 @@ function reset() {
 }
 
 .card-eyebrow {
-  font-family: var(--mono);
+  font-family: var(--font-label);
   font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  color: rgba(181, 195, 191, 0.7);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
   margin: 0 0 5px 0;
   white-space: nowrap;
   overflow: hidden;
@@ -286,10 +290,11 @@ function reset() {
 }
 
 .card-title {
-  font-size: 1.02rem;
-  font-weight: 600;
-  line-height: 1.32;
-  letter-spacing: -0.015em;
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   color: var(--text);
   margin: 0 0 6px 0;
   min-height: 2.64em;
@@ -328,7 +333,7 @@ function reset() {
 }
 
 .card-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line);
   margin-top: auto;
   margin-bottom: 10px;
 }
@@ -343,32 +348,33 @@ function reset() {
 .card-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px;
   overflow: hidden;
 }
 
 .tag-pill {
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--muted);
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: rgba(216, 21, 27, 0.08);
+  border: 1px solid rgba(216, 21, 27, 0.28);
+  border-radius: var(--radius-pill);
+  color: var(--accent);
   white-space: nowrap;
 }
 
 .card-arrow {
-  color: var(--accent-link);
+  color: var(--accent);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: transform 160ms ease, color 160ms ease;
   flex-shrink: 0;
 }
 
 .community-card:hover .card-arrow {
   transform: translate(2px, -2px);
-  color: var(--accent-link-hover);
+  color: var(--accent-hover);
 }
 
 /* ==========================================================================
@@ -377,9 +383,10 @@ function reset() {
 .empty-state {
   padding: 48px;
   border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
   background: var(--surface);
   text-align: center;
-  border-radius: 2px;
+  border-radius: var(--radius-card);
   margin-top: 24px;
 }
 

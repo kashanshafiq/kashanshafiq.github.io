@@ -85,14 +85,14 @@ function reset() {
 
           <!-- Outer Gold Medal Radiance Ring -->
           <circle cx="80" cy="72" r="44" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.45" />
-          <circle cx="80" cy="72" r="38" stroke="var(--accent)" stroke-width="2" fill="rgba(33, 166, 93, 0.14)" />
+          <circle cx="80" cy="72" r="38" stroke="var(--accent)" stroke-width="2" fill="rgba(216, 21, 27, 0.14)" />
           <circle cx="80" cy="72" r="32" stroke="currentColor" stroke-width="0.8" opacity="0.35" />
 
           <!-- Center Star & Laurels -->
           <text x="80" y="80" text-anchor="middle" font-size="22" fill="var(--accent)">★</text>
 
           <!-- Hanging Medal Ribbon V-Shape -->
-          <path d="M 66 108 L 52 152 L 74 140 L 80 152 L 86 140 L 108 152 L 94 108 Z" stroke="var(--accent)" stroke-width="1.5" fill="rgba(33, 166, 93, 0.2)" />
+          <path d="M 66 108 L 52 152 L 74 140 L 80 152 L 86 140 L 108 152 L 94 108 Z" stroke="var(--accent)" stroke-width="1.5" fill="rgba(216, 21, 27, 0.2)" />
 
           <!-- Top Micro Watermark -->
           <text x="80" y="24" text-anchor="middle" class="thumbnail-watermark">
@@ -112,7 +112,7 @@ function reset() {
         </div>
 
         <h2 id="primary-gold-medal-title" class="featured-medal-title">
-          BS Civil Engineering — University Gold Medal (1st in Graduating Class)
+          BS Civil Engineering — Gold Medalist
         </h2>
 
         <p class="featured-medal-institution">
@@ -295,7 +295,8 @@ function reset() {
   margin-inline: auto;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-card);
   margin-top: 10px;
   margin-bottom: 22px;
   overflow: hidden;
@@ -304,12 +305,13 @@ function reset() {
 }
 
 .featured-medal-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .featured-medal-thumbnail {
-  background: #0B0E10;
+  background: var(--bg);
   border-right: 1px solid var(--line);
   display: flex;
   align-items: center;
@@ -332,10 +334,10 @@ function reset() {
 }
 
 .thumbnail-watermark {
-  fill: var(--accent-link);
-  font-family: var(--mono);
+  fill: var(--accent);
+  font-family: var(--font-label);
   font-size: 8.5px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   opacity: 0.85;
 }
@@ -363,20 +365,23 @@ function reset() {
 }
 
 .featured-index {
+  font-family: var(--font-headline);
   font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--accent);
 }
 
 .primary-distinction-tag {
-  font-family: var(--mono);
+  font-family: var(--font-label);
   font-size: 0.65rem;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--accent-link);
-  background: var(--accent-soft);
-  border: 1px solid rgba(33, 166, 93, 0.35);
-  padding: 2px 7px;
-  border-radius: 2px;
-  font-weight: 600;
+  color: #FFFFFF;
+  background: var(--accent);
+  border: none;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
 }
 
 .primary-year-badge {
@@ -390,7 +395,7 @@ function reset() {
   font-size: 0.65rem;
   letter-spacing: 0.05em;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-raised);
   border: 1px solid var(--line);
   padding: 2px 7px;
   border-radius: 2px;
@@ -415,7 +420,7 @@ function reset() {
 .featured-medal-desc {
   font-size: 0.8125rem;
   line-height: 1.48;
-  color: rgba(230, 240, 237, 0.88);
+  color: var(--muted);
   margin: 0 0 10px 0;
 }
 
@@ -429,7 +434,7 @@ function reset() {
 .featured-metric-pill {
   font-family: var(--mono);
   font-size: 0.7rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-raised);
   border: 1px solid var(--line);
   color: var(--text);
   padding: 2px 8px;
@@ -442,7 +447,7 @@ function reset() {
 }
 
 .featured-medal-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line);
   margin-bottom: 10px;
 }
 
@@ -461,13 +466,15 @@ function reset() {
 }
 
 .featured-tag-pill {
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--muted);
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: rgba(216, 21, 27, 0.08);
+  border: 1px solid rgba(216, 21, 27, 0.28);
+  border-radius: var(--radius-pill);
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 .featured-medal-actions {
@@ -593,8 +600,9 @@ function reset() {
   height: 100%;
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: 16px 15px 14px;
-  border-radius: 4px;
+  border-top: 2px solid var(--accent);
+  padding: 18px 16px 16px;
+  border-radius: var(--radius-card);
   text-decoration: none;
   color: inherit;
   position: relative;
@@ -602,9 +610,10 @@ function reset() {
 }
 
 .award-card:hover {
-  border-color: var(--accent);
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .award-card-header {
@@ -618,34 +627,34 @@ function reset() {
 .award-header-left {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .award-index {
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--accent-link);
+  font-family: var(--font-headline);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
 }
 
 .award-badge {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  font-weight: 600;
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 2px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
   color: var(--muted);
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-raised);
   white-space: nowrap;
 }
 
 .award-badge.badge-primary {
-  color: var(--accent-link);
-  border: 1px solid rgba(33, 166, 93, 0.45);
-  background: var(--accent-soft);
+  color: #FFFFFF;
+  border: none;
+  background: var(--accent);
 }
 
 .award-period {
@@ -660,7 +669,7 @@ function reset() {
   font-family: var(--mono);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
-  color: rgba(181, 195, 191, 0.7);
+  color: var(--muted);
   margin: 0 0 5px 0;
   white-space: nowrap;
   overflow: hidden;
@@ -668,10 +677,11 @@ function reset() {
 }
 
 .award-title {
-  font-size: 1.02rem;
-  font-weight: 600;
-  line-height: 1.32;
-  letter-spacing: -0.015em;
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   color: var(--text);
   margin: 0 0 6px 0;
   min-height: 2.64em;
@@ -710,7 +720,7 @@ function reset() {
 }
 
 .award-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line);
   margin-top: auto;
   margin-bottom: 10px;
 }
@@ -725,40 +735,42 @@ function reset() {
 .award-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px;
   overflow: hidden;
 }
 
 .award-tag-pill {
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--muted);
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: rgba(216, 21, 27, 0.08);
+  border: 1px solid rgba(216, 21, 27, 0.28);
+  border-radius: var(--radius-pill);
+  color: var(--accent);
   white-space: nowrap;
 }
 
 .award-arrow {
-  color: var(--accent-link);
+  color: var(--accent);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: transform 160ms ease, color 160ms ease;
   flex-shrink: 0;
 }
 
 .award-card:hover .award-arrow {
   transform: translate(2px, -2px);
-  color: var(--accent-link-hover);
+  color: var(--accent-hover);
 }
 
 .empty-state {
   padding: 48px;
   border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
   background: var(--surface);
   text-align: center;
-  border-radius: 2px;
+  border-radius: var(--radius-card);
   margin-top: 24px;
 }
 

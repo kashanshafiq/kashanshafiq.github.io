@@ -13,7 +13,7 @@ let viewer: BridgeViewer | undefined
 let disposed = false
 
 const archComponents = [
-  { label: 'Structural Members', color: '#21A65D' },
+  { label: 'Structural Members', color: '#D8151B' },
   { label: 'Structural Connection', color: '#162d4a' },
   { label: 'Roadway Surface', color: '#0a0a0a' },
   { label: 'Abutment', color: '#f0f3f2' },
@@ -127,7 +127,11 @@ onBeforeUnmount(() => {
 .interactive-bridge {
   aspect-ratio: 1.45;
   padding: 0;
-  background: radial-gradient(ellipse at 50% 60%, rgba(45, 48, 49, 0.55), transparent 70%);
+  background: radial-gradient(ellipse at 50% 60%, rgba(32, 35, 39, 0.96), #0d0f12 75%);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius-card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -138,15 +142,15 @@ onBeforeUnmount(() => {
   top: 14px;
   right: 14px;
   pointer-events: none;
-  color: var(--muted);
+  color: #A8A8AE;
   font-family: var(--mono);
   font-size: 0.72rem;
-  background: rgba(45, 48, 49, 0.94);
+  background: rgba(15, 17, 20, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
   z-index: 2;
 }
 
@@ -184,7 +188,8 @@ onBeforeUnmount(() => {
 .arch-legend-label {
   font-family: var(--mono);
   font-size: var(--text-viewer, 0.8125rem);
-  color: var(--text);
+  color: #FFFFFF !important;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -198,7 +203,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   width: 14px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .fea-swatches i {
@@ -212,7 +217,12 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   font-size: var(--text-viewer, 0.8125rem);
   font-family: var(--mono);
-  color: var(--text);
+  color: #FFFFFF !important;
+}
+
+.fea-labels span {
+  color: #FFFFFF !important;
+  font-weight: 500;
 }
 
 .fea-note {
@@ -220,7 +230,7 @@ onBeforeUnmount(() => {
   margin-top: 8px;
   font-size: var(--text-badge, 0.75rem);
   font-family: var(--mono);
-  color: var(--muted);
+  color: #D0D0D5 !important;
 }
 
 .bridge-canvas {
@@ -274,7 +284,7 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 14px;
   bottom: 14px;
-  color: var(--muted);
+  color: #B0B0B8 !important;
   font-family: var(--mono);
   font-size: var(--text-viewer, 0.8125rem);
   letter-spacing: 0.02em;

@@ -6,7 +6,13 @@ export const profile = {
   education: { degree: 'BS Civil Engineering', institution: 'COMSATS University Islamabad, Wah Campus', institutionUrl: 'https://cuiwah.edu.pk/', period: '2022–2026', cgpa: '3.95 / 4.00', distinction: 'Gold Medalist · First in graduating class' },
   interests: ['Structural analysis and design', 'Building information modelling', 'Digital construction', 'Augmented reality for engineering'],
   // Add confirmed public details only. Empty fields are not rendered as links.
-  contact: { email: 'kashankashi27@gmail.com', linkedin: 'https://www.linkedin.com/in/kashan-shafiq-11764229b/', github: '' },
+  contact: {
+    whatsapp: '+92 3155915676',
+    whatsappUrl: 'https://wa.me/923155915676',
+    email: 'kashankashi27@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/kashan-shafiq-11764229b/',
+    github: '',
+  },
   // Place an approved public PDF in public/downloads/ and set its relative path.
   cvPath: '',
 }

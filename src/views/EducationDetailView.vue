@@ -382,26 +382,30 @@ watchEffect(() => {
 }
 
 .archive-pill-badge {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 0.86rem;
-  color: var(--accent);
-  border: 1px solid rgba(234, 179, 8, 0.45);
-  background: rgba(234, 179, 8, 0.06);
-  padding: 6px 14px;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  background: var(--accent);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: none;
 }
 
 .archive-summary-lead {
   font-size: 1.05rem;
   line-height: 1.65;
-  color: #c9d1d9;
+  color: var(--muted);
   margin-bottom: 28px;
 }
 
 .archive-divider-line {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 1px solid var(--line);
   margin: 28px 0;
 }
 
@@ -462,13 +466,14 @@ watchEffect(() => {
 
 /* Document Archive Visual Card (Right Column) */
 .doc-archive-card {
-  background: #0f1418;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius-card);
   padding: 22px;
   position: sticky;
   top: 90px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .doc-archive-header {
@@ -479,11 +484,12 @@ watchEffect(() => {
 }
 
 .doc-archive-tag {
-  font-family: var(--mono);
+  font-family: var(--font-label);
   font-size: 0.74rem;
   letter-spacing: 0.08em;
-  color: #4ade80;
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .doc-enlarge-btn {
@@ -598,7 +604,7 @@ watchEffect(() => {
   align-items: center;
   margin-top: 18px;
   padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line);
 }
 
 .doc-carousel-controls {

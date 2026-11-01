@@ -39,15 +39,15 @@ export function createBridgeViewer(host: HTMLElement, onOrbit: () => void, onFai
     return tex
   }
   const concreteTex = createConcreteTexture()
-  const trussSteel = new THREE.MeshStandardMaterial({ color: 0x21a65d, metalness: .6, roughness: .4 })
-  const topChordSteel = new THREE.MeshStandardMaterial({ color: 0x21a65d, metalness: .6, roughness: .4 })
+  const trussSteel = new THREE.MeshStandardMaterial({ color: 0xd8151b, metalness: .6, roughness: .4 })
+  const topChordSteel = new THREE.MeshStandardMaterial({ color: 0xd8151b, metalness: .6, roughness: .4 })
   const connectionSteel = new THREE.MeshStandardMaterial({ color: 0x162d4a, metalness: .75, roughness: .35 })
-  const deckSteel = new THREE.MeshStandardMaterial({ color: 0x1b874c, metalness: .6, roughness: .5 })
-  const bracingSteel = new THREE.MeshStandardMaterial({ color: 0x27b868, metalness: .5, roughness: .4 })
+  const deckSteel = new THREE.MeshStandardMaterial({ color: 0xb91116, metalness: .6, roughness: .5 })
+  const bracingSteel = new THREE.MeshStandardMaterial({ color: 0xd8151b, metalness: .5, roughness: .4 })
   const railSteel = new THREE.MeshStandardMaterial({ color: 0x111312, metalness: .5, roughness: .5 })
   const road = new THREE.MeshStandardMaterial({ color: 0x0a0a0a, roughness: .9 })
   const concrete = new THREE.MeshStandardMaterial({ map: concreteTex, roughness: 1 })
-  const lineMaterial = new THREE.LineBasicMaterial({ color: 0x36b870, transparent: true, opacity: .19 })
+  const lineMaterial = new THREE.LineBasicMaterial({ color: 0xd8151b, transparent: true, opacity: .19 })
   const unit = new THREE.BoxGeometry(1, 1, 1), edges = new THREE.EdgesGeometry(unit)
   const meshes: THREE.Mesh[] = []
   function box(group: THREE.Group, x: number, y: number, z: number, w: number, h: number, d: number, material: THREE.MeshStandardMaterial) {
@@ -171,7 +171,7 @@ export function createBridgeViewer(host: HTMLElement, onOrbit: () => void, onFai
     box(groups.supports,x,-.7,0,1.6,.22,5.3,concrete)
     for(const z of [-2,2]) box(groups.supports,x,.68,z,.5,.2,.5, concrete)
   }
-  const grid = new THREE.GridHelper(24,24,0x446158,0x2a3a34)
+  const grid = new THREE.GridHelper(24,24,0x4a2e30,0x2a1a1c)
   grid.position.y=-.83; grid.material.transparent=true; grid.material.opacity=.3; scene.add(grid)
   const materials=new Map<string,THREE.MeshStandardMaterial>()
   const outlines=new Map<string,THREE.LineBasicMaterial>()

@@ -705,7 +705,7 @@ export const academicItems: AcademicItem[] = [
     sectionId: 'honors-awards',
     sectionTitle: 'Honours & Awards',
     slug: 'award-gold-medalist',
-    title: 'University Gold Medal — 1st in Graduating Class',
+    title: 'Gold Medalist',
     period: '2026',
     subtitle: 'Highest Academic Honor',
     domain: 'Academic Excellence, Summa Cum Laude Standing',

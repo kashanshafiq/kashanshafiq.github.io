@@ -3,16 +3,16 @@ import { ref } from 'vue'
 import BridgeHero from '../components/BridgeHero.vue'
 import { profile } from '../content/profile'
 
-const copiedEmail = ref(false)
-let copyTimeout: number | undefined
+const copiedNotice = ref<string | null>(null)
+let copyTimer: number | undefined
 
-async function copyEmail(email: string) {
+async function copyValue(val: string, label: string) {
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(email)
+      await navigator.clipboard.writeText(val)
     } else {
       const textarea = document.createElement('textarea')
-      textarea.value = email
+      textarea.value = val
       textarea.style.position = 'fixed'
       textarea.style.opacity = '0'
       document.body.appendChild(textarea)
@@ -21,13 +21,13 @@ async function copyEmail(email: string) {
       document.execCommand('copy')
       document.body.removeChild(textarea)
     }
-    copiedEmail.value = true
-    if (copyTimeout) clearTimeout(copyTimeout)
-    copyTimeout = window.setTimeout(() => {
-      copiedEmail.value = false
-    }, 2000)
-  } catch {
-    copiedEmail.value = false
+    copiedNotice.value = `${label} copied to clipboard!`
+    if (copyTimer) clearTimeout(copyTimer)
+    copyTimer = window.setTimeout(() => {
+      copiedNotice.value = null
+    }, 2400)
+  } catch (err) {
+    console.error('Copy failed:', err)
   }
 }
 </script>
@@ -36,9 +36,9 @@ async function copyEmail(email: string) {
   <div class="shell">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow hero-eyebrow">Civil Engineer · Structures · Research</p>
-        <h1 id="hero-title">KASHAN<br>SHAFIQ</h1>
-        <p class="hero-headline">Civil engineer bridging structural design, digital modeling, and applied research.</p>
+        <p class="eyebrow hero-eyebrow">Civil Engineer</p>
+        <h1 id="hero-title">KASHAN<br><span class="accent-phrase">SHAFIQ</span></h1>
+        <p class="hero-headline">Civil engineer bridging structural design, digital construction, and <span class="accent-phrase">innovation</span>.</p>
         <p class="hero-summary">
           I am a Civil Engineering graduate from COMSATS University Islamabad, Wah Campus, with a CGPA of 3.95/4.00 (Gold Medalist). My background pairs a solid structural design foundation with applied research and global leadership experience, centered on sustainable infrastructure. Open to graduate study and research opportunities.
         </p>
@@ -52,32 +52,32 @@ async function copyEmail(email: string) {
     </section>
 
     <div class="discipline-strip" aria-label="Areas of practice">
-      <span>Structures</span>
-      <span>Digital modelling</span>
-      <span>Research</span>
+      <span>Structural Engineering</span>
+      <span>Digital Construction</span>
+      <span>Research &amp; Innovation</span>
       <i aria-hidden="true"></i>
     </div>
 
-    <!-- Candidate Profile Section (Scholarship Committee Pitch) -->
-    <section class="candidate-profile-section" aria-label="Candidate profile and qualifications">
-      <p class="eyebrow candidate-eyebrow">Candidate Profile · Core Competencies &amp; Track Record</p>
-
-      <!-- Key Figures Strip -->
+    <!-- Candidate Profile Key Figures (Dark Cards with Red Top Accent) -->
+    <section class="metrics-section" aria-label="Key academic and technical figures">
       <div class="profile-metrics-strip" role="region" aria-label="Key academic and technical figures">
         <div class="metric-cell">
           <span class="metric-val">3.95<span class="accent-mark">/4.00</span></span>
           <span class="metric-label">CGPA · Gold Medalist</span>
-          <span class="metric-detail">1st in class · 8x merit positions</span>
+          <span class="metric-detail">Top-3 in each semester</span>
         </div>
         <div class="metric-cell">
-          <span class="metric-val">137<span class="accent-mark"> Cr</span></span>
-          <span class="metric-label">Credits Completed</span>
-          <span class="metric-detail">541.26 QP · POF merit scholar</span>
+          <span class="metric-val is-text">
+            <span>PROFESSIONAL</span>
+            <span class="accent-mark">DEVELOPMENT</span>
+          </span>
+          <span class="metric-label">PEC-accredited seminars</span>
+          <span class="metric-detail">FEM, GIS, FIDIC, NDT</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">70,000<span class="accent-mark">+</span></span>
           <span class="metric-label">BIM Elements</span>
-          <span class="metric-detail">Scan-to-BIM LOD 350 at Archnetix</span>
+          <span class="metric-detail">LOD 300 · 45-storey tower, Mount Khalid</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">400<span class="accent-mark"> hrs</span></span>
@@ -90,8 +90,12 @@ async function copyEmail(email: string) {
           <span class="metric-detail">Curated academic database</span>
         </div>
       </div>
+    </section>
+  </div>
 
-      <!-- Five Compact Pillars -->
+  <!-- Candidate Profile Section (Five Compact Pillars - Alternating Light Section) -->
+  <section class="candidate-profile-section light-section" aria-label="Candidate profile and qualifications">
+    <div class="shell">
       <div class="profile-pillars-grid">
         <!-- Pillar 1: Technical Depth -->
         <article class="pillar-card">
@@ -108,14 +112,11 @@ async function copyEmail(email: string) {
             <h2 class="pillar-title">Technical Depth</h2>
           </div>
           <p class="pillar-proof">
-            Structural analysis in ETABS &amp; SAFE, LOD 350 Scan-to-BIM for 70,000+ elements at Archnetix, and high-rise RC site QA/QC.
+            RC and seismic design in ETABS and SAFE to ACI 318-14 and ASCE 7. BIM modeling to LOD 300/350, with site layout, quantity takeoff and QC training.
           </p>
-          <RouterLink class="pillar-link" to="/work">
-            View engineering work <span aria-hidden="true">↗</span>
-          </RouterLink>
         </article>
 
-        <!-- Pillar 2: Applied Research -->
+        <!-- Pillar 2: Research & Innovation -->
         <article class="pillar-card">
           <div class="pillar-top">
             <div class="pillar-icon" aria-hidden="true">
@@ -127,14 +128,11 @@ async function copyEmail(email: string) {
                 <polyline points="10 9 9 9 8 9" />
               </svg>
             </div>
-            <h2 class="pillar-title">Applied Research</h2>
+            <h2 class="pillar-title">Research &amp; Innovation</h2>
           </div>
           <p class="pillar-proof">
-            Author of SSRN BIM-to-AR defect tracking research preprint; awarded 3rd Position at the Open House &amp; Job Fair 2026.
+            BIM-to-AR framework for construction layout visualization, built with Unity, Vuforia and ARCore. Released as an SSRN research preprint; the FYP placed 3rd at Open House 2026.
           </p>
-          <RouterLink class="pillar-link" to="/research">
-            View research preprint <span aria-hidden="true">↗</span>
-          </RouterLink>
         </article>
 
         <!-- Pillar 3: Academic Merit -->
@@ -149,11 +147,8 @@ async function copyEmail(email: string) {
             <h2 class="pillar-title">Academic Merit</h2>
           </div>
           <p class="pillar-proof">
-            Conferred University Gold Medal; awarded Skill Advancement Grant, Aspire Leaders Program: Designing Concrete Structures Reinforced with GFRP Bars (ACI 440.1R-22).
+            Gold Medalist, POF merit scholar, and Skill Advancement Grant winner.
           </p>
-          <RouterLink class="pillar-link" to="/recognition">
-            View honours &amp; awards <span aria-hidden="true">↗</span>
-          </RouterLink>
         </article>
 
         <!-- Pillar 4: Global Collaboration -->
@@ -169,11 +164,8 @@ async function copyEmail(email: string) {
             <h2 class="pillar-title">Global Collaboration</h2>
           </div>
           <p class="pillar-proof">
-            400 hours over 18 months in U.S. Embassy English Access Program with diverse peers; Aspire Leaders Program alumnus and OMLAS Fellow.
+            400-hour U.S. Embassy English Access Program with peers from diverse backgrounds. Aspire Leaders alumnus, OMLAS Fellow, and panelist at Leaders for Global Society 2025.
           </p>
-          <RouterLink class="pillar-link" to="/community">
-            View global programs <span aria-hidden="true">↗</span>
-          </RouterLink>
         </article>
 
         <!-- Pillar 5: Sustainability & SDGs -->
@@ -188,18 +180,15 @@ async function copyEmail(email: string) {
             <h2 class="pillar-title">Sustainability &amp; SDGs</h2>
           </div>
           <p class="pillar-proof">
-            World Engineering Day hackathons, World Water Day wastewater design award, EPA SWMM modeling, and academic database serving 200+ juniors.
+            World Engineering Day hackathons (2025, 2026) and World Water Day 2025. Open-access study database for 200+ juniors (SDG 4).
           </p>
-          <RouterLink class="pillar-link" to="/community">
-            View community &amp; SDGs <span aria-hidden="true">↗</span>
-          </RouterLink>
         </article>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- Compact Single-Band Contact Section -->
-  <section id="contact" class="home-contact-section" aria-labelledby="contact-heading">
+  <!-- Compact Single-Band Contact Section (Full-Width Solid Red Closing Band) -->
+  <section id="contact" class="home-contact-section red-closing-band" aria-labelledby="contact-heading">
     <div class="shell contact-band">
       <div class="contact-band-left">
         <p class="eyebrow contact-eyebrow">Contact</p>
@@ -210,45 +199,44 @@ async function copyEmail(email: string) {
       </div>
 
       <div class="contact-band-actions">
-        <div class="contact-email-cluster">
-          <a
-            :href="`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.contact.email}`"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-btn contact-email-btn"
-            aria-label="Compose email to Kashan Shafiq on Gmail (opens in new tab)"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-            <span>{{ profile.contact.email }}</span>
-            <span class="btn-arrow" aria-hidden="true">↗</span>
-          </a>
+        <a
+          v-if="profile.contact.whatsapp"
+          :href="profile.contact.whatsappUrl || 'https://wa.me/923155915676'"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-btn contact-primary-btn"
+          @click="copyValue(profile.contact.whatsapp, 'Phone number')"
+          aria-label="Chat with Kashan Shafiq on WhatsApp (opens in new tab, copies phone number to clipboard)"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+          </svg>
+          <span>{{ profile.contact.whatsapp }}</span>
+          <span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
 
-          <button
-            type="button"
-            class="contact-copy-btn"
-            :class="{ copied: copiedEmail }"
-            @click="copyEmail(profile.contact.email)"
-            :aria-label="copiedEmail ? 'Email copied to clipboard' : 'Copy email address to clipboard'"
-          >
-            <svg v-if="!copiedEmail" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-            </svg>
-            <svg v-else viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            <span>{{ copiedEmail ? 'Copied' : 'Copy' }}</span>
-          </button>
-        </div>
+        <a
+          :href="`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.contact.email}`"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-btn contact-secondary-btn"
+          @click="copyValue(profile.contact.email, 'Email address')"
+          aria-label="Compose email to Kashan Shafiq on Gmail (opens in new tab, copies email to clipboard)"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span>{{ profile.contact.email }}</span>
+          <span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
 
         <a
           :href="profile.contact.linkedin"
           target="_blank"
           rel="noopener noreferrer"
-          class="contact-btn"
+          class="contact-btn contact-secondary-btn"
           aria-label="LinkedIn profile of Kashan Shafiq"
         >
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -269,6 +257,16 @@ async function copyEmail(email: string) {
         </div>
       </div>
     </div>
+
+    <!-- Floating Copied Feedback Toast -->
+    <Transition name="fade-toast">
+      <div v-if="copiedNotice" class="contact-copy-toast" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        <span>{{ copiedNotice }}</span>
+      </div>
+    </Transition>
   </section>
 </template>
 
@@ -282,11 +280,12 @@ async function copyEmail(email: string) {
 }
 
 .hero-headline {
-  font-family: var(--sans);
-  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-  font-weight: 500;
+  font-family: var(--font-headline);
+  font-size: clamp(1.1rem, 1.35vw, 1.25rem);
+  font-weight: 750;
   color: var(--text);
   line-height: 1.35;
+  letter-spacing: -0.015em;
   margin-top: 18px;
   margin-bottom: 12px;
 }
@@ -312,62 +311,73 @@ async function copyEmail(email: string) {
 }
 
 /* ==========================================================================
-   CANDIDATE PROFILE SECTION (INTERNATIONAL SCHOLARSHIP PITCH)
+   KEY FIGURES STRIP (DARK CARDS WITH SIGNATURE RED TOP ACCENT)
    ========================================================================== */
-.candidate-profile-section {
-  padding-block: 44px 56px;
+.metrics-section {
+  padding-block: 20px 10px;
 }
 
-.candidate-eyebrow {
-  margin-bottom: 20px;
-}
-
-/* Key Metrics Strip */
 .profile-metrics-strip {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  margin-bottom: 24px;
-  overflow: hidden;
+  gap: 14px;
 }
 
 .metric-cell {
   background: var(--surface);
-  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius-card);
+  padding: 20px 18px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  transition: background 180ms ease;
+  gap: 4px;
+  transition: transform 160ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
 .metric-cell:hover {
-  background: var(--surface-raised);
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .metric-val {
-  font-family: var(--mono);
-  font-size: clamp(1.3rem, 1.7vw, 1.65rem);
-  font-weight: 600;
+  font-family: var(--font-headline);
+  font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+  font-weight: 850;
   color: var(--text);
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+}
+
+.metric-val.is-text {
+  font-size: clamp(0.72rem, 0.92vw, 0.95rem);
+  line-height: 1.2;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  min-height: clamp(1.4rem, 1.85vw, 1.8rem);
+  display: flex;
+  align-items: center;
+  gap: 0.38em;
+}
+
+.metric-val.is-text .accent-mark {
+  font-size: 1em;
 }
 
 .metric-val .accent-mark {
   color: var(--accent);
-  font-size: 0.85em;
+  font-weight: 850;
 }
 
 .metric-label {
-  font-family: var(--mono);
-  font-size: 0.72rem;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--accent-link);
-  font-weight: 500;
+  color: var(--text);
+  font-weight: 700;
   margin-top: 2px;
 }
 
@@ -375,10 +385,19 @@ async function copyEmail(email: string) {
   font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.35;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
-/* 5 Pillars Grid */
+/* ==========================================================================
+   CANDIDATE PROFILE SECTION (FIVE COMPACT PILLARS — ALTERNATING LIGHT SECTION)
+   ========================================================================== */
+.candidate-profile-section.light-section {
+  background: var(--bg-light);
+  border-top: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+  padding-block: 20px 48px;
+}
+
 .profile-pillars-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -386,21 +405,21 @@ async function copyEmail(email: string) {
 }
 
 .pillar-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  padding: 20px 18px 18px;
+  background: #FFFFFF;
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-light);
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
 .pillar-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--line-strong);
-  background: var(--surface-raised);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(216, 21, 27, 0.35);
 }
 
 .pillar-top {
@@ -411,11 +430,11 @@ async function copyEmail(email: string) {
 }
 
 .pillar-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 2px;
-  background: var(--accent-soft);
-  border: 1px solid rgba(33, 166, 93, 0.28);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(216, 21, 27, 0.08);
+  border: 1px solid rgba(216, 21, 27, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -424,51 +443,31 @@ async function copyEmail(email: string) {
 }
 
 .pillar-title {
-  font-family: var(--sans);
-  font-size: 1.02rem;
-  font-weight: 600;
-  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #111111;
   margin: 0;
   line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .pillar-proof {
-  font-size: 0.84rem;
-  color: var(--muted);
-  line-height: 1.5;
-  margin: 0 0 16px 0;
-  flex-grow: 1;
-}
-
-.pillar-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 0.73rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent-link);
-  text-decoration: none;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  transition: color 160ms ease;
-}
-
-.pillar-link:hover,
-.pillar-card:hover .pillar-link {
-  color: var(--accent-link-hover);
+  font-size: 0.85rem;
+  color: #5E5E63;
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* ==========================================================================
-   CONTACT SECTION (COMPACT SINGLE-BAND)
+   CONTACT SECTION (FULL-WIDTH SOLID RED CLOSING BAND)
    ========================================================================== */
-.home-contact-section {
-  padding-block: 30px 34px;
-  border-top: 1px solid var(--line);
-  background: var(--bg);
+.home-contact-section.red-closing-band {
+  background: var(--accent);
+  padding-block: 38px 42px;
+  border: none;
   scroll-margin-top: 40px;
+  color: #FFFFFF;
 }
 
 .contact-band {
@@ -486,21 +485,29 @@ async function copyEmail(email: string) {
 
 .contact-eyebrow {
   margin: 0;
+  font-family: var(--font-label);
   font-size: var(--text-eyebrow);
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+.contact-eyebrow::before {
+  color: #FFFFFF !important;
 }
 
 .contact-band-title {
-  font-family: var(--sans);
-  font-size: clamp(1.2rem, 1.4vw, 1.4rem);
-  font-weight: 600;
-  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-weight: 900;
+  color: #FFFFFF;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
 .contact-band-text {
-  font-size: 0.875rem;
-  color: var(--muted);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.92);
   line-height: 1.45;
   margin: 0;
   max-width: 52ch;
@@ -518,88 +525,80 @@ async function copyEmail(email: string) {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 0.8rem;
+  padding: 10px 16px;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-headline);
+  font-size: 0.82rem;
+  font-weight: 700;
   text-decoration: none;
-  min-height: 40px;
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
-}
-
-.contact-email-cluster {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.contact-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.775rem;
-  min-height: 40px;
-  cursor: pointer;
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
-}
-
-.contact-copy-btn:hover {
-  background: var(--surface-raised);
-  border-color: var(--line-strong);
-  color: var(--text);
-  transform: translateY(-1px);
-}
-
-.contact-copy-btn:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-.contact-copy-btn.copied {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.contact-copy-btn svg {
-  color: currentColor;
-  flex-shrink: 0;
-}
-
-.contact-btn:hover {
-  background: var(--surface-raised);
-  border-color: var(--accent);
-  color: var(--accent-link);
-  transform: translateY(-1px);
+  min-height: 44px;
+  transition: all 160ms ease;
 }
 
 .contact-btn:focus-visible {
-  outline: 2px solid var(--focus-ring);
+  outline: 2px solid #FFFFFF;
   outline-offset: 2px;
 }
 
-.contact-btn svg {
+/* Primary WhatsApp CTA button on Red Band: Solid White */
+.contact-primary-btn {
+  background: #FFFFFF;
+  color: var(--accent);
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.contact-primary-btn svg {
   color: var(--accent);
   flex-shrink: 0;
 }
 
-.btn-arrow {
-  color: var(--muted);
+.contact-primary-btn .btn-arrow {
+  color: var(--accent);
+  font-size: 0.85em;
+  transition: transform 160ms ease;
+}
+
+.contact-primary-btn:hover {
+  background: #F4F3F2;
+  transform: translateY(-2px);
+}
+
+.contact-primary-btn:hover .btn-arrow {
+  transform: translate(1px, -1px);
+}
+
+/* Secondary Buttons on Red Band: Crisp White Outline */
+.contact-secondary-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #FFFFFF;
+}
+
+.contact-secondary-btn svg {
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.contact-secondary-btn .btn-arrow {
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.85em;
   transition: transform 160ms ease, color 160ms ease;
 }
 
-.contact-btn:hover .btn-arrow {
-  color: var(--accent-link);
+.contact-secondary-btn:hover {
+  background: #FFFFFF;
+  color: var(--accent);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.contact-secondary-btn:hover svg,
+.contact-secondary-btn:hover .btn-arrow {
+  color: var(--accent);
+}
+
+.contact-secondary-btn:hover .btn-arrow {
   transform: translate(1px, -1px);
 }
 
@@ -607,18 +606,19 @@ async function copyEmail(email: string) {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.775rem;
-  min-height: 40px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-btn);
+  color: #FFFFFF;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-height: 44px;
 }
 
 .contact-location-tag svg {
-  color: var(--accent);
+  color: #FFFFFF;
   flex-shrink: 0;
 }
 
@@ -633,7 +633,7 @@ async function copyEmail(email: string) {
 
 @media (max-width: 960px) {
   .home-contact-section {
-    padding-block: 26px 30px;
+    padding-block: 30px 34px;
   }
 
   .contact-band {
@@ -646,21 +646,6 @@ async function copyEmail(email: string) {
     width: 100%;
   }
 
-  .contact-email-cluster {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-  }
-
-  .contact-email-cluster .contact-email-btn {
-    flex: 1;
-  }
-
-  .contact-copy-btn {
-    flex-shrink: 0;
-    min-height: 44px;
-  }
-
   .contact-btn,
   .contact-location-tag {
     flex: 1 1 auto;
@@ -670,11 +655,15 @@ async function copyEmail(email: string) {
   .profile-metrics-strip {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .metric-val.is-text {
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  }
 }
 
 @media (max-width: 768px) {
   .candidate-profile-section {
-    padding-block: 32px 42px;
+    padding-block: 20px 36px;
   }
   .profile-pillars-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -702,5 +691,42 @@ async function copyEmail(email: string) {
   .profile-metrics-strip {
     grid-template-columns: 1fr;
   }
+}
+
+/* Floating Copied Toast */
+.contact-copy-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111111;
+  color: #FFFFFF;
+  border: 1px solid var(--accent);
+  padding: 10px 20px;
+  border-radius: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-headline);
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.contact-copy-toast svg {
+  color: var(--accent);
+}
+
+.fade-toast-enter-active,
+.fade-toast-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-toast-enter-from,
+.fade-toast-leave-to {
+  opacity: 0;
+  transform: translate(-50%, 12px);
 }
 </style>

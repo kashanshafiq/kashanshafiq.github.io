@@ -26,16 +26,17 @@ const navItems = [
 const activeId = ref('personal-info')
 let observer: IntersectionObserver | null = null
 
-const copiedEmail = ref(false)
+const copiedField = ref<string | null>(null)
+const copiedToast = ref<string | null>(null)
 let copyTimeout: number | undefined
 
-async function copyEmail(email: string) {
+async function copyContact(text: string, label: string) {
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(email)
+      await navigator.clipboard.writeText(text)
     } else {
       const textarea = document.createElement('textarea')
-      textarea.value = email
+      textarea.value = text
       textarea.style.position = 'fixed'
       textarea.style.opacity = '0'
       document.body.appendChild(textarea)
@@ -44,13 +45,15 @@ async function copyEmail(email: string) {
       document.execCommand('copy')
       document.body.removeChild(textarea)
     }
-    copiedEmail.value = true
+    copiedField.value = label
+    copiedToast.value = `${label} copied to clipboard!`
     if (copyTimeout) clearTimeout(copyTimeout)
     copyTimeout = window.setTimeout(() => {
-      copiedEmail.value = false
-    }, 2000)
+      copiedField.value = null
+      copiedToast.value = null
+    }, 2400)
   } catch {
-    copiedEmail.value = false
+    copiedField.value = null
   }
 }
 
@@ -224,39 +227,35 @@ onBeforeUnmount(() => {
               </div>
               <div class="meta-item">
                 <span class="meta-label">Direct Email</span>
-                <div class="meta-email-row">
+                <div class="meta-interactive-contact">
                   <a
                     :href="`https://mail.google.com/mail/?view=cm&fs=1&to=${academicCv.personalInfo.email}`"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="meta-val link-val"
-                    aria-label="Compose email to Kashan Shafiq on Gmail (opens in new tab)"
+                    class="meta-val link-val clickable-contact"
+                    @click="copyContact(academicCv.personalInfo.email, 'Email address')"
+                    title="Click to copy email address"
+                    aria-label="Compose email to Kashan Shafiq on Gmail (and copy email address to clipboard)"
                   >
                     {{ academicCv.personalInfo.email }} ↗
                   </a>
-                  <button
-                    type="button"
-                    class="meta-copy-btn"
-                    :class="{ copied: copiedEmail }"
-                    @click="copyEmail(academicCv.personalInfo.email)"
-                    :aria-label="copiedEmail ? 'Email copied to clipboard' : 'Copy email address to clipboard'"
-                  >
-                    <svg v-if="!copiedEmail" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                    </svg>
-                    <svg v-else viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>{{ copiedEmail ? 'Copied' : 'Copy' }}</span>
-                  </button>
+                  <span v-if="copiedField === 'Email address'" class="inline-copied-pill">Copied!</span>
                 </div>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Phone / WhatsApp</span>
-                <a :href="`tel:${academicCv.personalInfo.phone}`" class="meta-val link-val">
-                  {{ academicCv.personalInfo.phone }}
-                </a>
+                <div class="meta-interactive-contact">
+                  <a
+                    :href="`tel:${academicCv.personalInfo.phone}`"
+                    class="meta-val link-val clickable-contact"
+                    @click="copyContact(academicCv.personalInfo.phone, 'Phone number')"
+                    title="Click to copy phone number"
+                    aria-label="Call or WhatsApp Kashan Shafiq (and copy phone number to clipboard)"
+                  >
+                    {{ academicCv.personalInfo.phone }}
+                  </a>
+                  <span v-if="copiedField === 'Phone number'" class="inline-copied-pill">Copied!</span>
+                </div>
               </div>
               <div class="meta-item">
                 <span class="meta-label">LinkedIn</span>
@@ -280,7 +279,6 @@ onBeforeUnmount(() => {
             <span class="section-num">02</span>
             <h2>Education</h2>
           </div>
-          <p class="section-subtext">Undergraduate engineering degree with top academic honors and core technical coursework.</p>
 
           <div class="education-interactive-list">
             <RouterLink
@@ -310,7 +308,6 @@ onBeforeUnmount(() => {
             <span class="section-num">03</span>
             <h2>Research Experience</h2>
           </div>
-          <p class="section-subtext">Undergraduate thesis research, mobile augmented reality development, and engineering visualization frameworks.</p>
 
           <div class="education-interactive-list">
             <RouterLink
@@ -340,7 +337,6 @@ onBeforeUnmount(() => {
             <span class="section-num">04</span>
             <h2>Work Experience</h2>
           </div>
-          <p class="section-subtext">Professional practice, Scan-to-BIM modeling, high-rise tower management, and site engineering.</p>
 
           <div class="education-interactive-list">
             <RouterLink
@@ -370,7 +366,6 @@ onBeforeUnmount(() => {
             <span class="section-num">05</span>
             <h2>Academic Projects</h2>
           </div>
-          <p class="section-subtext">Structural design, numerical modeling, BIM, hydraulic analysis, and engineering calculation projects.</p>
 
           <div class="cv-grid-two-col">
             <RouterLink
@@ -413,7 +408,6 @@ onBeforeUnmount(() => {
             <span class="section-num">06</span>
             <h2>Certifications</h2>
           </div>
-          <p class="section-subtext">Specialized technical credentials, BIM certifications, and structural design training.</p>
 
           <div class="cv-grid-two-col">
             <RouterLink
@@ -456,7 +450,6 @@ onBeforeUnmount(() => {
             <span class="section-num">07</span>
             <h2>Professional training &amp; CPD</h2>
           </div>
-          <p class="section-subtext">PEC-accredited Continuing Professional Development (CPD) seminars and technical workshops.</p>
 
           <div class="cv-grid-two-col">
             <RouterLink
@@ -499,7 +492,6 @@ onBeforeUnmount(() => {
             <span class="section-num">08</span>
             <h2>Conferences</h2>
           </div>
-          <p class="section-subtext">Academic and industrial research conferences, technical proceedings, and symposiums.</p>
 
           <div class="education-interactive-list">
             <RouterLink
@@ -529,7 +521,6 @@ onBeforeUnmount(() => {
             <span class="section-num">09</span>
             <h2>Skills</h2>
           </div>
-          <p class="section-subtext">Core civil engineering competencies, specialized modeling software, and professional soft skills.</p>
 
           <div class="skills-three-col">
             <div
@@ -557,7 +548,6 @@ onBeforeUnmount(() => {
             <span class="section-num">10</span>
             <h2>Honours &amp; Awards</h2>
           </div>
-          <p class="section-subtext">University Gold Medal, competitive merit scholarships, academic distinctions, and engineering competitions.</p>
 
           <div class="cv-grid-two-col">
             <RouterLink
@@ -600,7 +590,6 @@ onBeforeUnmount(() => {
             <span class="section-num">11</span>
             <h2>Volunteering</h2>
           </div>
-          <p class="section-subtext">Community welfare initiatives, educational outreach, public awareness campaigns, and open academic resources.</p>
 
           <div class="education-interactive-list">
             <RouterLink
@@ -630,7 +619,6 @@ onBeforeUnmount(() => {
             <span class="section-num">12</span>
             <h2>Extracurricular Activities &amp; Leadership</h2>
           </div>
-          <p class="section-subtext">Global leadership fellowships, engineering hackathons, mental well-being initiatives, and technical symposiums.</p>
 
           <div class="cv-grid-two-col">
             <RouterLink
@@ -673,7 +661,6 @@ onBeforeUnmount(() => {
             <span class="section-num">13</span>
             <h2>Language Skills</h2>
           </div>
-          <p class="section-subtext">Mother tongue proficiency and international English language immersion qualifications.</p>
 
           <div class="languages-grid">
             <article
@@ -691,6 +678,16 @@ onBeforeUnmount(() => {
         </section>
       </main>
     </div>
+
+    <!-- Floating Copied Toast -->
+    <Transition name="fade-toast">
+      <div v-if="copiedToast" class="contact-copy-toast" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        <span>{{ copiedToast }}</span>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -758,8 +755,9 @@ onBeforeUnmount(() => {
 
 .toc-num {
   font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--line-strong);
+  font-size: 0.8rem;
+  font-weight: 750;
+  color: #000000 !important;
   flex-shrink: 0;
 }
 
@@ -780,8 +778,8 @@ onBeforeUnmount(() => {
 }
 
 .toc-link.active .toc-num {
-  color: var(--accent);
-  font-weight: 600;
+  color: #000000 !important;
+  font-weight: 800;
 }
 
 /* Main Content Area */
@@ -808,11 +806,12 @@ onBeforeUnmount(() => {
 }
 
 .cv-hero-title {
+  font-family: var(--font-headline);
   font-size: clamp(2.4rem, 4.2vw, 3.4rem);
-  font-weight: 700;
+  font-weight: 900;
   color: var(--text);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   margin: 0 0 10px 0;
 }
 
@@ -831,48 +830,65 @@ onBeforeUnmount(() => {
   scroll-margin-top: 92px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 0;
 }
 
 .section-badge-header {
   display: flex;
   align-items: center;
   gap: 16px;
-  border-bottom: 1px solid var(--line);
+  position: relative;
   padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.section-badge-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  border-bottom: none;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.35) 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.35) 85%, transparent 100%);
+  pointer-events: none;
 }
 
 .section-num {
-  font-family: var(--mono);
+  font-family: var(--font-headline);
   font-size: 0.85rem;
+  font-weight: 800;
   color: var(--accent);
   border: 1px solid var(--line);
   padding: 3px 8px;
-  border-radius: 2px;
+  border-radius: var(--radius-btn);
   background: var(--surface);
 }
 
 .cv-section h2 {
+  font-family: var(--font-headline);
   font-size: 1.65rem;
-  font-weight: 600;
+  font-weight: 800;
   color: var(--text);
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .section-subtext {
-  font-size: 0.95rem;
-  color: var(--muted);
-  line-height: 1.5;
-  margin: -6px 0 6px 0;
+  display: none !important;
 }
 
 /* Personal Information Card */
 .personal-card {
-  padding: 24px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  padding: 6px 0 0 0;
+  background: transparent;
+  border: none;
 }
 
 .personal-meta-horizontal {
@@ -910,53 +926,31 @@ onBeforeUnmount(() => {
   transition: color 140ms ease;
 }
 
-.link-val:hover {
-  text-decoration: underline;
-}
-
-.meta-email-row {
+.meta-interactive-contact {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.meta-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 7px;
-  background: var(--surface-raised);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--muted);
+.clickable-contact {
+  cursor: pointer;
+  transition: color 140ms ease;
+}
+
+.clickable-contact:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.inline-copied-pill {
   font-family: var(--mono);
   font-size: 0.72rem;
-  line-height: 1.2;
-  cursor: pointer;
-  transition: all 140ms ease;
-}
-
-.meta-copy-btn:hover {
-  background: var(--surface-hover);
-  border-color: var(--line-strong);
-  color: var(--text);
-}
-
-.meta-copy-btn:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-.meta-copy-btn.copied {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.meta-copy-btn svg {
-  color: currentColor;
-  flex-shrink: 0;
+  font-weight: 700;
+  background: var(--accent);
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 10px;
 }
 
 .personal-summary-text {
@@ -970,8 +964,7 @@ onBeforeUnmount(() => {
 .education-interactive-list {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--border);
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .education-row {
@@ -979,7 +972,7 @@ onBeforeUnmount(() => {
   grid-template-columns: 140px 1fr auto;
   align-items: center;
   gap: 24px;
-  padding: 20px 12px;
+  padding: 14px 12px;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
   color: inherit;
@@ -987,9 +980,13 @@ onBeforeUnmount(() => {
   border-radius: 2px;
 }
 
+.education-interactive-list .education-row:first-child {
+  padding-top: 8px;
+}
+
 .education-row:hover {
-  background: rgba(255, 255, 255, 0.025);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: var(--surface-hover);
+  border-color: var(--accent);
   padding-left: 18px;
 }
 
@@ -1042,7 +1039,7 @@ onBeforeUnmount(() => {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 52px;
   row-gap: 0;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .cv-grid-item {
@@ -1050,21 +1047,25 @@ onBeforeUnmount(() => {
   grid-template-columns: 56px 1fr;
   gap: 18px;
   align-items: start;
-  padding: 22px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 0 16px 0;
+  border-bottom: 1px solid var(--line);
   text-decoration: none;
   color: inherit;
   transition: border-color 0.2s ease;
 }
 
+.cv-grid-two-col .cv-grid-item:nth-child(-n+2) {
+  padding-top: 8px;
+}
+
 .cv-grid-item:hover {
-  border-bottom-color: rgba(255, 255, 255, 0.25);
+  border-bottom-color: var(--line-strong);
 }
 
 .grid-item-year {
   font-family: inherit;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--muted);
   padding-top: 3px;
   font-variant-numeric: tabular-nums;
   line-height: 1.3;
@@ -1085,19 +1086,19 @@ onBeforeUnmount(() => {
 
 .grid-item-title {
   font-size: 1.05rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #111111;
   line-height: 1.35;
   margin: 0;
   transition: color 0.2s ease;
 }
 
 .cv-grid-item:hover .grid-item-title {
-  color: var(--accent, #ff6b35);
+  color: var(--accent);
 }
 
 .grid-item-arrow {
-  color: var(--accent, #ff6b35);
+  color: var(--accent);
   font-size: 1rem;
   flex-shrink: 0;
   transition: transform 0.2s ease;
@@ -1110,7 +1111,7 @@ onBeforeUnmount(() => {
 
 .grid-item-summary {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--muted);
   line-height: 1.55;
   margin: 0;
 }
@@ -1127,26 +1128,26 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #f0f0f0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
   padding: 9px 18px;
   font-size: 0.85rem;
   font-weight: 500;
-  border-radius: 3px;
+  border-radius: var(--radius-btn);
   cursor: pointer;
   font-family: inherit;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .show-more-btn:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .btn-symbol {
-  color: var(--accent, #ff6b35);
+  color: var(--accent);
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1;
@@ -1154,7 +1155,7 @@ onBeforeUnmount(() => {
 
 .showing-counter {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1163,7 +1164,7 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 18px;
+  margin-top: 8px;
 }
 
 .skill-box-card {
@@ -1232,7 +1233,7 @@ onBeforeUnmount(() => {
 
 .skill-text {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text);
 }
 
 /* Section 12: Languages Grid */
@@ -1240,6 +1241,7 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
+  margin-top: 8px;
 }
 
 .lang-card {
@@ -1334,5 +1336,42 @@ onBeforeUnmount(() => {
     align-items: flex-start;
     gap: 12px;
   }
+}
+
+/* Floating Copied Toast */
+.contact-copy-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111111;
+  color: #FFFFFF;
+  border: 1px solid var(--accent);
+  padding: 10px 20px;
+  border-radius: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-headline);
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.contact-copy-toast svg {
+  color: var(--accent);
+}
+
+.fade-toast-enter-active,
+.fade-toast-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-toast-enter-from,
+.fade-toast-leave-to {
+  opacity: 0;
+  transform: translate(-50%, 12px);
 }
 </style>

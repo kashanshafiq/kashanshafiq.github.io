@@ -36,7 +36,7 @@ export const router = createRouter({
     { path: '/work', component: () => import('./views/WorkView.vue'), meta: { title: 'Projects' } },
     { path: '/projects/:slug', component: () => import('./views/ProjectView.vue'), meta: { title: 'Project' } },
     { path: '/about', redirect: '/' },
-    { path: '/community', component: () => import('./views/CommunityView.vue'), meta: { title: 'Volunteering' } },
+    { path: '/community', component: () => import('./views/CommunityView.vue'), meta: { title: 'Extracurriculars' } },
     { path: '/cv', component: () => import('./views/CvView.vue'), meta: { title: 'Academics' } },
     { path: '/education/:slug', component: () => import('./views/EducationDetailView.vue'), meta: { title: 'Education' } },
     { path: '/academic/skills/:slug(.*)', redirect: '/cv#skills' },

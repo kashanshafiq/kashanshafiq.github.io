@@ -165,20 +165,22 @@ function sendViaMailto() {
 .contact-card {
   background: var(--surface);
   border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
   padding: 36px 32px;
-  border-radius: 4px;
+  border-radius: var(--radius-card);
   width: 100%;
   max-width: 520px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-card-dark);
 }
 
 .contact-card-title {
+  font-family: var(--font-headline);
   font-size: var(--text-subsection-title);
-  font-weight: 580;
-  line-height: 1.28;
+  font-weight: 800;
+  line-height: 1.25;
   color: var(--text);
   margin-bottom: 24px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .contact-form {
@@ -194,9 +196,10 @@ function sendViaMailto() {
 }
 
 label {
+  font-family: var(--font-label);
   font-size: var(--text-label, 0.9375rem);
   color: var(--text);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.45;
   display: flex;
   justify-content: space-between;
@@ -207,18 +210,19 @@ label {
   font-size: var(--text-helper, 0.875rem);
   color: var(--muted);
   font-weight: 400;
-  font-family: var(--mono);
+  font-family: var(--font-label);
 }
 
 .label-hint.req {
   color: var(--accent);
+  font-weight: 700;
 }
 
 input,
 textarea {
   background: var(--surface-input);
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: var(--radius-btn);
   color: var(--text);
   font-family: inherit;
   font-size: var(--text-input, 1rem);
@@ -256,11 +260,12 @@ textarea {
   background: var(--accent-primary);
   color: var(--text-on-primary);
   border: 1px solid var(--accent-primary-border);
-  font-weight: 550;
+  font-family: var(--font-headline);
+  font-weight: 700;
   font-size: var(--text-btn, 1rem);
   line-height: 1.40;
   padding: 14px 22px;
-  border-radius: 2px;
+  border-radius: var(--radius-btn);
   cursor: pointer;
   transition: background-color 160ms ease, border-color 160ms ease, transform 120ms ease;
   margin-top: 6px;
