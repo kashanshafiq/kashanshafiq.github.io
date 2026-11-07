@@ -909,7 +909,8 @@ onBeforeUnmount(() => {
 .meta-label {
   font-family: var(--mono);
   font-size: 0.7rem;
-  color: var(--line-strong);
+  color: #0b0f12;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -918,6 +919,16 @@ onBeforeUnmount(() => {
   font-size: 0.9rem;
   color: var(--text);
   word-break: break-word;
+}
+
+.personal-meta-horizontal .link-val {
+  color: #0b0f12;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.personal-meta-horizontal .link-val:hover {
+  color: var(--accent);
 }
 
 .link-val {
@@ -1111,9 +1122,11 @@ onBeforeUnmount(() => {
 
 .grid-item-summary {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: #404046;
   line-height: 1.55;
   margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* Show More / Counter Bar */

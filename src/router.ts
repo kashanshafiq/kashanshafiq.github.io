@@ -4,7 +4,7 @@ import HomeView from './views/HomeView.vue'
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', component: HomeView, meta: { title: 'Civil Engineering & Digital Construction' } },
+    { path: '/', component: HomeView, meta: { title: 'Civil Engineer' } },
     { path: '/experience', component: () => import('./views/ExperienceView.vue'), meta: { title: 'Work' } },
     {
       path: '/experience/:slug',
@@ -52,5 +52,9 @@ export const router = createRouter({
 })
 
 router.afterEach((to) => {
-  document.title = `${String(to.meta.title || 'Portfolio')} — Kashan Shafiq`
+  if (to.path === '/') {
+    document.title = 'Kashan Shafiq | Civil Engineer'
+  } else {
+    document.title = `${String(to.meta.title || 'Portfolio')} | Kashan Shafiq`
+  }
 })

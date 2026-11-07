@@ -515,7 +515,7 @@ export const academicCv: AcademicCvData = {
     {
       title: 'Skill Advancement Grant Winner — Aspire Institute',
       category: 'Grant',
-      awarder: 'Aspire Institute (Founded at Harvard University) & Aspire Leaders Program',
+      awarder: 'Aspire Institute (Harvard Founded)',
       period: '2026',
       detail:
         'Awarded competitive Skill Advancement Grant ($155) among international Aspire alumni for advanced coursework in "Designing Concrete Structures Reinforced with GFRP Bars Using the ACI CODE-440.11-22".',
@@ -547,7 +547,7 @@ export const academicCv: AcademicCvData = {
     {
       title: 'Prime Minister’s National Laptop Scheme Award – HEC & Government of Pakistan',
       category: 'Scholarship',
-      awarder: 'Higher Education Commission (HEC) & Government of Pakistan',
+      awarder: 'HEC & Government of Pakistan',
       period: '2023',
       detail:
         'Awarded a high-performance laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted strictly on academic merit and top CGPA departmental standing at COMSATS University Islamabad, Wah Campus.',

@@ -117,7 +117,7 @@ export const academicItems: AcademicItem[] = [
     slug: 'structural-commercial-building',
     title: 'Structural Analysis & Design of Commercial Building',
     period: '2026',
-    subtitle: 'Structural Engineering Project',
+    subtitle: 'Structural Engineering',
     domain: 'Finite Element Modeling, Seismic Lateral Loads, RC Design',
     organization: 'COMSATS University Islamabad, Wah Campus',
     summary:
@@ -135,7 +135,7 @@ export const academicItems: AcademicItem[] = [
     slug: 'three-story-school-building',
     title: 'Three-Story RC School Building Design',
     period: '2025',
-    subtitle: 'Complex Engineering Problem (CEP)',
+    subtitle: 'Structural Engineering',
     domain: 'ACI 318-14, ASCE 7-10, Concrete Member Sizing',
     organization: 'COMSATS University Islamabad, Wah Campus',
     summary:
@@ -153,7 +153,7 @@ export const academicItems: AcademicItem[] = [
     slug: 'retaining-walls-design',
     title: 'Design of Gravity and Cantilever Retaining Walls',
     period: '2025',
-    subtitle: 'Geotechnical & Structural Design',
+    subtitle: 'Structural Engineering',
     domain: 'Rankine Earth Pressure, Parametric Spreadsheets, Stability Analysis',
     organization: 'COMSATS University Islamabad, Wah Campus',
     summary:
@@ -709,7 +709,7 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Highest Academic Honor',
     domain: 'Academic Excellence, Summa Cum Laude Standing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     summary:
       'Awarded the University Gold Medal on July 6, 2026 for graduating first in class with a Cumulative GPA of 3.95 / 4.00 (98% aggregate) across all 8 semesters.',
     details: [
@@ -726,9 +726,9 @@ export const academicItems: AcademicItem[] = [
     slug: 'award-aspire-skill-advancement-grant',
     title: 'Skill Advancement Grant Winner — Aspire Institute',
     period: '2026',
-    subtitle: 'International Academic & Skill Grant ($155)',
+    subtitle: 'International Skill Grant ($155)',
     domain: 'GFRP Reinforced Concrete Design, ACI 440.11-22, Structural Innovation',
-    organization: 'Aspire Institute (Founded at Harvard University) & Aspire Leaders Program',
+    organization: 'Aspire Institute, USA',
     badge: 'International Merit Grant',
     summary:
       'Awarded the competitive Skill Advancement Grant ($155) by Aspire Institute to support specialized professional training in "Designing Concrete Structures Reinforced with GFRP Bars Using the ACI CODE-440.11-22".',
@@ -738,7 +738,7 @@ export const academicItems: AcademicItem[] = [
       'Recognized by Aspire Leaders Program - Pakistan for turning leadership and engineering learning into impactful technical practice and community contribution.',
       'Featured by Aspire Institute in an official alumni spotlight celebrating leadership growth, technical advancement, and social impact.',
     ],
-    tools: ['Aspire Institute', 'Skill Advancement Grant', 'GFRP Concrete', 'ACI 440.11-22', '$155 Grant'],
+    tools: ['Aspire Institute', 'Skill Grant', 'GFRP Concrete', 'ACI 440.11-22', '$155 Grant'],
   },
   {
     sectionId: 'honors-awards',
@@ -748,7 +748,7 @@ export const academicItems: AcademicItem[] = [
     period: '2022 – 2026',
     subtitle: 'Competitive Academic Scholarship',
     domain: 'Tuition Fee Waiver, Campus-Wide Merit Ranking',
-    organization: 'COMSATS University Islamabad & POF',
+    organization: 'CUI Wah Campus & POF',
     summary:
       'Awarded competitive 50% tuition waiver merit scholarship across 5 out of 8 undergraduate semesters based on top academic ranking.',
     details: [
@@ -763,9 +763,9 @@ export const academicItems: AcademicItem[] = [
     slug: 'award-english-access-scholarship',
     title: 'U.S. Embassy English Access Scholarship Program',
     period: '2024 – 2025',
-    subtitle: 'Competitive International Scholarship',
+    subtitle: 'International Merit Scholarship',
     domain: 'English Proficiency, Leadership, Public Diplomacy',
-    organization: 'Regional English Language Office (RELO), U.S. Embassy in Islamabad',
+    organization: 'RELO, U.S. Embassy',
     summary:
       'Selected through a competitive merit screening for this prestigious 18-month U.S. Department of State scholarship program completing 400 intensive hours of advanced English language, leadership development, and cultural diplomacy.',
     details: [
@@ -774,7 +774,7 @@ export const academicItems: AcademicItem[] = [
       'Selected to co-host the Eid Mingle Day cultural celebration and created public service advocacy videos for World Day Against Child Labour.',
       'Awarded official Certificate of Completion signed by Dr. Bradley Horn (Regional English Language Officer) and Dr. Ambreen Shehnaz (Program Director).',
     ],
-    tools: ['U.S. Embassy Scholarship', '400 Hours', 'Leadership', 'Public Diplomacy', 'B2 Proficiency'],
+    tools: ['U.S. Embassy', '400 Hours', 'Leadership', 'Public Diplomacy', 'B2 Proficiency'],
     link: 'https://drive.google.com/file/d/1vUxU9ipBcn6r4T50_VGCD2Ru37p2OaUp/view?usp=sharing',
     linkLabel: 'View U.S. Embassy Scholarship Certificate ↗',
   },
@@ -786,15 +786,15 @@ export const academicItems: AcademicItem[] = [
     period: '2023',
     subtitle: 'National Academic Merit Grant',
     domain: 'Academic Merit Ranking, Higher Education Commission',
-    organization: 'Higher Education Commission (HEC) & Government of Pakistan',
+    organization: 'Govt of Pakistan & HEC',
     summary:
-      'Awarded a high-performance laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted strictly on academic merit and top CGPA departmental standing at COMSATS University Islamabad, Wah Campus.',
+      'Awarded a laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted on academic merit and top CGPA departmental standing at CUI Wah.',
     details: [
       'Selected on competitive academic merit criteria established by the Higher Education Commission (HEC) Pakistan.',
       'Granted to high-achieving undergraduate students maintaining top-tier CGPA rankings in accredited engineering disciplines.',
       'Recognized for exceptional academic consistency across early undergraduate semesters at COMSATS University Islamabad, Wah Campus.',
     ],
-    tools: ['PM Laptop Scheme', 'HEC Pakistan', 'Merit Award', 'Academic Excellence'],
+    tools: ['PM Laptop', 'HEC Pakistan', 'Merit Award', 'Academic Excellence'],
   },
   {
     sectionId: 'honors-awards',
@@ -804,7 +804,7 @@ export const academicItems: AcademicItem[] = [
     period: '2022 – 2026',
     subtitle: 'Semester Academic Honors',
     domain: 'Semester Academic Performance Awards',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     summary:
       'Earned 8 official merit certificates from the Director and Controller of Examinations for securing top positions across all 8 undergraduate semesters.',
     details: [
@@ -825,9 +825,9 @@ export const academicItems: AcademicItem[] = [
     slug: 'award-fyp-open-house-3rd',
     title: '3rd Position Winner — Final Year Project (Open House 2026)',
     period: '2026',
-    subtitle: 'Engineering Design Competition Award',
+    subtitle: 'Design Competition Award',
     domain: 'BIM-to-AR Integration, Capstone Project Competition',
-    organization: 'Department of Civil Engineering, COMSATS University Islamabad',
+    organization: 'Civil Dept, CUI Wah',
     summary:
       'Awarded 3rd Position among all graduating capstone projects at the Departmental Open House & Job Fair Spring 2026.',
     details: [
@@ -844,7 +844,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Competitive Engineering Award',
     domain: 'Structural Mechanics, Shear Force & Bending Moment Analysis',
-    organization: 'ASCE Student Chapter, Wah Engineering College (University of Wah)',
+    organization: 'ASCE Chapter, WEC',
     summary:
       'Secured 1st Position in the inter-university Shear Force and Bending Moment Diagram analytical speed and accuracy challenge.',
     details: [
@@ -861,7 +861,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Field Engineering Distinction',
     domain: 'Total Station Control, Contouring, Topographic Surveying',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad',
+    organization: 'Civil Dept, CUI Wah',
     summary:
       'Awarded Best Survey Group (Batch FA22) during the 15-day intensive undergraduate survey camp held in Abbottabad / Harnoi.',
     details: [
@@ -878,7 +878,7 @@ export const academicItems: AcademicItem[] = [
     period: '2022',
     subtitle: 'Competitive Engineering Award',
     domain: 'Structural Modeling, Truss Mechanics, Load-to-Weight Ratio',
-    organization: 'ICE Student Chapter, COMSATS University Islamabad, Wah Campus',
+    organization: 'ICE Chapter, CUI Wah',
     summary:
       'Won 2nd Position in the model truss bridge design and destructive load-testing competition.',
     details: [
@@ -893,9 +893,9 @@ export const academicItems: AcademicItem[] = [
     slug: 'award-grade-8-position',
     title: '3rd Position in Class — Grade 8 Annual Examination',
     period: '2018',
-    subtitle: 'Middle School Academic Distinction',
+    subtitle: 'Middle School Distinction',
     domain: 'Class Merit Standing, General Science & Mathematics',
-    organization: 'Sir Syed College, Wah Cantt',
+    organization: 'Sir Syed College, Wah',
     summary:
       'Secured 3rd Position in class in the Grade 8 annual academic examinations, demonstrating strong foundational aptitude in science and mathematics.',
     details: [
@@ -911,9 +911,9 @@ export const academicItems: AcademicItem[] = [
     slug: 'award-grade-4-position',
     title: '3rd Position in Class — Grade 4 Annual Examination',
     period: '2014',
-    subtitle: 'Primary School Academic Distinction',
+    subtitle: 'Primary School Distinction',
     domain: 'Early Academic Excellence, Class Merit Standing',
-    organization: 'Sir Syed School, Wah Cantt',
+    organization: 'Sir Syed School, Wah',
     summary:
       'Secured 3rd Position in the Grade 4 annual examinations, reflecting consistent academic dedication from early primary education.',
     details: [
@@ -935,13 +935,13 @@ export const academicItems: AcademicItem[] = [
     period: 'Valid through 2028',
     subtitle: 'Humanitarian & Community Service',
     domain: 'Disaster Relief, Social Welfare, Community Development',
-    organization: 'Alkhidmat Foundation Pakistan',
+    organization: 'Alkhidmat Foundation',
     summary:
       'Registered professional volunteer (Membership ID: AKF-V-98153) supporting social welfare and humanitarian response initiatives.',
     details: [
       'Active community participant in relief donation drives, youth educational outreach, and winter aid packages for vulnerable families.',
     ],
-    tools: ['Humanitarian Relief', 'Community Welfare', 'Youth Outreach'],
+    tools: ['Humanitarian Relief', 'Social Welfare', 'Youth Outreach'],
   },
   {
     sectionId: 'volunteering',
@@ -951,7 +951,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Volunteer Initiative',
     domain: 'Child Welfare, Educational Donations, Mentorship',
-    organization: 'Community Services Committee, CUI Wah Civil Dept',
+    organization: 'Community Services, CUI',
     summary:
       'Organized donation drives and distributed school supplies, bags, and books for orphan children in Wah Cantt.',
     details: [
@@ -968,14 +968,14 @@ export const academicItems: AcademicItem[] = [
     period: '2022 – 2026',
     subtitle: 'Academic Community Project',
     domain: 'Open-Access Educational Repository, Curated Civil Engineering Notes',
-    organization: 'Peer-to-Peer Academic Knowledge Sharing',
+    organization: 'Peer Knowledge Hub',
     summary:
       'Co-founded and maintained an open-access cloud database of 4-year Civil Engineering course syllabi, lecture notes, lab manuals, and past solutions for junior students.',
     details: [
       'Curated comprehensive study guides across all 8 undergraduate semesters to assist junior cohorts with challenging core coursework.',
       'Organized and digitized reference material for ETABS, SAFE, Revit, and numerical analysis problem sets.',
     ],
-    tools: ['Open Access Repository', 'Knowledge Sharing', 'Peer Mentoring'],
+    tools: ['Cloud Database', 'Knowledge Sharing', 'Peer Mentoring'],
   },
   {
     sectionId: 'volunteering',
@@ -985,7 +985,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Social Advocacy Initiative',
     domain: 'Digital Storytelling, Social Awareness, Human Rights',
-    organization: 'Access Program Community Impact Initiative',
+    organization: 'Access Impact Initiative',
     summary:
       'Scripted, directed, and narrated a video advocacy campaign addressing the plight of child laborers in local brick kilns and workshops.',
     details: [
@@ -1005,7 +1005,7 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Global Leadership Program',
     domain: 'Global Social Impact, Critical Thinking, Leadership',
-    organization: 'Aspire Institute (Founded at Harvard University Faculty)',
+    organization: 'Aspire Institute, USA',
     summary:
       'Successfully completed all modules of the 40-hour 2026 Aspire Leaders Program.',
     details: [
@@ -1025,7 +1025,7 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Global Engineering Hackathon',
     domain: 'Infrastructure Resilience, Sustainable Engineering',
-    organization: 'World Federation of Engineering Organizations (WFEO) & UNESCO',
+    organization: 'WFEO & UNESCO',
     summary:
       'Participant in the WFEO Hackathon at World Engineering Day for Sustainable Development 2026.',
     details: [
@@ -1045,7 +1045,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'International Sustainability Fellowship',
     domain: 'Sustainable Development Goals (SDGs), Environmental Stewardship',
-    organization: "NELIS Global (Next Leaders' Initiative for Sustainability)",
+    organization: 'NELIS Global (OMLAS)',
     summary:
       'Completed the OMLAS Fellowship Program 2025 for Champions, showing excellent commitment.',
     details: [
@@ -1065,7 +1065,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Leadership & Social Impact Dialogue',
     domain: 'Leadership, Youth Empowerment, Sustainability',
-    organization: 'Lahore Grammar School (LGS) & OMLAS',
+    organization: 'LGS & OMLAS',
     summary:
       'Actively participated in the Panel Discussion with OMLAS Champions and Fellow, organized by LGS.',
     details: [
@@ -1084,7 +1084,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'National Engineering Competition',
     domain: 'Civil Engineering Competitions, Structural Modeling',
-    organization: 'ICE Student Chapter, Ghulam Ishaq Khan Institute (GIKI)',
+    organization: 'ICE Chapter, GIKI',
     summary:
       "Participated in the 3-day All Pak Event 'CONSTRUCTX-3.0' organized by ICE GIK Student Chapter.",
     details: [
@@ -1104,14 +1104,14 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Global UNESCO Hackathon',
     domain: 'Engineering Innovation, Water Solutions, Climate Action',
-    organization: 'UNESCO / World Engineering Day for Sustainable Development',
+    organization: 'UNESCO / WED',
     summary:
       'Actively participated in World Environment Day 2025 initiatives, contributing to environmental awareness.',
     details: [
       'Participated in the global UNESCO engineering hackathon designing innovative solutions for sustainable community resilience.',
       'Collaborated on engineering concept designs tackling urban stormwater conservation and water circularity.',
     ],
-    tools: ['UNESCO', 'World Engineering Day', 'Global Hackathon'],
+    tools: ['UNESCO', 'WED Hackathon', 'Global Hackathon'],
     link: 'https://youtu.be/nDrsA6qMuOY?si=L8VNC9_oocDwSA2w',
     linkLabel: 'View Presentation Video ↗',
   },
@@ -1123,7 +1123,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Mental Well-Being Outreach',
     domain: 'Youth Education, Mental Health Awareness, Public Speaking',
-    organization: 'Pehla Qadam School & Community Welfare Society',
+    organization: 'Pehla Qadam Society',
     summary:
       'Organized and delivered an interactive mental well-being workshop for school students on positive thinking and coping techniques.',
     details: [
@@ -1142,14 +1142,14 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Awareness Competition',
     domain: 'Glacier Preservation, Integrated Water Resources Management (IWRM)',
-    organization: 'UNESCO Chair on IWRM & PCRWR',
+    organization: 'UNESCO Chair & PCRWR',
     summary:
       'Co-produced group awareness video presenting legal and engineering solutions for glacier preservation and clean water protection.',
     details: [
       'Featured international treaty frameworks and community pollution mitigation techniques to protect fragile Himalayan glacial basins.',
       'Addressed climate policy, transboundary water agreements, and regional conservation benchmarks.',
     ],
-    tools: ['UNESCO Chair on IWRM', 'PCRWR', 'Water Day 2025'],
+    tools: ['UNESCO Chair', 'PCRWR', 'Water Day 2025'],
     link: 'https://drive.google.com/file/d/1FhGL5GjQOtfxDr2127F2Rca69Hn9kfAZ/view?usp=sharing',
     linkLabel: 'Watch Competition Entry (Drive) ↗',
   },
@@ -1161,7 +1161,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Engineering Collaboration & Symposium',
     domain: 'Technical Collaboration, ASCE Student Chapter',
-    organization: 'ASCE Student Chapter & University of Wah',
+    organization: 'ASCE Chapter, UOW',
     summary:
       'Participated in a multi-society collaborative civil engineering event organized by ASCE with five societies of University of Wah.',
     details: [
@@ -1179,7 +1179,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Cultural & Community Engagement',
     domain: 'Cross-Cultural Celebration, Event Management',
-    organization: 'English Access Micro-Scholarship Program (U.S. Embassy)',
+    organization: 'Access Program, RELO',
     summary:
       'Co-hosted and coordinated cultural celebration event for regional scholars and program alumni at CUI Wah.',
     details: [
@@ -1215,7 +1215,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Sustainable Housing Solution',
     domain: 'Informal Housing, Solar Energy, Rainwater Harvesting, SDG 11',
-    organization: 'World Engineering Day for Sustainable Development',
+    organization: 'World Engineering Day',
     summary:
       'Proposed an energy-efficient informal-housing solution with solar power and rainwater harvesting for sustainable communities.',
     details: [

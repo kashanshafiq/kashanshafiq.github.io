@@ -158,9 +158,11 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
 
 .record-summary {
   font-size: 0.98rem;
-  color: var(--muted);
+  color: #404046;
   max-width: 760px;
   line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .mini-tags {

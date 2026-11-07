@@ -420,8 +420,10 @@ function reset() {
 .featured-medal-desc {
   font-size: 0.8125rem;
   line-height: 1.48;
-  color: var(--muted);
+  color: #404046;
   margin: 0 0 10px 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .featured-medal-metrics-pills {
@@ -606,6 +608,7 @@ function reset() {
   text-decoration: none;
   color: inherit;
   position: relative;
+  overflow: hidden;
   transition: border-color 180ms ease, transform 160ms ease, box-shadow 180ms ease;
 }
 
@@ -687,6 +690,7 @@ function reset() {
   min-height: 2.64em;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: color 160ms ease;
@@ -709,14 +713,17 @@ function reset() {
 .award-desc {
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: rgba(230, 240, 237, 0.85);
+  color: #404046;
   margin: 0 0 12px 0;
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 3.65em;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .award-divider {
@@ -729,26 +736,31 @@ function reset() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .award-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  overflow: hidden;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
 .award-tag-pill {
   font-family: var(--font-label);
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 2.5px 7px;
   background: rgba(216, 21, 27, 0.08);
   border: 1px solid rgba(216, 21, 27, 0.28);
   border-radius: var(--radius-pill);
   color: var(--accent);
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .award-arrow {

@@ -18,44 +18,8 @@ const item = computed(() =>
   academicItems.find((i) => i.sectionId === route.params.section && i.slug === effectiveSlug.value)
 )
 
-const sectionItems = computed(() =>
-  academicItems.filter((i) => i.sectionId === route.params.section)
-)
-
-const currentIndex = computed(() =>
-  sectionItems.value.findIndex((i) => i.slug === effectiveSlug.value)
-)
-
-const prevItem = computed(() =>
-  currentIndex.value > 0 ? sectionItems.value[currentIndex.value - 1] : null
-)
-
-const nextItem = computed(() =>
-  currentIndex.value >= 0 && currentIndex.value < sectionItems.value.length - 1
-    ? sectionItems.value[currentIndex.value + 1]
-    : null
-)
-
 // Document Archive modal state
 const isModalOpen = ref(false)
-
-function prevRecord() {
-  const q = route.query.from ? { from: route.query.from as string } : undefined
-  if (prevItem.value) {
-    router.push({ path: `/academic/${item.value?.sectionId}/${prevItem.value.slug}`, query: q })
-  } else if (sectionItems.value.length > 1) {
-    router.push({ path: `/academic/${item.value?.sectionId}/${sectionItems.value[sectionItems.value.length - 1].slug}`, query: q })
-  }
-}
-
-function nextRecord() {
-  const q = route.query.from ? { from: route.query.from as string } : undefined
-  if (nextItem.value) {
-    router.push({ path: `/academic/${item.value?.sectionId}/${nextItem.value.slug}`, query: q })
-  } else if (sectionItems.value.length > 1) {
-    router.push({ path: `/academic/${item.value?.sectionId}/${sectionItems.value[0].slug}`, query: q })
-  }
-}
 
 const sourceContext = computed(() => {
   const fromQuery = route.query.from as string | undefined
@@ -295,38 +259,6 @@ watchEffect(() => {
               <div class="doc-expand-corner" aria-hidden="true">⤢</div>
             </div>
           </div>
-
-          <!-- Bottom Carousel Controls matching reference screenshot -->
-          <div class="doc-archive-footer">
-            <div class="doc-carousel-controls">
-              <button
-                type="button"
-                class="carousel-nav-btn"
-                aria-label="Previous record"
-                @click="prevRecord"
-              >
-                ←
-              </button>
-              <span class="carousel-counter">
-                Record {{ currentIndex + 1 }} / {{ sectionItems.length }}
-              </span>
-              <button
-                type="button"
-                class="carousel-nav-btn"
-                aria-label="Next record"
-                @click="nextRecord"
-              >
-                →
-              </button>
-            </div>
-            <button
-              type="button"
-              class="doc-action-btn"
-              @click="isModalOpen = true"
-            >
-              Enlarge
-            </button>
-          </div>
         </div>
       </aside>
     </div>
@@ -494,8 +426,10 @@ watchEffect(() => {
 .archive-summary-lead {
   font-size: 1.05rem;
   line-height: 1.65;
-  color: var(--muted);
+  color: #404046;
   margin-bottom: 28px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .archive-divider-line {
@@ -686,61 +620,6 @@ watchEffect(() => {
   right: 10px;
   font-size: 1rem;
   color: #94a3b8;
-}
-
-.doc-archive-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.doc-carousel-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.carousel-nav-btn {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  padding: 4px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.carousel-nav-btn:hover {
-  background: var(--accent);
-  color: #0b0f12;
-}
-
-.carousel-counter {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-.doc-action-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 4px 12px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.doc-action-btn:hover {
-  color: var(--text);
-  border-color: var(--accent);
 }
 
 /* Modal */

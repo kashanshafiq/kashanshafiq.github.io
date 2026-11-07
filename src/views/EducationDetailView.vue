@@ -10,7 +10,6 @@ const item = computed(() => educationList.find((e) => e.slug === route.params.sl
 
 
 // Document Archive State
-const activeDocIndex = ref(0)
 const isModalOpen = ref(false)
 
 const documents = computed(() => {
@@ -75,23 +74,14 @@ const documents = computed(() => {
   }
 })
 
-const activeDoc = computed(() => documents.value[activeDocIndex.value] || documents.value[0])
-
-function nextDoc() {
-  if (activeDocIndex.value < documents.value.length - 1) {
-    activeDocIndex.value++
-  } else {
-    activeDocIndex.value = 0
-  }
-}
-
-function prevDoc() {
-  if (activeDocIndex.value > 0) {
-    activeDocIndex.value--
-  } else {
-    activeDocIndex.value = documents.value.length - 1
-  }
-}
+const activeDoc = computed(() => documents.value[0] || {
+  title: 'Official Document',
+  type: 'Verified Certificate',
+  serial: 'Official Serial',
+  date: 'Verified',
+  authority: 'Academic Institution',
+  conferred: 'Academic Distinction',
+})
 
 watchEffect(() => {
   document.title = item.value
@@ -209,38 +199,6 @@ watchEffect(() => {
               </div>
               <div class="doc-expand-corner" aria-hidden="true">⤢</div>
             </div>
-          </div>
-
-          <!-- Bottom Carousel Controls matching reference screenshot -->
-          <div class="doc-archive-footer">
-            <div class="doc-carousel-controls">
-              <button
-                type="button"
-                class="carousel-nav-btn"
-                aria-label="Previous document"
-                @click="prevDoc"
-              >
-                ←
-              </button>
-              <span class="carousel-counter">
-                Document {{ activeDocIndex + 1 }} / {{ documents.length }}
-              </span>
-              <button
-                type="button"
-                class="carousel-nav-btn"
-                aria-label="Next document"
-                @click="nextDoc"
-              >
-                →
-              </button>
-            </div>
-            <button
-              type="button"
-              class="doc-action-btn"
-              @click="isModalOpen = true"
-            >
-              Enlarge
-            </button>
           </div>
         </div>
       </aside>
@@ -596,61 +554,6 @@ watchEffect(() => {
   right: 10px;
   font-size: 1rem;
   color: #94a3b8;
-}
-
-.doc-archive-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.doc-carousel-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.carousel-nav-btn {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  padding: 4px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.carousel-nav-btn:hover {
-  background: var(--accent);
-  color: #0b0f12;
-}
-
-.carousel-counter {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-.doc-action-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 4px 12px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.doc-action-btn:hover {
-  color: var(--text);
-  border-color: var(--accent);
 }
 
 /* Modal */

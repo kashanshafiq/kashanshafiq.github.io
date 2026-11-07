@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { projects } from '../content/projects'
 import NotFoundView from './NotFoundView.vue'
 
 const route = useRoute()
-const router = useRouter()
 
 const slugAliases: Record<string, string> = {
   'structural-commercial-building': 'structural-design',
@@ -24,37 +23,7 @@ const project = computed(() =>
   projects.find(p => p.slug === canonicalSlug.value || p.slug === route.params.slug || (p.aliases && p.aliases.includes(route.params.slug as string)))
 )
 
-const currentIndex = computed(() =>
-  projects.findIndex(p => p.slug === project.value?.slug)
-)
-
-const prevProject = computed(() =>
-  currentIndex.value > 0 ? projects[currentIndex.value - 1] : null
-)
-
-const nextProject = computed(() =>
-  currentIndex.value >= 0 && currentIndex.value < projects.length - 1
-    ? projects[currentIndex.value + 1]
-    : null
-)
-
 const isModalOpen = ref(false)
-
-function prevRecord() {
-  if (prevProject.value) {
-    router.push(`/projects/${prevProject.value.slug}`)
-  } else if (projects.length > 1) {
-    router.push(`/projects/${projects[projects.length - 1].slug}`)
-  }
-}
-
-function nextRecord() {
-  if (nextProject.value) {
-    router.push(`/projects/${nextProject.value.slug}`)
-  } else if (projects.length > 1) {
-    router.push(`/projects/${projects[0].slug}`)
-  }
-}
 
 watchEffect(() => {
   document.title = project.value
@@ -183,37 +152,7 @@ watchEffect(() => {
             </div>
           </div>
 
-          <!-- Bottom Carousel Controls -->
-          <div class="doc-archive-footer">
-            <div class="doc-carousel-controls">
-              <button
-                type="button"
-                class="carousel-nav-btn"
-                aria-label="Previous project"
-                @click="prevRecord"
-              >
-                ←
-              </button>
-              <span class="carousel-counter">
-                Project {{ currentIndex + 1 }} / {{ projects.length }}
-              </span>
-              <button
-                type="button"
-                class="carousel-nav-btn"
-                aria-label="Next project"
-                @click="nextRecord"
-              >
-                →
-              </button>
-            </div>
-            <button
-              type="button"
-              class="doc-action-btn"
-              @click="isModalOpen = true"
-            >
-              Enlarge
-            </button>
-          </div>
+
         </div>
       </aside>
     </div>
@@ -563,61 +502,6 @@ watchEffect(() => {
   right: 10px;
   font-size: 1rem;
   color: #94a3b8;
-}
-
-.doc-archive-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.doc-carousel-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.carousel-nav-btn {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  padding: 4px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.carousel-nav-btn:hover {
-  background: var(--accent);
-  color: #0b0f12;
-}
-
-.carousel-counter {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-.doc-action-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 4px 12px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 160ms ease;
-}
-
-.doc-action-btn:hover {
-  color: var(--text);
-  border-color: var(--accent);
 }
 
 /* Modal */

@@ -416,7 +416,7 @@ svg {
 .hero {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  align-items: center;
+  align-items: stretch;
   gap: 48px;
   padding-block: 24px 48px;
 }
@@ -1126,13 +1126,10 @@ svg {
   color: var(--accent);
   text-transform: uppercase;
   font-weight: 700;
-  margin: 0 0 8px 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  margin: 0 0 5px 0;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 2.84em;
   flex-shrink: 0;
 }
 
@@ -1143,10 +1140,11 @@ svg {
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  margin: 0 0 10px 0;
-  min-height: 3.96em;
+  margin: 0 0 6px 0;
+  min-height: 2.5em;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: color 160ms ease;
@@ -1161,14 +1159,16 @@ svg {
 .project-card p:not(.eyebrow),
 .project-card .card-desc {
   font-size: 0.8125rem;
-  line-height: 1.52;
-  color: var(--muted);
-  margin: 0 0 14px 0;
+  line-height: 1.45;
+  color: #404046;
+  margin: 0 0 10px 0;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  flex-grow: 1;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .project-card .card-footer {

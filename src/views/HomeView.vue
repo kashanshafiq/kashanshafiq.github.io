@@ -37,10 +37,13 @@ async function copyValue(val: string, label: string) {
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow hero-eyebrow">Civil Engineer</p>
-        <h1 id="hero-title">KASHAN<br><span class="accent-phrase">SHAFIQ</span></h1>
-        <p class="hero-headline">Civil engineer bridging structural design, digital construction, and <span class="accent-phrase">innovation</span>.</p>
+        <h1 id="hero-title" class="hero-name-title" aria-label="Kashan Shafiq">
+          <span class="hero-name-first">KASHAN</span>
+          <span class="hero-name-last"><span class="hero-name-spacer" aria-hidden="true">KA</span><span class="accent-phrase">SHAFIQ</span></span>
+        </h1>
+        <p class="hero-headline">Civil engineer bridging structural design, sustainable construction, and <span class="accent-phrase">innovation</span>.</p>
         <p class="hero-summary">
-          I am a Civil Engineering graduate from COMSATS University Islamabad, Wah Campus, with a CGPA of 3.95/4.00 (Gold Medalist). My background pairs a solid structural design foundation with applied research and global leadership experience, centered on sustainable infrastructure. Open to graduate study and research opportunities.
+          An engineering professional with strong fundamentals in structural analysis, design, and detailing. My academic and professional experience spans structural design, high-rise construction, and digital construction, including research integrating augmented reality into construction visualization to improve design coordination and reduce rework. My primary interests lie in structural engineering, followed by sustainable construction and the use of digital technologies to improve the built environment. Beyond technical work, my involvement in leadership programmes, extracurricular activities, and academic competitions has strengthened my leadership, teamwork, and problem-solving skills. I am particularly keen to deepen my understanding of structural dynamics, finite element methods, advanced structural materials, and sustainable structural systems.
         </p>
         <div class="hero-actions">
           <a class="text-link" href="#contact">
@@ -53,7 +56,7 @@ async function copyValue(val: string, label: string) {
 
     <div class="discipline-strip" aria-label="Areas of practice">
       <span>Structural Engineering</span>
-      <span>Digital Construction</span>
+      <span>Sustainable Construction</span>
       <span>Research &amp; Innovation</span>
       <i aria-hidden="true"></i>
     </div>
@@ -81,8 +84,8 @@ async function copyValue(val: string, label: string) {
         </div>
         <div class="metric-cell">
           <span class="metric-val">400<span class="accent-mark"> hrs</span></span>
-          <span class="metric-label">U.S. Embassy Access</span>
-          <span class="metric-detail">18 mos cross-cultural program</span>
+          <span class="metric-label">U.S. Embassy Islamabad</span>
+          <span class="metric-detail">18 Months cross-cultural program</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">200<span class="accent-mark">+</span></span>
@@ -206,13 +209,13 @@ async function copyValue(val: string, label: string) {
           rel="noopener noreferrer"
           class="contact-btn contact-primary-btn"
           @click="copyValue(profile.contact.whatsapp, 'Phone number')"
-          aria-label="Chat with Kashan Shafiq on WhatsApp (opens in new tab, copies phone number to clipboard)"
+          aria-label="Contact Kashan Shafiq on WhatsApp"
         >
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
             <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
           </svg>
-          <span>{{ profile.contact.whatsapp }}</span>
+          <span>Contact</span>
           <span class="btn-arrow" aria-hidden="true">↗</span>
         </a>
 
@@ -274,34 +277,71 @@ async function copyValue(val: string, label: string) {
 /* ==========================================================================
    HERO LEFT COPY
    ========================================================================== */
+.hero-name-title {
+  width: fit-content;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.hero-name-first,
+.hero-name-last {
+  display: block;
+}
+
+.hero-name-spacer {
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
 .hero-eyebrow {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   white-space: nowrap;
 }
 
 .hero-headline {
   font-family: var(--font-headline);
-  font-size: clamp(1.1rem, 1.35vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
   font-weight: 750;
   color: var(--text);
   line-height: 1.35;
   letter-spacing: -0.015em;
-  margin-top: 18px;
-  margin-bottom: 12px;
+  margin-top: 14px;
+  margin-bottom: 10px;
 }
 
 .hero-summary {
-  font-size: var(--text-hero-intro, 1rem);
+  font-size: clamp(0.98rem, 1.05vw, 1.04rem);
   line-height: 1.58;
   color: var(--muted);
   max-width: var(--prose-max-width, 68ch);
   margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
-  margin-top: 22px;
+  margin-top: 20px;
+}
+
+@media (min-width: 901px) {
+  .hero {
+    align-items: stretch;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .hero-actions {
+    margin-top: auto;
+    padding-block: 8px;
+    min-height: 44px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -454,9 +494,11 @@ async function copyValue(val: string, label: string) {
 
 .pillar-proof {
   font-size: 0.85rem;
-  color: #5E5E63;
+  color: #404046;
   line-height: 1.55;
   margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* ==========================================================================

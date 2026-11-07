@@ -10,14 +10,14 @@ export const projects: Project[] = [
     filterCategories: ['Featured Projects', 'Structural Engineering'],
     featured: true,
     period: '2026',
-    subtitle: 'Structural Engineering Project',
+    subtitle: 'Structural Engineering',
     domain: 'Finite Element Modeling, Seismic Lateral Loads, RC Design',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Featured Engineering Project',
     tools: ['ETABS', 'SAFE', 'ACI 318-19', 'BCP-2021', 'Shear Walls'],
     diagram: 'structure',
     summary:
-      '3D finite element structural modeling and seismic analysis for a multi-story moment-resisting RC building with shear walls.',
+      '3D finite element modeling and seismic design for a multi-story RC commercial building.',
     context:
       'A comprehensive capstone project for Design of Structures, modeling and analyzing a multi-story commercial reinforced-concrete building under gravity and lateral seismic forces compliant with BCP-2021 and UBC-97.',
     scope: [
@@ -45,14 +45,14 @@ export const projects: Project[] = [
     filterCategories: ['Featured Projects', 'Structural Engineering'],
     featured: true,
     period: '2025',
-    subtitle: 'Complex Engineering Problem (CEP)',
+    subtitle: 'Structural Engineering',
     domain: 'ACI 318-14, ASCE 7-10, Concrete Member Sizing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Featured Engineering Project',
     tools: ['ACI 318-14', 'ASCE 7-10', 'AutoCAD', 'Autodesk Revit', 'RC Design'],
     diagram: 'structure',
     summary:
-      'Complete structural analysis and manual reinforcement design for a 3-story reinforced concrete school building on a 120 x 180 ft plot.',
+      'Complete structural analysis and manual reinforcement design for a 3-story RC school building.',
     context:
       'A Complex Engineering Problem (CEP) for Reinforced Concrete Design I (CEE308), covering full structural analysis and manual member sizing for an institutional educational facility.',
     scope: [
@@ -80,14 +80,14 @@ export const projects: Project[] = [
     filterCategories: ['Featured Projects', 'Structural Engineering', 'Geotechnical & Materials'],
     featured: true,
     period: '2025',
-    subtitle: 'Geotechnical & Structural Design',
+    subtitle: 'Structural Engineering',
     domain: 'Rankine Earth Pressure, Parametric Spreadsheets, Stability Analysis',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Featured Engineering Project',
     tools: ['Parametric Excel', 'Stability Analysis', 'Rankine Earth Pressure', 'Retaining Walls'],
     diagram: 'wall',
     summary:
-      'Automated Excel calculation suite for stability analysis and structural detailing of gravity and cantilever retaining walls.',
+      'Automated calculation suite for stability analysis and design of RC retaining walls.',
     context:
       'A Reinforced Concrete Design II (CEE406) semester project examining earth pressure stability and reinforcement sizing through automated parametric spreadsheets.',
     scope: [
@@ -119,12 +119,12 @@ export const projects: Project[] = [
     period: '2025',
     subtitle: 'Cost Engineering & Estimation',
     domain: 'Bar Bending Schedules (BBS), Material Takeoffs, Cost Analysis',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Featured Engineering Project',
-    tools: ['Microsoft Excel', 'Bar Bending Schedules (BBS)', 'BOQ Formulation', 'Costing'],
+    tools: ['Microsoft Excel', 'BBS Formulation', 'Quantity Takeoff', 'Costing'],
     diagram: 'quantity',
     summary:
-      'Exhaustive itemized building quantity takeoff and bar bending schedule calculating 112 tons of structural reinforcement steel.',
+      'Itemized building quantity takeoff and bar bending schedule for 112 tons of structural steel.',
     context:
       'A Quantity Surveying and Cost Estimation (CEE304) semester project translating building engineering drawings into precise, itemized procurement schedules and bar bending schedules.',
     scope: [
@@ -154,12 +154,12 @@ export const projects: Project[] = [
     period: '2025',
     subtitle: 'Project Planning & Management',
     domain: 'Primavera P6, WBS/OBS, Critical Path Method (CPM)',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Featured Engineering Project',
     tools: ['Primavera P6', 'CPM Scheduling', 'WBS/OBS', 'Earned Value Analysis'],
     diagram: 'schedule',
     summary:
-      'One-year baseline construction schedule and resource allocation model developed in Primavera P6.',
+      'One-year baseline construction schedule and resource allocation model in Primavera P6.',
     context:
       'A Project Planning and Management (MGT462) project establishing a professional project controls baseline under a labor-only residential contract in Primavera P6.',
     scope: [
@@ -185,14 +185,14 @@ export const projects: Project[] = [
     filterCategories: ['BIM & Modeling'],
     featured: false,
     period: '2025',
-    subtitle: 'Residential Architecture & BIM (Collaborative Project)',
+    subtitle: 'Residential Architecture & BIM',
     domain: 'Autodesk Revit, Insight 360, Structural Coordination, Solar Analysis',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Collaborative Project',
     tools: ['Autodesk Revit', 'Insight 360', 'BIM Coordination', 'Solar Path Analysis', 'Drawing Documentation', 'BOQ Schedules'],
     diagram: 'structure',
     summary:
-      'Collaborative project contributed by Faizan Manshad and Haider Ali. Executed end-to-end parametric modeling, structural coordination, solar orientation analysis, and technical documentation for a contemporary multi-level residential dwelling.',
+      'Collaborative BIM modeling, structural coordination, and solar analysis for a modern dwelling.',
     context:
       'Comprehensive BIM development and multi-disciplinary coordination project for a multi-story residential building, resolving spatial clashes and optimizing solar exposure.',
     scope: [
@@ -227,12 +227,12 @@ export const projects: Project[] = [
     period: '2025',
     subtitle: 'Water Resources & Municipal Hydraulics',
     domain: 'EPA SWMM, Dynamic Wave Routing, Urban Catchments',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Municipal Hydraulics Project',
     tools: ['EPA-SWMM', 'Dynamic Wave Routing', 'Drop Manholes', 'Sewerage Networks'],
     diagram: 'water',
     summary:
-      'Hydrodynamic modeling of a combined sanitary and stormwater sewerage network for a 102-hectare urban catchment in Wah Cantt.',
+      'Hydrodynamic modeling of a combined sewerage network for a 102-hectare catchment in Wah Cantt.',
     context:
       'A municipal hydraulic engineering project modeling combined gravity sewer networks under intense precipitation events using EPA SWMM.',
     scope: [
@@ -261,12 +261,12 @@ export const projects: Project[] = [
     period: '2024',
     subtitle: 'Materials Science & Sustainable Concrete',
     domain: 'Properties of Concrete, Mix Design, Compressive Testing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Materials Science Project',
     tools: ['Compressive Testing', 'Workability Tests', 'Recycled Aggregates', 'Sustainable Concrete'],
     diagram: 'wall',
     summary:
-      'Experimental study investigating the mechanical behavior of structural concrete incorporating 50% recycled coarse aggregate.',
+      'Experimental investigation into the mechanical behavior of 50% recycled aggregate concrete.',
     context:
       'Concrete materials laboratory research evaluating the viability of demolished concrete rubble as coarse aggregates in structural concrete.',
     scope: [
@@ -295,12 +295,12 @@ export const projects: Project[] = [
     period: '2024',
     subtitle: 'Structural Mechanics & Computation',
     domain: 'Matrix Displacement Method, Slope Deflection, RISA-2D',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Structural Mechanics Project',
     tools: ['RISA-2D', 'Manual Calculations', 'Matrix Methods', 'SFD & BMD'],
     diagram: 'structure',
     summary:
-      'Verification of indeterminate frame behavior comparing hand matrix slope-deflection solutions against RISA-2D computer models.',
+      'Verification of indeterminate frame mechanics comparing manual solutions against RISA-2D models.',
     context:
       'Advanced structural analysis project comparing classical hand methods (slope deflection and moment distribution) against computerized matrix stiffness modeling.',
     scope: [
@@ -329,12 +329,12 @@ export const projects: Project[] = [
     period: '2024',
     subtitle: 'Geotechnical Engineering',
     domain: 'ASTM D3080, Terzaghi Equations, Shear Strength',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Geotechnical Testing Project',
     tools: ['ASTM D3080', 'Terzaghi Theory', 'Direct Shear Test', 'Bearing Capacity'],
     diagram: 'wall',
     summary:
-      'Laboratory determination of soil cohesion and internal friction angle to establish safe bearing capacity for column footings.',
+      'Laboratory soil testing to determine shear parameters and safe bearing capacity for footings.',
     context:
       'Geotechnical engineering lab investigation deriving shear strength parameters (c, φ) to calculate shallow foundation bearing capacities under Terzaghi failure theory.',
     scope: [
@@ -363,12 +363,12 @@ export const projects: Project[] = [
     period: '2025',
     subtitle: 'Environmental Engineering',
     domain: 'Coagulation, Jar Testing, Municipal Treatment Sizing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Environmental Engineering Project',
     tools: ['Jar Testing', 'Alum Dosage', 'Sedimentation Design', 'WASA Guidelines'],
     diagram: 'water',
     summary:
-      'Raw water characterization and jar test optimization to design a scalable municipal sedimentation tank for Faisal Hills.',
+      'Raw water characterization and jar testing to design a municipal sedimentation tank for Faisal Hills.',
     context:
       'Environmental engineering project examining physical-chemical water treatment, coagulation dynamics, and sedimentation tank geometry.',
     scope: [
@@ -397,12 +397,12 @@ export const projects: Project[] = [
     period: '2024',
     subtitle: 'Surface Water Hydrology',
     domain: 'SCS-CN Method, Unit Hydrographs, Catchment Modeling',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'CUI Wah Campus',
     badge: 'Hydrological Modeling Project',
     tools: ['SCS-CN Method', 'Hydrographs', 'Discharge Estimation', 'Hydrology'],
     diagram: 'water',
     summary:
-      'Precipitation and stream discharge modeling for a 600 sq-km watershed in the Colorado River Grand Valley.',
+      'Precipitation and stream discharge modeling for a 600 sq-km watershed in Colorado River Valley.',
     context:
       'Hydrological watershed modeling assessing spatial rainfall distribution and streamflow hydrographs across a major river catchment.',
     scope: [

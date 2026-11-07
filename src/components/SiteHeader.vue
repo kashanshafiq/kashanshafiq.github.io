@@ -10,8 +10,8 @@ watch(() => route.fullPath, () => { open.value = false })
 <template>
   <header class="site-header-bar" @keydown.esc="open = false">
     <div class="site-header shell">
-      <RouterLink class="wordmark" to="/" aria-label="Kashan Shafiq — home">
-        Kashan Shafiq / Portfolio
+      <RouterLink class="wordmark" to="/" aria-label="Portfolio — home">
+        Portfolio
       </RouterLink>
       <button
         class="menu-toggle"

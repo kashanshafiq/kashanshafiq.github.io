@@ -3,7 +3,7 @@
     <div class="site-footer shell">
       <div class="footer-brand">
         <RouterLink class="footer-name" to="/">Kashan Shafiq</RouterLink>
-        <span class="footer-description">Civil engineering &amp; digital construction</span>
+        <span class="footer-description">Sustainable Construction</span>
       </div>
       <nav aria-label="Footer navigation">
         <RouterLink to="/experience">Work</RouterLink>
