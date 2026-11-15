@@ -8,3 +8,25 @@ dist/
 .DS_Store
 Thumbs.db
 qa/
+
+# Confidential / Raw Engineering & Private source files
+portfolio-reference-private/
+portfolio-approved-export/
+*.dwg
+*.dxf
+*.rvt
+*.rfa
+*.rte
+*.rcp
+*.rcs
+*.las
+*.laz
+*.bak
+*.skp
+*.synchro
+*.pln
+*.fdb
+*.edb
+*.xer
+*.mpp
+

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { academicItems } from '../content/academicItems'
+import MediaArchiveWindow from '../components/MediaArchiveWindow.vue'
+import { getMediaArchive } from '../data/mediaArchiveData'
 import NotFoundView from './NotFoundView.vue'
 
 const route = useRoute()
@@ -11,6 +13,7 @@ const effectiveSlug = computed(() => {
   const s = route.params.slug as string
   if (s === 'haroon-residence-bim') return 'tahir-residency-bim'
   if (s === 'simco-site-engineering-intern' || s === 'simco-trainee-engineer') return 'resolve-nstp-tower-intern'
+  if (s === 'extra-shelter-for-all') return 'extra-wed-hackathon-2025'
   return s
 })
 
@@ -18,8 +21,7 @@ const item = computed(() =>
   academicItems.find((i) => i.sectionId === route.params.section && i.slug === effectiveSlug.value)
 )
 
-// Document Archive modal state
-const isModalOpen = ref(false)
+const mediaArchive = computed(() => (item.value ? getMediaArchive(item.value.slug) : null))
 
 const sourceContext = computed(() => {
   const fromQuery = route.query.from as string | undefined
@@ -76,7 +78,7 @@ const backTarget = computed<{ to: string | { path: string; hash?: string }; labe
     case 'certifications':
       return { to: { path: '/cv', hash: '#certifications' }, label: 'Certifications' }
     case 'professional-trainings':
-      return { to: { path: '/cv', hash: '#professional-trainings' }, label: 'Professional training & CPD' }
+      return { to: { path: '/cv', hash: '#professional-trainings' }, label: 'Continuing Professional Development Seminars' }
     case 'conferences':
       return { to: { path: '/cv', hash: '#conferences' }, label: 'Conferences' }
     case 'extracurricular':
@@ -136,6 +138,46 @@ watchEffect(() => {
     ? `${item.value.title} · ${item.value.sectionTitle} — Kashan Shafiq`
     : 'Archive record not found — Kashan Shafiq'
 })
+
+function formatPersonMentions(text: string, slug?: string): string {
+  if (!text) return ''
+  let res = text
+
+  // 1. Faizan Manshad in Academic Resource Database (Image 1)
+  if (slug === 'volunteering-academic-resource-database') {
+    res = res.replace(
+      /\bFaizan Manshad\b/g,
+      '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
+    )
+  }
+
+  // 2. Faizan Manshad and Haider Ali in Tahir Residency (Image 2)
+  if (slug === 'tahir-residency-bim') {
+    res = res.replace(
+      /\bFaizan Manshad\b/g,
+      '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
+    ).replace(
+      /\bHaider Ali\b/g,
+      '<a href="https://www.linkedin.com/in/haider-ali-001780275/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Haider Ali LinkedIn profile">Haider Ali</a>'
+    )
+  }
+
+  // 3. Authors in BIM to AR (Image 3)
+  if (slug === 'bim-to-ar-research') {
+    res = res.replace(
+      /\bHassan Ashraf\b/g,
+      '<a href="https://www.linkedin.com/in/hassan-ashraf-a0770535/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Hassan Ashraf LinkedIn profile">Hassan Ashraf</a>'
+    ).replace(
+      /\bFaizan Manshad\b/g,
+      '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
+    ).replace(
+      /\bFaiz Fareed\b/g,
+      '<a href="https://www.linkedin.com/in/faiz-fareed-b7b746235/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faiz Fareed LinkedIn profile">Faiz Fareed</a>'
+    )
+  }
+
+  return res
+}
 </script>
 
 <template>
@@ -165,21 +207,57 @@ watchEffect(() => {
 
         <!-- Institution / Organization Block -->
         <div v-if="item.organization || item.subtitle" class="archive-institution-block">
-          <h2 class="archive-institution-name">{{ item.organization || item.subtitle }}</h2>
+          <h2 class="archive-institution-name">
+            <!-- Exact GIKI hyperlink for CONSTRUCTX 3.0 (Image 4) -->
+            <template v-if="item.slug === 'extra-constructx-giki'">
+              <span>ICE Chapter, </span>
+              <a
+                href="https://giki.edu.pk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="institution-title-link"
+                title="Visit Ghulam Ishaq Khan Institute (GIKI) official website"
+              >
+                <span>GIK Institute</span>
+                <span class="external-icon" aria-hidden="true">↗</span>
+              </a>
+            </template>
+            <a
+              v-else-if="item.organizationUrl"
+              :href="item.organizationUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="institution-title-link"
+              :title="`Visit official website of ${item.organization}`"
+            >
+              <span>{{ item.organization }}</span>
+              <span class="external-icon" aria-hidden="true">↗</span>
+            </a>
+            <template v-else>{{ item.organization || item.subtitle }}</template>
+          </h2>
           <p v-if="item.organization && item.subtitle" class="archive-location-name">{{ item.subtitle }}</p>
         </div>
 
-        <!-- Outlined Pill Badge -->
+        <!-- Outlined Pill Badge: ONLY SSRN Preprint is linked; all other sub pages unlinked (Image 1) -->
         <div class="archive-badge-wrap">
-          <span class="archive-pill-badge">
+          <a
+            v-if="item.slug === 'bim-to-ar-research' && item.link"
+            :href="item.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="archive-pill-badge archive-pill-badge-link"
+            :title="item.linkLabel || 'Open Research Manuscript & Preprint on SSRN ↗'"
+          >
+            <span>{{ item.badge || item.subtitle || item.period }}</span>
+            <span class="badge-link-icon" aria-hidden="true">↗</span>
+          </a>
+          <span v-else class="archive-pill-badge">
             {{ item.badge || item.subtitle || item.period }}
           </span>
         </div>
 
         <!-- Comprehensive Brief Lead Summary -->
-        <p class="archive-summary-lead">
-          {{ item.summary }}
-        </p>
+        <p class="archive-summary-lead" v-html="formatPersonMentions(item.summary, item.slug)"></p>
 
         <!-- Subtle Divider Line matching reference image -->
         <hr class="archive-divider-line" />
@@ -188,9 +266,7 @@ watchEffect(() => {
         <div class="archive-highlights-section">
           <h3 class="highlights-heading">Key highlights</h3>
           <ul class="highlights-list">
-            <li v-for="d in item.details" :key="d">
-              {{ d }}
-            </li>
+            <li v-for="d in item.details" :key="d" v-html="formatPersonMentions(d, item.slug)"></li>
           </ul>
         </div>
 
@@ -202,18 +278,6 @@ watchEffect(() => {
           </div>
         </div>
 
-        <!-- Action Link / Certificate Button -->
-        <div v-if="item.link" class="action-btn-row">
-          <a
-            class="button primary"
-            :href="item.link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ item.linkLabel || 'View Verification / Certificate ↗' }}
-          </a>
-        </div>
-
         <!-- Bottom Navigation -->
         <nav class="archive-bottom-nav" aria-label="Section navigation">
           <RouterLink :to="backTarget.to" class="text-link">
@@ -222,95 +286,18 @@ watchEffect(() => {
         </nav>
       </section>
 
-      <!-- Right Column: Document Archive Card matching reference screenshot -->
+      <!-- Right Column: Real Media Archive Window -->
       <aside class="archive-visual-col">
-        <div class="doc-archive-card">
-          <!-- Top Row -->
-          <div class="doc-archive-header">
-            <span class="doc-archive-tag">DOCUMENT ARCHIVE</span>
-            <button
-              type="button"
-              class="doc-enlarge-btn"
-              @click="isModalOpen = true"
-            >
-              Click to enlarge <span aria-hidden="true">↗</span>
-            </button>
-          </div>
-
-          <!-- Document Preview Canvas / Sheet -->
-          <div class="doc-sheet-container" @click="isModalOpen = true">
-            <div class="doc-sheet">
-              <div class="doc-sheet-seal">
-                <span class="seal-icon">✦</span>
-              </div>
-              <p class="doc-sheet-authority">{{ item.organization || item.sectionTitle }}</p>
-              <h4 class="doc-sheet-title">{{ item.title }}</h4>
-              <p class="doc-sheet-type">{{ item.subtitle || item.domain || 'Verified Record' }}</p>
-              <div class="doc-sheet-meta-box">
-                <p><strong>Candidate:</strong> Kashan Shafiq</p>
-                <p><strong>Section:</strong> {{ item.sectionTitle }}</p>
-                <p><strong>Standing / Metric:</strong> {{ item.badge || item.subtitle || 'Verified Record' }}</p>
-                <p><strong>Period / Date:</strong> {{ item.period }}</p>
-              </div>
-              <div class="doc-sheet-signatures">
-                <span>Verified Seal</span>
-                <span>Academic Archive</span>
-              </div>
-              <div class="doc-expand-corner" aria-hidden="true">⤢</div>
-            </div>
-          </div>
-        </div>
+        <MediaArchiveWindow
+          :archive="mediaArchive"
+          :fallback-title="item.title"
+          :fallback-section="item.sectionTitle"
+          :fallback-organization="item.organization"
+          :fallback-period="item.period"
+          :fallback-subtitle="item.subtitle"
+          :fallback-badge="item.badge"
+        />
       </aside>
-    </div>
-
-    <!-- Enlarge Modal Dialog -->
-    <div
-      v-if="isModalOpen"
-      class="doc-modal-overlay"
-      role="dialog"
-      aria-modal="true"
-      @click.self="isModalOpen = false"
-    >
-      <div class="doc-modal-content">
-        <div class="modal-header">
-          <h3>{{ item.title }}</h3>
-          <button
-            type="button"
-            class="modal-close-btn"
-            aria-label="Close dialog"
-            @click="isModalOpen = false"
-          >
-            ✕
-          </button>
-        </div>
-        <div class="modal-body-sheet">
-          <p class="modal-authority">{{ item.organization || item.sectionTitle }}</p>
-          <h2>{{ item.title }}</h2>
-          <p class="modal-sub">{{ item.subtitle || item.period }}</p>
-          <div class="modal-specs">
-            <p><strong>Candidate:</strong> Kashan Shafiq</p>
-            <p><strong>Section:</strong> {{ item.sectionTitle }}</p>
-            <p><strong>Scope / Domain:</strong> {{ item.domain || item.subtitle || 'Civil Engineering' }}</p>
-            <p><strong>Timeline:</strong> {{ item.period }}</p>
-          </div>
-          <p class="modal-note">
-            Official primary record verified in Kashan Shafiq academic portfolio.
-          </p>
-        </div>
-        <div class="modal-footer">
-          <a
-            v-if="item.link"
-            :href="item.link"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button primary"
-            style="margin-right: 12px;"
-          >
-            {{ item.linkLabel || 'Open External Verification ↗' }}
-          </a>
-          <button type="button" class="button" @click="isModalOpen = false">Close</button>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -334,6 +321,17 @@ watchEffect(() => {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: flex-start;
+}
+
+.archive-content-col {
+  min-width: 0;
+}
+
+.archive-visual-col {
+  position: sticky;
+  top: 90px;
+  min-width: 0;
+  width: 100%;
 }
 
 .archive-breadcrumb {
@@ -398,6 +396,29 @@ watchEffect(() => {
   margin: 0;
 }
 
+.institution-title-link {
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 150ms ease;
+}
+
+.institution-title-link:hover {
+  color: var(--accent);
+}
+
+.institution-title-link .external-icon {
+  font-size: 0.82em;
+  color: var(--accent);
+  transition: transform 150ms ease;
+}
+
+.institution-title-link:hover .external-icon {
+  transform: translate(2px, -2px);
+}
+
 .archive-location-name {
   font-size: 0.95rem;
   color: var(--muted);
@@ -411,6 +432,7 @@ watchEffect(() => {
 .archive-pill-badge {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   font-family: var(--font-label);
   font-size: 0.72rem;
   font-weight: 700;
@@ -421,6 +443,44 @@ watchEffect(() => {
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   border: none;
+}
+
+.archive-pill-badge-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.25);
+}
+
+.archive-pill-badge-link:hover {
+  background: #991b1b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(185, 28, 28, 0.42);
+  color: #FFFFFF;
+}
+
+.badge-link-icon {
+  font-size: 0.88em;
+  transition: transform 0.16s ease;
+}
+
+.archive-pill-badge-link:hover .badge-link-icon {
+  transform: translate(2px, -2px);
+}
+
+:deep(.person-mention-link) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+  display: inline;
+}
+
+:deep(.person-mention-link:hover) {
+  color: #991b1b;
+  text-decoration-color: #991b1b;
 }
 
 .archive-summary-lead {
@@ -471,10 +531,6 @@ watchEffect(() => {
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 10px;
-}
-
-.action-btn-row {
-  margin-top: 28px;
 }
 
 .archive-bottom-nav {
@@ -721,10 +777,13 @@ watchEffect(() => {
 @media (max-width: 960px) {
   .archive-split-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
-  .doc-archive-card {
+  .archive-visual-col {
     position: static;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 </style>

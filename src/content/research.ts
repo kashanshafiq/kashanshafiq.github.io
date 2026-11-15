@@ -10,7 +10,7 @@ export const researchProjects: ResearchItem[] = [
     venue: 'Preprint · SSRN',
     authors: ['Hassan Ashraf', 'Faizan Manshad', 'Kashan Shafiq', 'Faiz Fareed'],
     doi: 'https://doi.org/10.2139/ssrn.6884926',
-    summary: 'A multimodal framework for construction layout visualization, developed from the final-year capstone project at COMSATS University Islamabad, Wah Campus. Exploring how interactive 3D digital models bridge the gap between design drawings and physical on-site construction conditions.',
+    summary: 'A multimodal framework for construction layout visualization, developed from the final-year capstone project at COMSATS University Islamabad. Exploring how interactive 3D digital models bridge the gap between design drawings and physical on-site construction conditions.',
     context: 'The project formulated and implemented an end-to-end translation pipeline transferring BIM geometries (Autodesk Revit) into mobile augmented-reality engines via FBX and Unity. Prototype mobile applications were constructed and field-tested across three spatial deployment modalities to support layout verification and member positioning.',
     overviewText: [
       'The project developed an interoperable workflow transferring Revit models into mobile augmented-reality environments through FBX and Unity.',

@@ -74,13 +74,13 @@ async function copyValue(val: string, label: string) {
             <span>PROFESSIONAL</span>
             <span class="accent-mark">DEVELOPMENT</span>
           </span>
-          <span class="metric-label">PEC-accredited seminars</span>
-          <span class="metric-detail">FEM, GIS, FIDIC, NDT</span>
+          <span class="metric-label">Engineering Council Seminars</span>
+          <span class="metric-detail">Structural FEM, GIS, Contracts, NDT</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">70,000<span class="accent-mark">+</span></span>
           <span class="metric-label">BIM Elements</span>
-          <span class="metric-detail">LOD 300 · 45-storey tower, Mount Khalid</span>
+          <span class="metric-detail">LOD 300 · 45-Storey Tower, Mount Khalid</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">400<span class="accent-mark"> hrs</span></span>
@@ -134,7 +134,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Research &amp; Innovation</h2>
           </div>
           <p class="pillar-proof">
-            BIM-to-AR framework for construction layout visualization, built with Unity, Vuforia and ARCore. Released as an SSRN research preprint; the FYP placed 3rd at Open House 2026.
+            BIM-to-AR framework for construction layout visualization, built with Unity, Vuforia and ARCore. Released as an <a href="https://doi.org/10.2139/ssrn.6884926" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Read Research Preprint on SSRN">SSRN research preprint ↗</a>; the FYP placed 3rd at Open House 2026.
           </p>
         </article>
 
@@ -150,7 +150,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Academic Merit</h2>
           </div>
           <p class="pillar-proof">
-            Gold Medalist, POF merit scholar, and Skill Advancement Grant winner.
+            Gold Medalist, POF merit scholar, and <a href="https://lnkd.in/p/db6zsURx" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Aspire Institute Skill Advancement Grant">Skill Advancement Grant ↗</a> winner.
           </p>
         </article>
 
@@ -167,7 +167,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Global Collaboration</h2>
           </div>
           <p class="pillar-proof">
-            400-hour U.S. Embassy English Access Program with peers from diverse backgrounds. Aspire Leaders alumnus, OMLAS Fellow, and panelist at Leaders for Global Society 2025.
+            400-hour U.S. Embassy English Access Program with peers from diverse backgrounds. <a href="https://www.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Aspire Institute Official Website">Aspire Leaders ↗</a> alumnus, OMLAS Fellow, and panelist at Leaders for Global Society 2025.
           </p>
         </article>
 
@@ -183,7 +183,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Sustainability &amp; SDGs</h2>
           </div>
           <p class="pillar-proof">
-            World Engineering Day hackathons (2025, 2026) and World Water Day 2025. Open-access study database for 200+ juniors (SDG 4).
+            World Engineering Day hackathons (2025, 2026) and World Water Day 2025. Open-access study database for 200+ juniors (UN Sustainable Development Goal 4).
           </p>
         </article>
       </div>
@@ -499,6 +499,19 @@ async function copyValue(val: string, label: string) {
   margin: 0;
   text-align: justify;
   text-justify: inter-word;
+}
+
+.home-inline-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+  font-weight: 600;
+  transition: color 150ms ease;
+}
+
+.home-inline-link:hover {
+  color: #991b1b;
 }
 
 /* ==========================================================================

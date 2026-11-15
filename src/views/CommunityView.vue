@@ -6,16 +6,41 @@ import { academicItems, type AcademicItem } from '../content/academicItems'
 const selectedCategory = ref('All')
 const categories = ['All', 'Volunteering', 'Leadership & Outreach']
 
-const volunteeringItems = academicItems.filter((i) => i.sectionId === 'volunteering')
-const leadershipItems = academicItems.filter((i) => i.sectionId === 'extracurricular')
+function parseChronologicalWeight(item: AcademicItem): number {
+  const p = item.period || ''
+  if (/2028/i.test(p)) return 2028
+  const years = p.match(/\b(20\d{2}|19\d{2})\b/g)
+  if (years && years.length > 0) {
+    return Math.max(...years.map(Number))
+  }
+  return 0
+}
+
+function sortByDate(items: AcademicItem[]): AcademicItem[] {
+  return [...items].sort((a, b) => {
+    const diff = parseChronologicalWeight(b) - parseChronologicalWeight(a)
+    if (diff !== 0) return diff
+    return academicItems.indexOf(a) - academicItems.indexOf(b)
+  })
+}
+
+const volunteeringItems = computed(() =>
+  sortByDate(academicItems.filter((i) => i.sectionId === 'volunteering'))
+)
+
+const leadershipItems = computed(() =>
+  sortByDate(academicItems.filter((i) => i.sectionId === 'extracurricular'))
+)
 
 const allCommunityItems = computed<AcademicItem[]>(() => {
-  return [...volunteeringItems, ...leadershipItems]
+  return sortByDate(
+    academicItems.filter((i) => i.sectionId === 'volunteering' || i.sectionId === 'extracurricular')
+  )
 })
 
 const filteredItems = computed<AcademicItem[]>(() => {
-  if (selectedCategory.value === 'Volunteering') return volunteeringItems
-  if (selectedCategory.value === 'Leadership & Outreach') return leadershipItems
+  if (selectedCategory.value === 'Volunteering') return volunteeringItems.value
+  if (selectedCategory.value === 'Leadership & Outreach') return leadershipItems.value
   return allCommunityItems.value
 })
 
@@ -333,8 +358,7 @@ function reset() {
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 3.65em;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
 }
 
 .card-divider {

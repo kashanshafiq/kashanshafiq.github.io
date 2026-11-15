@@ -9,8 +9,8 @@ export const recognition = [
   { title: 'Revit: Architecture, Structure & MEP', type: 'Course', detail: 'VIS Management Consulting / CISD · 2025.' },
   { title: 'Structural Design of Buildings', type: 'Course', detail: 'Young Engineers Forum · 2026.' },
   { title: 'BIM Management: Revit Model Maintenance', type: 'Course', detail: 'LinkedIn Learning · 2025.' },
-  { title: 'Finite Element Method', type: 'CPD', detail: 'Professional development seminar · 2025.' },
-  { title: 'GIS & Remote Sensing', type: 'CPD', detail: 'Civil engineering professional development seminar · 2026.' },
+  { title: 'Finite Element Method', type: 'Continuing Professional Development', detail: 'Professional development seminar · 2025.' },
+  { title: 'GIS & Remote Sensing', type: 'Continuing Professional Development', detail: 'Civil engineering professional development seminar · 2026.' },
 ]
 export const community = [
   { title: 'Sharing academic resources', detail: 'Co-contributed with Faizan Manshad to a collection of civil engineering course materials and thesis guidance for junior students.' },

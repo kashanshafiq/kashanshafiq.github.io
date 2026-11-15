@@ -20,7 +20,15 @@ for (const url of assetPaths) {
   const relative = decodeURIComponent(url.slice(configuredBase.length))
   assert.ok((await stat(path.join(root, relative))).size > 0, `Missing built asset ${url}`)
 }
-assert.ok(!files.some(f => /\.(?:pdf|xlsx|txt)$/i.test(f)), 'Private source documents must not enter the public build; revise this allowlist when adding approved downloads.')
+const unapprovedDocs = files.filter(f => {
+  const rel = path.relative(root, f).replace(/\\/g, '/')
+  // Allow approved project report PDFs and Excel workbooks in media/projects/
+  if (rel.startsWith('media/projects/') && /\.(?:pdf|xlsx)$/i.test(f)) {
+    return false
+  }
+  return /\.(?:pdf|xlsx|txt)$/i.test(f)
+})
+assert.ok(unapprovedDocs.length === 0, `Private source documents must not enter public build without approval: ${unapprovedDocs.join(', ')}`)
 for (const f of files.filter(f => /\.(js|html|css)$/.test(f))) {
   const text = await readFile(f, 'utf8')
   assert.ok(!/37406-4150402-9|CIIT\/FA22-CVE-055|15 June 2004/.test(text), `Personal identifiers found in ${f}`)

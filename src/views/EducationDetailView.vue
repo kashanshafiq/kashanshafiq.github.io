@@ -1,87 +1,14 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { educationList } from '../content/education'
+import MediaArchiveWindow from '../components/MediaArchiveWindow.vue'
+import { getMediaArchive } from '../data/mediaArchiveData'
 import NotFoundView from './NotFoundView.vue'
 
 const route = useRoute()
 const item = computed(() => educationList.find((e) => e.slug === route.params.slug))
-
-
-
-// Document Archive State
-const isModalOpen = ref(false)
-
-const documents = computed(() => {
-  if (!item.value) return []
-  if (item.value.slug === 'bs-civil-engineering') {
-    return [
-      {
-        title: 'Bachelor of Science in Civil Engineering Degree',
-        type: 'Official Degree Certificate',
-        serial: 'Serial No. 127867 · Reg No. FA22-CVE-055/WAH',
-        date: 'July 20, 2026',
-        authority: 'COMSATS University Islamabad, Wah Campus',
-        conferred: 'Conferred with Distinction (Gold Medalist)',
-      },
-      {
-        title: 'Official Academic Transcript (All 8 Semesters)',
-        type: 'Consolidated Transcript',
-        serial: 'Total Cr: 137 · Quality Points: 541.26',
-        date: 'July 2026',
-        authority: 'Office of the Controller of Examinations',
-        conferred: 'CGPA: 3.95 / 4.00 (98% Aggregate)',
-      },
-    ]
-  } else if (item.value.slug === 'hssc-pre-engineering') {
-    return [
-      {
-        title: 'Higher Secondary School Certificate (HSSC)',
-        type: 'FBISE Result Certificate',
-        serial: 'Certificate No. 254300374 · Roll No. 520298',
-        date: 'August 31, 2022',
-        authority: 'Federal Board of Intermediate & Secondary Education, Islamabad',
-        conferred: 'Pre-Engineering Group · Grade A (850 / 1100)',
-      },
-      {
-        title: 'HSSC Detailed Marks Certificate',
-        type: 'Marks Statement Card',
-        serial: 'Registration No. 2024301106',
-        date: 'Annual 2022',
-        authority: 'F. G. Degree College for Men, Wah Cantt',
-        conferred: 'Mathematics: 174/200 · Urdu: 168/200 · Physics: 149/200',
-      },
-    ]
-  } else {
-    return [
-      {
-        title: 'Secondary School Certificate (SSC / Matriculation)',
-        type: 'FBISE Certificate',
-        serial: 'Certificate No. 243000114 · Serial No. 1175852',
-        date: 'July 20, 2020',
-        authority: 'Federal Board of Intermediate & Secondary Education, Islamabad',
-        conferred: 'Science Group · Grade A1 (948 / 1100 - 86.2%)',
-      },
-      {
-        title: 'SSC Detailed Marks Certificate',
-        type: 'Marks Statement Card',
-        serial: 'Roll No. 124144 · Reg No. 2024301106',
-        date: 'Annual 2020',
-        authority: 'Sir Syed College Campus-II, Wah Cantt',
-        conferred: 'Chemistry: 145/150 · Physics: 140/150 · Math: 128/150',
-      },
-    ]
-  }
-})
-
-const activeDoc = computed(() => documents.value[0] || {
-  title: 'Official Document',
-  type: 'Verified Certificate',
-  serial: 'Official Serial',
-  date: 'Verified',
-  authority: 'Academic Institution',
-  conferred: 'Academic Distinction',
-})
+const mediaArchive = computed(() => (item.value ? getMediaArchive(item.value.slug) : null))
 
 watchEffect(() => {
   document.title = item.value
@@ -114,7 +41,20 @@ watchEffect(() => {
 
         <!-- Institution & Location -->
         <div class="archive-institution-block">
-          <h2 class="archive-institution-name">{{ item.institution }}</h2>
+          <h2 class="archive-institution-name">
+            <a
+              v-if="item.institutionUrl"
+              :href="item.institutionUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="institution-title-link"
+              :title="`Visit official website of ${item.institution}`"
+            >
+              <span>{{ item.institution }}</span>
+              <span class="external-icon" aria-hidden="true">↗</span>
+            </a>
+            <template v-else>{{ item.institution }}</template>
+          </h2>
           <p class="archive-location-name">{{ item.location }}</p>
         </div>
 
@@ -137,9 +77,7 @@ watchEffect(() => {
         <div class="archive-highlights-section">
           <h3 class="highlights-heading">Academic highlights</h3>
           <ul class="highlights-list">
-            <li v-for="ach in item.achievements" :key="ach">
-              {{ ach }}
-            </li>
+            <li v-for="ach in item.achievements" :key="ach">{{ ach }}</li>
           </ul>
 
           <p v-if="item.dateIssued" class="conferral-note">
@@ -163,85 +101,18 @@ watchEffect(() => {
         </nav>
       </section>
 
-      <!-- Right Column: Document Archive Card -->
+      <!-- Right Column: Real Media Archive Window -->
       <aside class="archive-visual-col">
-        <div class="doc-archive-card">
-          <!-- Top Row -->
-          <div class="doc-archive-header">
-            <span class="doc-archive-tag">DOCUMENT ARCHIVE</span>
-            <button
-              type="button"
-              class="doc-enlarge-btn"
-              @click="isModalOpen = true"
-            >
-              Click to enlarge <span aria-hidden="true">↗</span>
-            </button>
-          </div>
-
-          <!-- Document Preview Canvas / Sheet -->
-          <div class="doc-sheet-container" @click="isModalOpen = true">
-            <div class="doc-sheet">
-              <div class="doc-sheet-seal">
-                <span class="seal-icon">✦</span>
-              </div>
-              <p class="doc-sheet-authority">{{ activeDoc.authority }}</p>
-              <h4 class="doc-sheet-title">{{ activeDoc.title }}</h4>
-              <p class="doc-sheet-type">{{ activeDoc.type }}</p>
-              <div class="doc-sheet-meta-box">
-                <p><strong>Candidate:</strong> Kashan Shafiq</p>
-                <p><strong>Standing:</strong> {{ activeDoc.conferred }}</p>
-                <p><strong>Reference:</strong> {{ activeDoc.serial }}</p>
-                <p><strong>Issued:</strong> {{ activeDoc.date }}</p>
-              </div>
-              <div class="doc-sheet-signatures">
-                <span>Verified Seal</span>
-                <span>Controller of Exams</span>
-              </div>
-              <div class="doc-expand-corner" aria-hidden="true">⤢</div>
-            </div>
-          </div>
-        </div>
+        <MediaArchiveWindow
+          :archive="mediaArchive"
+          :fallback-title="item.degree"
+          fallback-section="Education"
+          :fallback-organization="item.institution"
+          :fallback-period="item.years"
+          :fallback-subtitle="item.grade"
+          :fallback-badge="item.distinction || item.grade"
+        />
       </aside>
-    </div>
-
-    <!-- Enlarge Modal Dialog -->
-    <div
-      v-if="isModalOpen"
-      class="doc-modal-overlay"
-      role="dialog"
-      aria-modal="true"
-      @click.self="isModalOpen = false"
-    >
-      <div class="doc-modal-content">
-        <div class="modal-header">
-          <h3>{{ activeDoc.title }}</h3>
-          <button
-            type="button"
-            class="modal-close-btn"
-            aria-label="Close dialog"
-            @click="isModalOpen = false"
-          >
-            ✕
-          </button>
-        </div>
-        <div class="modal-body-sheet">
-          <p class="modal-authority">{{ activeDoc.authority }}</p>
-          <h2>{{ activeDoc.title }}</h2>
-          <p class="modal-sub">{{ activeDoc.conferred }}</p>
-          <div class="modal-specs">
-            <p><strong>Candidate:</strong> Kashan Shafiq</p>
-            <p><strong>Authority:</strong> {{ activeDoc.authority }}</p>
-            <p><strong>Reference / Serial:</strong> {{ activeDoc.serial }}</p>
-            <p><strong>Date of Record:</strong> {{ activeDoc.date }}</p>
-          </div>
-          <p class="modal-note">
-            Official primary document verified in academic portfolio repository.
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="button" @click="isModalOpen = false">Close</button>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -265,6 +136,17 @@ watchEffect(() => {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: flex-start;
+}
+
+.archive-content-col {
+  min-width: 0;
+}
+
+.archive-visual-col {
+  position: sticky;
+  top: 90px;
+  min-width: 0;
+  width: 100%;
 }
 
 .archive-breadcrumb {
@@ -329,6 +211,29 @@ watchEffect(() => {
   margin: 0;
 }
 
+.institution-title-link {
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 150ms ease;
+}
+
+.institution-title-link:hover {
+  color: var(--accent);
+}
+
+.institution-title-link .external-icon {
+  font-size: 0.82em;
+  color: var(--accent);
+  transition: transform 150ms ease;
+}
+
+.institution-title-link:hover .external-icon {
+  transform: translate(2px, -2px);
+}
+
 .archive-location-name {
   font-size: 0.95rem;
   color: var(--muted);
@@ -337,6 +242,10 @@ watchEffect(() => {
 
 .archive-badge-wrap {
   margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .archive-pill-badge {
@@ -655,10 +564,13 @@ watchEffect(() => {
 @media (max-width: 960px) {
   .archive-split-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
-  .doc-archive-card {
+  .archive-visual-col {
     position: static;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 </style>

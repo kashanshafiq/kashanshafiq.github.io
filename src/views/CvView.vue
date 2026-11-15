@@ -14,7 +14,7 @@ const navItems = [
   { id: 'work-experience', num: '04', label: 'Work Experience' },
   { id: 'projects', num: '05', label: 'Academic Projects' },
   { id: 'certifications', num: '06', label: 'Certifications' },
-  { id: 'professional-trainings', num: '07', label: 'Professional training & CPD' },
+  { id: 'professional-trainings', num: '07', label: 'Continuing Professional Development Seminars' },
   { id: 'conferences', num: '08', label: 'Conferences' },
   { id: 'skills', num: '09', label: 'Skills' },
   { id: 'honors-awards', num: '10', label: 'Honours & Awards' },
@@ -444,11 +444,11 @@ onBeforeUnmount(() => {
           </div>
         </section>
 
-        <!-- 07. Professional training & CPD -->
+        <!-- 07. Continuing Professional Development Seminars -->
         <section id="professional-trainings" class="cv-section">
           <div class="section-badge-header">
             <span class="section-num">07</span>
-            <h2>Professional training &amp; CPD</h2>
+            <h2>Continuing Professional Development Seminars</h2>
           </div>
 
           <div class="cv-grid-two-col">

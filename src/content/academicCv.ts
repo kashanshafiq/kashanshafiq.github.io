@@ -127,7 +127,7 @@ export const academicCv: AcademicCvData = {
     title: 'Civil Engineer',
     keywords: 'Civil Engineer',
     degreeSummary: 'BS in Civil Engineering · CGPA 3.95/4.00 (98%) · Gold Medalist',
-    institution: 'COMSATS University Islamabad, Wah Campus',
+    institution: 'COMSATS University Islamabad',
     institutionUrl: 'https://cuiwah.edu.pk/',
     email: 'kashankashi27@gmail.com',
     phone: '(+92) 3155915676',
@@ -143,7 +143,7 @@ export const academicCv: AcademicCvData = {
   education: [
     {
       degree: 'BS IN CIVIL ENGINEERING',
-      institution: 'Comsats University Islamabad, Wah Campus',
+      institution: 'COMSATS University Islamabad, Wah Campus',
       institutionUrl: 'https://cuiwah.edu.pk/',
       period: '2022/09/12 – 2026/07/06',
       location: 'Wah Cantt, Pakistan',
@@ -162,6 +162,22 @@ export const academicCv: AcademicCvData = {
         'Project Planning & Management',
       ],
     },
+    {
+      degree: 'HIGHER SECONDARY SCHOOL CERTIFICATE (HSSC / PRE-ENGINEERING)',
+      institution: 'F.G. Degree College for Men, Wah Cantt',
+      institutionUrl: 'https://fgdcwah.zsportal.com/',
+      period: '2020 – 2022',
+      location: 'Wah Cantt, Rawalpindi, Pakistan',
+      grade: '850/1100 (Grade A)',
+    },
+    {
+      degree: 'SECONDARY SCHOOL CERTIFICATE (SSC / SCIENCE GROUP)',
+      institution: 'Sir Syed College Campus-II, Wah Cantt',
+      institutionUrl: 'https://www.sses.org.pk/',
+      period: '2018 – 2020',
+      location: 'Wah Cantt, Rawalpindi, Pakistan',
+      grade: '948/1100 (Grade A1 - 86.2%)',
+    },
   ],
 
   researchExperience: [
@@ -169,7 +185,7 @@ export const academicCv: AcademicCvData = {
       title: 'BIM-to-AR Integration for Construction Layout Visualization — Final Year Project',
       period: '2025/09/01 – 2026/05/29',
       role: 'Lead Researcher & Developer',
-      organization: 'Department of Civil Engineering, COMSATS University Islamabad, Wah Campus',
+      organization: 'Department of Civil Engineering, COMSATS University Islamabad',
       summary:
         'Standardized BIM-to-AR mobile deployment framework converting Autodesk Revit geometries into real-time Android AR applications for on-site layout verification and clash detection.',
       highlights: [
@@ -179,7 +195,7 @@ export const academicCv: AcademicCvData = {
       ],
       link: '/research/bim-to-ar',
       doi: 'https://doi.org/10.2139/ssrn.6884926',
-      venue: 'SSRN Electronic Journal & 3rd Position at CUI Open House & Job Fair 2026',
+      venue: 'SSRN Electronic Journal & 3rd Position at COMSATS Open House & Job Fair 2026',
     },
   ],
 
@@ -303,6 +319,12 @@ export const academicCv: AcademicCvData = {
         'Designed a code-compliant sewerage system for a 102-hectare catchment using EPA-SWMM, incorporating drop manholes to manage steep-terrain flow.',
       tools: ['EPA-SWMM', 'Hydraulic Modeling', 'Drop Manholes', 'Sewerage Networks'],
     },
+    {
+      title: 'Geometric Design & Road Safety Assessment of Taxila GT Road',
+      description:
+        'Constructed AutoCAD Civil 3D DTM from Google Earth geospatial data for a 1,544-ft corridor of Taxila GT Road; evaluated 23 alignment entities against AASHTO Green Book standards, identifying severe side friction demand (fs = 0.396 vs. f_max = 0.15 on 200-ft curves), near-limit grades (5.8%), clear zone deficits, and proposed spiral transition curve redesigns with interim traffic safety countermeasures.',
+      tools: ['AutoCAD Civil 3D', 'AASHTO Green Book', 'TIN Surface Modeling', 'Road Alignment', 'Cross-Section Analysis', 'Road Safety Audit'],
+    },
   ],
 
   certifications: [
@@ -360,72 +382,9 @@ export const academicCv: AcademicCvData = {
   professionalTrainings: {
     cpdSeminars: [
       {
-        title: 'Finite Element Method: A Modern Tool for Structural Analysis in Civil Engineering',
-        speaker: 'Dr. Engr. Zahid Shabir',
-        points: '1.0 CPD Credit Point',
-        date: '15 May 2025',
-        detail:
-          'Explored FEM applications for structural analysis and modeling, covering conceptual and practical use in civil engineering design.',
-        link: 'https://drive.google.com/file/d/1LNap1LuGvWt-hezr-q3R4-YNzVEC2G7k/view?usp=sharing',
-      },
-      {
-        title: 'Impact of Machine Learning in the Field of Civil Engineering',
-        speaker: 'Dr. Muhammad Faisal Javed',
-        points: '0.5 CPD Credit Point',
-        date: '13 October 2022',
-        detail:
-          'Explored how ML techniques are transforming design, analysis, and decision-making processes in civil engineering.',
-        link: 'https://drive.google.com/file/d/1K2QLNO9ofBrE-9ePgWVLkK-pKHoMjmD9/view?usp=sharing',
-      },
-      {
-        title: 'Integrating Technologies in Civil Engineering',
-        speaker: 'Dr. Naveed Anwar',
-        points: '0.5 CPD Credit Point',
-        date: '27 September 2023',
-        detail:
-          'Explored emerging digital tools and technology integration strategies across civil engineering practice and project delivery.',
-        link: 'https://drive.google.com/file/d/1_BuWOnIMk3DTXkhCPAZAhcSuBluB00Zr/view?usp=sharing',
-      },
-      {
-        title: 'Contemporary Strategies for the Restoration and Preservation of National Heritages',
-        speaker: 'Prof. Dr. Anwar Khitab',
-        points: '1.0 CPD Credit Point',
-        date: '20 February 2025',
-        detail:
-          'Learned modern restoration and preservation strategies and techniques for heritage structures.',
-        link: 'https://drive.google.com/file/d/1MUAemqSaowgMKSIV7xFlarj4PZNP-U2D/view?usp=sharing',
-      },
-      {
-        title: 'Non-Destructive Test Methods for Concrete Bridge',
-        speaker: 'Dr. Sardar Kashif ur Rehman',
-        points: '1.0 CPD Credit Point',
-        date: '30 May 2024',
-        detail:
-          'Learned NDT techniques and methods for assessing structural condition and integrity of concrete bridges.',
-        link: 'https://drive.google.com/file/d/1_jv4n32isZyCARbVg_eJ7QQiFS2GsOS2/view?usp=sharing',
-      },
-      {
-        title: 'Modeling and Analyzing Rut Depth in Asphalt Mixtures for Sustainable Road Performance',
-        speaker: 'Dr. Sabahat Hassan',
-        points: '1.0 CPD Credit Point',
-        date: '12 December 2024',
-        detail:
-          'Learned rut depth modeling and analysis techniques for evaluating asphalt mixture performance sustainably.',
-        link: 'https://drive.google.com/file/d/1kz4RBRwWZuscXXqaSLyNtTrfSr4aKkqx/view?usp=sharing',
-      },
-      {
-        title: 'Sustainable Urban Planning and Design',
-        speaker: 'Ms. Fauzia Rizwan',
-        points: '1.0 CPD Credit Point',
-        date: '24 September 2025',
-        detail:
-          'Explored sustainable planning principles and design strategies for liveable, resilient urban development.',
-        link: 'https://drive.google.com/file/d/12EN9hVUo4pIIEXHoD42JODfV4SnJweIa/view?usp=sharing',
-      },
-      {
         title: 'Application of GIS and Remote Sensing in Civil Engineering',
         speaker: 'Engr. Dr. M. Usman Arshid',
-        points: '1.0 CPD Credit Point',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
         date: '12 February 2026',
         detail:
           'Explored GIS and remote sensing applications for spatial analysis and data-driven decision-making in civil engineering.',
@@ -434,22 +393,77 @@ export const academicCv: AcademicCvData = {
       {
         title: 'Variation Order as per FIDIC Conditions of Contract',
         speaker: 'Engr. Sadaqat Hussain',
-        points: '1.0 CPD Credit Point',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
         date: '8 October 2025',
         detail:
           'Learned procedures and provisions for managing variation orders under FIDIC contract frameworks in construction projects.',
         link: 'https://drive.google.com/file/d/1e0KIXDgLJ5XrxpWqdjG0VwkgX0OlTsSL/view?usp=sharing',
       },
+      {
+        title: 'Sustainable Urban Planning and Design',
+        speaker: 'Ms. Fauzia Rizwan',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '24 September 2025',
+        detail:
+          'Explored sustainable planning principles and design strategies for liveable, resilient urban development.',
+        link: 'https://drive.google.com/file/d/12EN9hVUo4pIIEXHoD42JODfV4SnJweIa/view?usp=sharing',
+      },
+      {
+        title: 'Finite Element Method: A Modern Tool for Structural Analysis in Civil Engineering',
+        speaker: 'Dr. Engr. Zahid Shabir',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '15 May 2025',
+        detail:
+          'Explored FEM applications for structural analysis and modeling, covering conceptual and practical use in civil engineering design.',
+        link: 'https://drive.google.com/file/d/1LNap1LuGvWt-hezr-q3R4-YNzVEC2G7k/view?usp=sharing',
+      },
+      {
+        title: 'Contemporary Strategies for the Restoration and Preservation of National Heritages',
+        speaker: 'Prof. Dr. Anwar Khitab',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '20 February 2025',
+        detail:
+          'Learned modern restoration and preservation strategies and techniques for heritage structures.',
+        link: 'https://drive.google.com/file/d/1MUAemqSaowgMKSIV7xFlarj4PZNP-U2D/view?usp=sharing',
+      },
+      {
+        title: 'Modeling and Analyzing Rut Depth in Asphalt Mixtures for Sustainable Road Performance',
+        speaker: 'Dr. Sabahat Hassan',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '12 December 2024',
+        detail:
+          'Learned rut depth modeling and analysis techniques for evaluating asphalt mixture performance sustainably.',
+        link: 'https://drive.google.com/file/d/1kz4RBRwWZuscXXqaSLyNtTrfSr4aKkqx/view?usp=sharing',
+      },
+      {
+        title: 'Non-Destructive Test Methods for Concrete Bridge',
+        speaker: 'Dr. Sardar Kashif ur Rehman',
+        points: '1.0 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '30 May 2024',
+        detail:
+          'Learned NDT techniques and methods for assessing structural condition and integrity of concrete bridges.',
+        link: 'https://drive.google.com/file/d/1_jv4n32isZyCARbVg_eJ7QQiFS2GsOS2/view?usp=sharing',
+      },
+      {
+        title: 'Integrating Technologies in Civil Engineering',
+        speaker: 'Dr. Naveed Anwar',
+        points: '0.5 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '27 September 2023',
+        detail:
+          'Explored emerging digital tools and technology integration strategies across civil engineering practice and project delivery.',
+        link: 'https://drive.google.com/file/d/1_BuWOnIMk3DTXkhCPAZAhcSuBluB00Zr/view?usp=sharing',
+      },
+      {
+        title: 'Impact of Machine Learning in the Field of Civil Engineering',
+        speaker: 'Dr. Muhammad Faisal Javed',
+        points: '0.5 Continuing Professional Development Credit Point (Pakistan Engineering Council)',
+        date: '13 October 2022',
+        detail:
+          'Explored how ML techniques are transforming design, analysis, and decision-making processes in civil engineering.',
+        link: 'https://drive.google.com/file/d/1K2QLNO9ofBrE-9ePgWVLkK-pKHoMjmD9/view?usp=sharing',
+      },
     ],
     workshops: [
-      {
-        title: 'One Day Workshop on Introduction to R',
-        organizer: 'UNESCO Chair on Knowledge Systems for IWRM, CUI Wah Campus',
-        date: '23 November 2023',
-        detail:
-          'Learned R programming basics for statistical analysis and data handling relevant to engineering applications.',
-        link: 'https://drive.google.com/file/d/1_ZmipWgwsPNcgC6HoDpWtbLZnLk4t9_Z/view?usp=sharing',
-      },
       {
         title: 'Application of AI/ML in Civil Engineering',
         organizer: 'Pakistan Engineers Forum (PEF - KP/GB)',
@@ -457,6 +471,14 @@ export const academicCv: AcademicCvData = {
         detail:
           'Explored real-world AI/ML use cases and emerging applications transforming civil engineering practice.',
         link: 'https://drive.google.com/file/d/1kUDX_QuVzu1-hVRCnTFdDtrB_kQ2r_Ze/view?usp=sharing',
+      },
+      {
+        title: 'One Day Workshop on Introduction to R',
+        organizer: 'UNESCO Chair on Knowledge Systems for IWRM, COMSATS University Islamabad',
+        date: '23 November 2023',
+        detail:
+          'Learned R programming basics for statistical analysis and data handling relevant to engineering applications.',
+        link: 'https://drive.google.com/file/d/1_ZmipWgwsPNcgC6HoDpWtbLZnLk4t9_Z/view?usp=sharing',
       },
     ],
     conferences: [
@@ -506,11 +528,11 @@ export const academicCv: AcademicCvData = {
 
   honorsAndAwards: [
     {
-      title: 'Gold Medalist – Comsats University Islamabad, Wah Campus',
+      title: 'Gold Medalist – COMSATS University Islamabad',
       category: 'Gold Medal',
-      awarder: 'COMSATS University Islamabad, Wah Campus',
+      awarder: 'COMSATS University Islamabad',
       period: '2026/07/06',
-      detail: 'Graduated top of class (CGPA 3.95/4.0) from COMSATS University Islamabad, Wah Campus.',
+      detail: 'Graduated top of class (CGPA 3.95/4.0) from COMSATS University Islamabad.',
     },
     {
       title: 'Skill Advancement Grant Winner — Aspire Institute',
@@ -519,9 +541,10 @@ export const academicCv: AcademicCvData = {
       period: '2026',
       detail:
         'Awarded competitive Skill Advancement Grant ($155) among international Aspire alumni for advanced coursework in "Designing Concrete Structures Reinforced with GFRP Bars Using the ACI CODE-440.11-22".',
+      link: 'https://lnkd.in/p/db6zsURx',
     },
     {
-      title: 'Pakistan Ordnance Factory (POF) Scholarship – Comsats University Islamabad, Wah Campus',
+      title: 'Pakistan Ordnance Factory (POF) Scholarship – COMSATS University Islamabad',
       category: 'Scholarship',
       awarder: 'COMSATS University Islamabad & POF',
       period: 'Received for 5 of 8 Semesters',
@@ -537,9 +560,9 @@ export const academicCv: AcademicCvData = {
       link: 'https://drive.google.com/file/d/1vUxU9ipBcn6r4T50_VGCD2Ru37p2OaUp/view?usp=sharing',
     },
     {
-      title: '3rd Position — Open House & Job Fair, Spring 2026 – Comsats University Islamabad, Wah Campus',
+      title: '3rd Position — Open House & Job Fair, Spring 2026 – COMSATS University Islamabad',
       category: 'FYP Award',
-      awarder: 'Civil Engineering Department, CUI Wah Campus',
+      awarder: 'Department of Civil Engineering, COMSATS University Islamabad',
       period: '2026/06/03',
       detail: 'Secured 3rd position for Final Year Project at the departmental Open House and Job Fair.',
       link: 'https://drive.google.com/file/d/1IfROBA17znbjOd4-LIZgQRv7wAfdpcRZ/view?usp=sharing',
@@ -550,7 +573,7 @@ export const academicCv: AcademicCvData = {
       awarder: 'HEC & Government of Pakistan',
       period: '2023',
       detail:
-        'Awarded a high-performance laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted strictly on academic merit and top CGPA departmental standing at COMSATS University Islamabad, Wah Campus.',
+        'Awarded a high-performance laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted strictly on academic merit and top CGPA departmental standing at COMSATS University Islamabad.',
     },
     {
       title: '3rd Position in Class — Grade 8 Annual Examination – Sir Syed College, Wah Cantt',
@@ -608,12 +631,12 @@ export const academicCv: AcademicCvData = {
       location: 'Al Ummat Sweet Home, Wah Cantt',
       period: '2024/10/01 – 2024/12/01',
       detail:
-        'Collected donations and purchased school supplies, books, bags, and stationery for orphans, organized through the Civil Engineering Department\'s Community Service Society, COMSATS University Islamabad, Wah Campus.',
+        'Collected donations and purchased school supplies, books, bags, and stationery for orphans, organized through the Civil Engineering Department\'s Community Service Society, COMSATS University Islamabad.',
       link: 'https://drive.google.com/file/d/153hOE4Df-wKZvEyAm_ZI3dkcWFztTDr_/view?usp=sharing',
     },
     {
       title: 'Academic Resource Database',
-      organization: 'Civil Engineering Department, Comsats Wah',
+      organization: 'Department of Civil Engineering, COMSATS University Islamabad',
       location: 'Wah Cantt',
       period: '2022/09/12 – 2026/07/06',
       detail:
@@ -641,7 +664,7 @@ export const academicCv: AcademicCvData = {
       title: 'Co-Host — Eid Mingle Day (June 2024)',
       period: '2024/06/29',
       detail:
-        'Co-hosted a cultural celebration for English Access CUI Wah students, featuring skits, storytelling, and games to mark Eid traditions.',
+        'Co-hosted a cultural celebration for English Access COMSATS students, featuring skits, storytelling, and games to mark Eid traditions.',
       link: 'https://www.facebook.com/share/v/1EXxwLwiMq/',
     },
     {
@@ -652,17 +675,17 @@ export const academicCv: AcademicCvData = {
       link: 'https://engage.aspireleaders.org/profile/certificates',
     },
     {
-      title: 'World Engineering Day 2026',
+      title: 'World Engineering Day 2026 Hackathon — Construction Digitalization',
       period: '2026/02/02',
       detail:
-        'Presented BIM-to-AR research as a sustainable solution for Challenge 2 (urban stress, energy demand, and infrastructure inefficiency), addressing SDG 12: Responsible Consumption and Production by reducing rework, material waste, and construction time.',
+        'Competed in the UNESCO and World Federation of Engineering Organizations (WFEO) Hackathon under the theme "Smart engineering for a sustainable future through innovation and digitalization". Presented our Final Year Project—Building Information Modeling to Augmented Reality (BIM-to-AR) mobile layout visualization—addressing on-site spatial errors, construction delays, and material waste (UN SDG 12 & SDG 9).',
       link: 'https://www.youtube.com/watch?v=z70xaKYh1ps',
     },
     {
-      title: 'World Engineering Day 2025',
+      title: 'World Engineering Day 2025 Hackathon — Shelter For All Housing Solution',
       period: '2025/03/03',
       detail:
-        '"Shelter For All" — Proposed an energy-efficient informal-housing solution with solar power and rainwater harvesting, via public-private partnerships for scalable, sustainable communities.',
+        'Competed in the global World Engineering Day Hackathon under the challenge "Engineering a World Without Poverty" (UN SDG 1 & SDG 11). Formulated "Shelter For All"—a self-sustaining, modular housing concept for informal communities integrating decentralized solar photovoltaic power and rooftop rainwater harvesting cisterns.',
       link: 'https://youtu.be/nDrsA6qMuOY?si=L8VNC9_oocDwSA2w',
     },
     {

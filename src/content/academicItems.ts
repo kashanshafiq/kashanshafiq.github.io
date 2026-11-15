@@ -7,6 +7,7 @@ export interface AcademicItem {
   subtitle?: string
   domain?: string
   organization?: string
+  organizationUrl?: string
   badge?: string
   summary: string
   details: string[]
@@ -27,11 +28,11 @@ export const academicItems: AcademicItem[] = [
     period: '2025 – 2026',
     subtitle: 'Research Manuscript & Preprint',
     domain: 'Augmented Reality, Building Information Modeling, Construction Layout',
-    organization: 'Department of Civil Engineering, COMSATS University Islamabad, Wah Campus',
+    organization: 'Department of Civil Engineering, COMSATS University Islamabad',
     summary:
       'Standardized BIM-to-AR mobile deployment framework converting Autodesk Revit geometries into real-time Android AR applications for on-site layout verification and constructability checks.',
     details: [
-      'Authored research preprint published on SSRN (DOI: 10.2139/ssrn.6884926) developed from undergraduate capstone inquiry with co-authors Hassan Ashraf, Faizan Manshad, and Faiz Fareed.',
+      'Standardized BIM-to-AR mobile deployment framework converting Autodesk Revit geometries into real-time Android AR applications for on-site layout verification and constructability checks; contributed by co-authors Hassan Ashraf, Faizan Manshad, and Faiz Fareed.',
       'Formulated an end-to-end translation pipeline transferring BIM geometries (Autodesk Revit) into mobile AR engines via FBX and Unity.',
       'Marker-based mode: Uses planar fiducial image markers to anchor full-scale BIM components directly onto physical benchmarks on-site.',
       'Ground-plane mode: Detects real-time horizontal plane surfaces (slabs, floors, grade) via SLAM point clouds for rapid tabletop and walkthrough exploration.',
@@ -119,7 +120,7 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Structural Engineering',
     domain: 'Finite Element Modeling, Seismic Lateral Loads, RC Design',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       '3D finite element structural modeling and seismic analysis for a multi-story moment-resisting RC building with shear walls.',
     details: [
@@ -137,7 +138,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Structural Engineering',
     domain: 'ACI 318-14, ASCE 7-10, Concrete Member Sizing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Complete structural analysis and manual reinforcement design for a 3-story reinforced concrete school building on a 120 x 180 ft plot.',
     details: [
@@ -155,7 +156,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Structural Engineering',
     domain: 'Rankine Earth Pressure, Parametric Spreadsheets, Stability Analysis',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Automated Excel calculation suite for stability analysis and structural detailing of gravity and cantilever retaining walls.',
     details: [
@@ -172,7 +173,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Cost Engineering & Estimation',
     domain: 'Bar Bending Schedules (BBS), Material Takeoffs, Cost Analysis',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Exhaustive itemized building quantity takeoff and bar bending schedule calculating 112 tons of structural reinforcement steel.',
     details: [
@@ -190,7 +191,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Residential Architecture & BIM (Collaborative Project)',
     domain: 'Autodesk Revit, Insight 360, Structural Coordination, Solar Analysis',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     badge: 'Collaborative Project',
     summary:
       'Collaborative project contributed by Faizan Manshad and Haider Ali. Executed end-to-end parametric modeling, structural coordination, solar orientation analysis, and technical documentation for a contemporary multi-level residential dwelling.',
@@ -213,7 +214,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Project Planning & Management',
     domain: 'Primavera P6, WBS/OBS, Critical Path Method (CPM)',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'One-year baseline construction schedule and resource allocation model developed in Primavera P6.',
     details: [
@@ -230,7 +231,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Water Resources & Municipal Hydraulics',
     domain: 'EPA SWMM, Dynamic Wave Routing, Urban Catchments',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Hydrodynamic modeling of a combined sanitary and stormwater sewerage network for a 102-hectare urban catchment in Wah Cantt.',
     details: [
@@ -247,7 +248,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Materials Science & Sustainable Concrete',
     domain: 'Properties of Concrete, Mix Design, Compressive Testing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Experimental study investigating the mechanical behavior of structural concrete incorporating 50% recycled coarse aggregate.',
     details: [
@@ -264,7 +265,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Structural Mechanics & Computation',
     domain: 'Matrix Displacement Method, Slope Deflection, RISA-2D',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Verification of indeterminate frame behavior comparing hand matrix slope-deflection solutions against RISA-2D computer models.',
     details: [
@@ -281,7 +282,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Geotechnical Engineering',
     domain: 'ASTM D3080, Terzaghi Equations, Shear Strength',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Laboratory determination of soil cohesion and internal friction angle to establish safe bearing capacity for column footings.',
     details: [
@@ -298,7 +299,7 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Environmental Engineering',
     domain: 'Coagulation, Jar Testing, Municipal Treatment Sizing',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Raw water characterization and jar test optimization to design a scalable municipal sedimentation tank for Faisal Hills.',
     details: [
@@ -315,13 +316,34 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Surface Water Hydrology',
     domain: 'SCS-CN Method, Unit Hydrographs, Catchment Modeling',
-    organization: 'COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Precipitation and stream discharge modeling for a 600 sq-km watershed in the Colorado River Grand Valley.',
     details: [
       'Applied Thiessen polygon weighting across 6 rain gauge stations, derived synthetic and S-curve unit hydrographs, and estimated peak runoff discharges.',
     ],
     tools: ['SCS-CN Method', 'Hydrographs', 'Discharge Estimation', 'Hydrology'],
+  },
+  {
+    sectionId: 'projects',
+    sectionTitle: 'Academic Projects',
+    slug: 'geometric-design-taxila-gt-road',
+    title: 'Geometric Design & Road Safety Assessment of Taxila GT Road',
+    period: '2026',
+    subtitle: 'Highway & Transportation Engineering',
+    domain: 'AutoCAD Civil 3D, AASHTO Green Book, Road Safety Audit, DTM',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'AutoCAD Civil 3D digital terrain modeling and AASHTO Green Book geometric safety evaluation for a 1,544-ft arterial corridor of Taxila GT Road.',
+    details: [
+      'Imported geospatial coordinates from Google Earth into AutoCAD Civil 3D 2024 to generate a continuous TIN surface DTM and contour model across 90 ft of vertical relief (1,560–1,650 ft).',
+      'Modeled a 1,543.59 ft (≈ 470 m) centerline alignment (Station 0+00.00 to 11+63.39) comprising 23 entities (12 tangents totaling 1,038 ft and 11 curves totaling 124 ft) along bearing N62°W–N76°W at 37 mph design speed.',
+      'Audited curvature against AASHTO Green Book Exhibit 3-15: identified all 11 curves (radii 200 ft and 117.71 ft) as non-compliant with the required minimum radius of 459 ft (emax = 6%), yielding an excessive side friction demand of fs = 0.396 (2.64 times the allowable maximum f_max = 0.15).',
+      'Extracted surface profile "GT Road – Existing (U-N) PROFILE" identifying steep longitudinal grades reaching 5.5–5.8% (approaching AASHTO 6% limit) and computed vertical curve requirements (K_crest >= 44 for 305 ft Stopping Sight Distance, K_sag >= 30).',
+      'Assembled 3D road corridor and analyzed transverse cross-sections at Stations 0+30.00 and 0+60.00, identifying clear zone deficiencies (< 20–30 ft) and non-recoverable side slopes (> 1:3).',
+      'Formulated AASHTO-compliant redesign proposing curve radius enlargement to R >= 500 ft (e = 4%), 160-ft Euler spiral transition curves, minimum 320-ft tangents between reverse curves, and interim countermeasures (25 mph advisory signs, W1-8 chevrons, retroreflective RPMs, and rumble strips).',
+    ],
+    tools: ['AutoCAD Civil 3D', 'AASHTO Green Book', 'TIN Surface Modeling', 'Road Alignment', 'Cross-Section Analysis', 'Road Safety Audit'],
   },
 
   // ----------------------------------------------------
@@ -463,150 +485,17 @@ export const academicItems: AcademicItem[] = [
   },
 
   // ----------------------------------------------------
-  // PROFESSIONAL TRAINING & CPD
+  // CONTINUING PROFESSIONAL DEVELOPMENT SEMINARS
   // ----------------------------------------------------
   {
     sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-fem-structural-analysis',
-    title: 'Finite Element Method: A Modern Tool for Structural Analysis in Civil Engineering',
-    period: '2025',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
-    domain: 'Finite Element Modeling, Structural Mechanics',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'PEC-accredited seminar on finite element theory, discretization methods, and numerical modeling applications in modern structural engineering.',
-    details: [
-      'Delivered by Dr. Engr. Zahid Shabir on May 15, 2025.',
-      'Covered stiffness matrix formulation, element meshing considerations, boundary conditions, and FEA interpretation in engineering practice.',
-    ],
-    tools: ['Finite Element Method (FEM)', 'Structural Analysis', 'Numerical Modeling'],
-    link: 'https://drive.google.com/file/d/1LNap1LuGvWt-hezr-q3R4-YNzVEC2G7k/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-ml-civil-engineering',
-    title: 'Impact of Machine Learning in the Field of Civil Engineering',
-    period: '2022',
-    subtitle: 'PEC-Accredited CPD Seminar (0.5 Credit Point)',
-    domain: 'Machine Learning, Predictive Modeling, Concrete Optimization',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'PEC-accredited seminar examining machine learning applications in material strength prediction, structural health monitoring, and construction safety.',
-    details: [
-      'Keynote lecture by Dr. Muhammad Faisal Javed on October 13, 2022.',
-      'Explored regression and neural network applications for predicting concrete compressive strength from mix design datasets.',
-    ],
-    tools: ['Machine Learning', 'Data Science', 'Civil Engineering'],
-    link: 'https://drive.google.com/file/d/1K2QLNO9ofBrE-9ePgWVLkK-pKHoMjmD9/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-integrating-technologies',
-    title: 'Integrating Technologies in Civil Engineering',
-    period: '2023',
-    subtitle: 'PEC-Accredited CPD Seminar (0.5 Credit Point)',
-    domain: 'Digital Construction, Technology Integration, Smart Infrastructure',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'Seminar exploring technology adoption in infrastructure projects, from sensor networks to integrated BIM project delivery.',
-    details: [
-      'Delivered by Dr. Naveed Anwar on September 27, 2023.',
-      'Focused on technology integration roadmaps, data interoperability, and automated construction verification.',
-    ],
-    tools: ['Digital Construction', 'Technology Integration', 'Smart Infrastructure'],
-    link: 'https://drive.google.com/file/d/1_BuWOnIMk3DTXkhCPAZAhcSuBluB00Zr/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-national-heritages',
-    title: 'Contemporary Strategies for the Restoration and Preservation of National Heritages',
-    period: '2025',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
-    domain: 'Structural Restoration, Heritage Preservation, Historic Materials',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'Advanced seminar on structural retrofitting, non-destructive testing, and materials conservation for historic and heritage buildings.',
-    details: [
-      'Delivered by Prof. Dr. Anwar Khitab on February 20, 2025.',
-      'Analyzed non-invasive inspection techniques, compatible lime mortar mixes, and seismic retrofitting methods for cultural monuments.',
-    ],
-    tools: ['Heritage Conservation', 'Structural Restoration', 'Non-Destructive Testing'],
-    link: 'https://drive.google.com/file/d/1MUAemqSaowgMKSIV7xFlarj4PZNP-U2D/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-ndt-concrete-bridges',
-    title: 'Non-Destructive Test Methods for Concrete Bridge',
-    period: '2024',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
-    domain: 'Bridge Inspection, Non-Destructive Testing (NDT), Structural Health',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'Practical seminar covering field NDT techniques for evaluating concrete strength, corrosion, and internal voids in bridge structures.',
-    details: [
-      'Delivered by Dr. Sardar Kashif ur Rehman on May 30, 2024.',
-      'Examined Schmidt rebound hammer testing, ultrasonic pulse velocity (UPV), half-cell potential rebar corrosion detection, and ground-penetrating radar.',
-    ],
-    tools: ['NDT Methods', 'Schmidt Hammer', 'Ultrasonic Pulse Velocity', 'Bridge Inspection'],
-    link: 'https://drive.google.com/file/d/1_jv4n32isZyCARbVg_eJ7QQiFS2GsOS2/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-rut-depth-asphalt',
-    title: 'Modeling and Analyzing Rut Depth in Asphalt Mixtures for Sustainable Road Performance',
-    period: '2024',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
-    domain: 'Pavement Design, Asphalt Rheology, Rutting Resistance',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'Technical seminar focusing on wheel-tracking simulations, temperature susceptibility, and rut depth prediction for high-traffic pavements.',
-    details: [
-      'Delivered by Dr. Sabahat Hassan on December 12, 2024.',
-      'Covered visco-elastic pavement modeling, modifier additives, and sustainable asphalt mix optimization.',
-    ],
-    tools: ['Pavement Mechanics', 'Asphalt Design', 'Rutting Analysis'],
-    link: 'https://drive.google.com/file/d/1kz4RBRwWZuscXXqaSLyNtTrfSr4aKkqx/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'cpd-sustainable-urban-planning',
-    title: 'Sustainable Urban Planning and Design',
-    period: '2025',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
-    domain: 'Urban Infrastructure, Transit-Oriented Design, Climate Resilience',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
-    summary:
-      'Framework seminar on sustainable urban growth, green stormwater infrastructure, and resilient municipal engineering design.',
-    details: [
-      'Delivered by Ms. Fauzia Rizwan on September 24, 2025.',
-      'Analyzed low-impact urban drainage, walkable community layouts, and transit integration strategies.',
-    ],
-    tools: ['Sustainable Planning', 'Urban Design', 'Green Infrastructure'],
-    link: 'https://drive.google.com/file/d/12EN9hVUo4pIIEXHoD42JODfV4SnJweIa/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
+    sectionTitle: 'Continuing Professional Development Seminars',
     slug: 'cpd-gis-remote-sensing',
     title: 'Application of GIS and Remote Sensing in Civil Engineering',
     period: '2026',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
     domain: 'GIS, Remote Sensing, Geospatial Infrastructure Analysis',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Seminar exploring satellite imagery, digital elevation models, and spatial analytics for terrain modeling, highway route alignment, and flood mapping.',
     details: [
@@ -619,13 +508,13 @@ export const academicItems: AcademicItem[] = [
   },
   {
     sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
+    sectionTitle: 'Continuing Professional Development Seminars',
     slug: 'cpd-fidic-variation-orders',
     title: 'Variation Order as per FIDIC Conditions of Contract',
     period: '2025',
-    subtitle: 'PEC-Accredited CPD Seminar (1.0 Credit Point)',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
     domain: 'Construction Law, FIDIC Contracts, Contract Administration',
-    organization: 'Civil Engineering Department, COMSATS University Islamabad, Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Professional training on contract administration, variation valuation clauses, and claims mitigation under FIDIC Red and Yellow Books.',
     details: [
@@ -638,26 +527,83 @@ export const academicItems: AcademicItem[] = [
   },
   {
     sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
-    slug: 'workshop-introduction-r',
-    title: 'One Day Workshop on Introduction to R',
-    period: '2023',
-    subtitle: 'Technical Workshop',
-    domain: 'Statistical Computing, Data Analysis, Engineering Hydrology',
-    organization: 'UNESCO Chair on Knowledge Systems for IWRM, CUI Wah Campus',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-sustainable-urban-planning',
+    title: 'Sustainable Urban Planning and Design',
+    period: '2025',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
+    domain: 'Urban Infrastructure, Transit-Oriented Design, Climate Resilience',
+    organization: 'COMSATS University Islamabad',
     summary:
-      'Intensive hands-on workshop on R programming syntax, data frames, statistical visualization, and hydrology analytics.',
+      'Framework seminar on sustainable urban growth, green stormwater infrastructure, and resilient municipal engineering design.',
     details: [
-      'Conducted under the direction of Prof. Dr. Muhammad Abid on November 23, 2023.',
-      'Developed R scripts for rainfall trend analysis, probability distribution fitting, and hydrological time-series charting.',
+      'Delivered by Ms. Fauzia Rizwan on September 24, 2025.',
+      'Analyzed low-impact urban drainage, walkable community layouts, and transit integration strategies.',
     ],
-    tools: ['R Language', 'Data Analysis', 'Hydrology Statistics'],
-    link: 'https://drive.google.com/file/d/1_ZmipWgwsPNcgC6HoDpWtbLZnLk4t9_Z/view?usp=sharing',
+    tools: ['Sustainable Planning', 'Urban Design', 'Green Infrastructure'],
+    link: 'https://drive.google.com/file/d/12EN9hVUo4pIIEXHoD42JODfV4SnJweIa/view?usp=sharing',
     linkLabel: 'View Certificate (PDF) ↗',
   },
   {
     sectionId: 'professional-trainings',
-    sectionTitle: 'Professional training & CPD',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-fem-structural-analysis',
+    title: 'Finite Element Method: A Modern Tool for Structural Analysis in Civil Engineering',
+    period: '2025',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
+    domain: 'Finite Element Modeling, Structural Mechanics',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Pakistan Engineering Council accredited seminar on finite element theory, discretization methods, and numerical modeling applications in modern structural engineering.',
+    details: [
+      'Delivered by Dr. Engr. Zahid Shabir on May 15, 2025.',
+      'Covered stiffness matrix formulation, element meshing considerations, boundary conditions, and FEA interpretation in engineering practice.',
+    ],
+    tools: ['Finite Element Method (FEM)', 'Structural Analysis', 'Numerical Modeling'],
+    link: 'https://drive.google.com/file/d/1LNap1LuGvWt-hezr-q3R4-YNzVEC2G7k/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-national-heritages',
+    title: 'Contemporary Strategies for the Restoration and Preservation of National Heritages',
+    period: '2025',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
+    domain: 'Structural Restoration, Heritage Preservation, Historic Materials',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Advanced seminar on structural retrofitting, non-destructive testing, and materials conservation for historic and heritage buildings.',
+    details: [
+      'Delivered by Prof. Dr. Anwar Khitab on February 20, 2025.',
+      'Analyzed non-invasive inspection techniques, compatible lime mortar mixes, and seismic retrofitting methods for cultural monuments.',
+    ],
+    tools: ['Heritage Conservation', 'Structural Restoration', 'Non-Destructive Testing'],
+    link: 'https://drive.google.com/file/d/1MUAemqSaowgMKSIV7xFlarj4PZNP-U2D/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-rut-depth-asphalt',
+    title: 'Modeling and Analyzing Rut Depth in Asphalt Mixtures for Sustainable Road Performance',
+    period: '2024',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
+    domain: 'Pavement Design, Asphalt Rheology, Rutting Resistance',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Technical seminar focusing on wheel-tracking simulations, temperature susceptibility, and rut depth prediction for high-traffic pavements.',
+    details: [
+      'Delivered by Dr. Sabahat Hassan on December 12, 2024.',
+      'Covered visco-elastic pavement modeling, modifier additives, and sustainable asphalt mix optimization.',
+    ],
+    tools: ['Pavement Mechanics', 'Asphalt Design', 'Rutting Analysis'],
+    link: 'https://drive.google.com/file/d/1kz4RBRwWZuscXXqaSLyNtTrfSr4aKkqx/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
     slug: 'webinar-ai-ml-civil-pef',
     title: 'Application of AI/ML in Civil Engineering Webinar',
     period: '2024',
@@ -672,6 +618,82 @@ export const academicItems: AcademicItem[] = [
     ],
     tools: ['Artificial Intelligence', 'Structural Optimization', 'Computer Vision'],
     link: 'https://drive.google.com/file/d/1V6_vM5n-f9t9H0J5z9j3c-8-k1-X1y2z/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-ndt-concrete-bridges',
+    title: 'Non-Destructive Test Methods for Concrete Bridge',
+    period: '2024',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (1.0 Credit Point)',
+    domain: 'Bridge Inspection, Non-Destructive Testing (NDT), Structural Health',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Practical seminar covering field NDT techniques for evaluating concrete strength, corrosion, and internal voids in bridge structures.',
+    details: [
+      'Delivered by Dr. Sardar Kashif ur Rehman on May 30, 2024.',
+      'Examined Schmidt rebound hammer testing, ultrasonic pulse velocity (UPV), half-cell potential rebar corrosion detection, and ground-penetrating radar.',
+    ],
+    tools: ['NDT Methods', 'Schmidt Hammer', 'Ultrasonic Pulse Velocity', 'Bridge Inspection'],
+    link: 'https://drive.google.com/file/d/1_jv4n32isZyCARbVg_eJ7QQiFS2GsOS2/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'workshop-introduction-r',
+    title: 'One Day Workshop on Introduction to R',
+    period: '2023',
+    subtitle: 'Technical Workshop',
+    domain: 'Statistical Computing, Data Analysis, Engineering Hydrology',
+    organization: 'UNESCO Chair on Knowledge Systems for IWRM, COMSATS University Islamabad',
+    summary:
+      'Intensive hands-on workshop on R programming syntax, data frames, statistical visualization, and hydrology analytics.',
+    details: [
+      'Conducted under the direction of Prof. Dr. Muhammad Abid on November 23, 2023.',
+      'Developed R scripts for rainfall trend analysis, probability distribution fitting, and hydrological time-series charting.',
+    ],
+    tools: ['R Language', 'Data Analysis', 'Hydrology Statistics'],
+    link: 'https://drive.google.com/file/d/1_ZmipWgwsPNcgC6HoDpWtbLZnLk4t9_Z/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-integrating-technologies',
+    title: 'Integrating Technologies in Civil Engineering',
+    period: '2023',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (0.5 Credit Point)',
+    domain: 'Digital Construction, Technology Integration, Smart Infrastructure',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Seminar exploring technology adoption in infrastructure projects, from sensor networks to integrated BIM project delivery.',
+    details: [
+      'Delivered by Dr. Naveed Anwar on September 27, 2023.',
+      'Focused on technology integration roadmaps, data interoperability, and automated construction verification.',
+    ],
+    tools: ['Digital Construction', 'Technology Integration', 'Smart Infrastructure'],
+    link: 'https://drive.google.com/file/d/1_BuWOnIMk3DTXkhCPAZAhcSuBluB00Zr/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'professional-trainings',
+    sectionTitle: 'Continuing Professional Development Seminars',
+    slug: 'cpd-ml-civil-engineering',
+    title: 'Impact of Machine Learning in the Field of Civil Engineering',
+    period: '2022',
+    subtitle: 'Pakistan Engineering Council Accredited Continuing Professional Development Seminar (0.5 Credit Point)',
+    domain: 'Machine Learning, Predictive Modeling, Concrete Optimization',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Pakistan Engineering Council accredited seminar examining machine learning applications in material strength prediction, structural health monitoring, and construction safety.',
+    details: [
+      'Keynote lecture by Dr. Muhammad Faisal Javed on October 13, 2022.',
+      'Explored regression and neural network applications for predicting concrete compressive strength from mix design datasets.',
+    ],
+    tools: ['Machine Learning', 'Data Science', 'Civil Engineering'],
+    link: 'https://drive.google.com/file/d/1K2QLNO9ofBrE-9ePgWVLkK-pKHoMjmD9/view?usp=sharing',
     linkLabel: 'View Certificate (PDF) ↗',
   },
 
@@ -709,7 +731,7 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Highest Academic Honor',
     domain: 'Academic Excellence, Summa Cum Laude Standing',
-    organization: 'CUI Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Awarded the University Gold Medal on July 6, 2026 for graduating first in class with a Cumulative GPA of 3.95 / 4.00 (98% aggregate) across all 8 semesters.',
     details: [
@@ -739,6 +761,9 @@ export const academicItems: AcademicItem[] = [
       'Featured by Aspire Institute in an official alumni spotlight celebrating leadership growth, technical advancement, and social impact.',
     ],
     tools: ['Aspire Institute', 'Skill Grant', 'GFRP Concrete', 'ACI 440.11-22', '$155 Grant'],
+    link: 'https://lnkd.in/p/db6zsURx',
+    linkLabel: 'View Official Aspire Spotlight Post ↗',
+    organizationUrl: 'https://www.aspireleaders.org/',
   },
   {
     sectionId: 'honors-awards',
@@ -748,7 +773,7 @@ export const academicItems: AcademicItem[] = [
     period: '2022 – 2026',
     subtitle: 'Competitive Academic Scholarship',
     domain: 'Tuition Fee Waiver, Campus-Wide Merit Ranking',
-    organization: 'CUI Wah Campus & POF',
+    organization: 'COMSATS University Islamabad & POF',
     summary:
       'Awarded competitive 50% tuition waiver merit scholarship across 5 out of 8 undergraduate semesters based on top academic ranking.',
     details: [
@@ -769,7 +794,7 @@ export const academicItems: AcademicItem[] = [
     summary:
       'Selected through a competitive merit screening for this prestigious 18-month U.S. Department of State scholarship program completing 400 intensive hours of advanced English language, leadership development, and cultural diplomacy.',
     details: [
-      'Competitive merit-based scholarship sponsored by the Regional English Language Office (RELO), U.S. Embassy in Islamabad, executed at COMSATS University Islamabad, Wah Campus.',
+      'Competitive merit-based scholarship sponsored by the Regional English Language Office (RELO), U.S. Embassy in Islamabad, executed at COMSATS University Islamabad.',
       'Completed 400 intensive contact hours covering English language mastery (B2 CEFR level), leadership, media literacy, critical thinking, and cultural exchange.',
       'Selected to co-host the Eid Mingle Day cultural celebration and created public service advocacy videos for World Day Against Child Labour.',
       'Awarded official Certificate of Completion signed by Dr. Bradley Horn (Regional English Language Officer) and Dr. Ambreen Shehnaz (Program Director).',
@@ -788,11 +813,11 @@ export const academicItems: AcademicItem[] = [
     domain: 'Academic Merit Ranking, Higher Education Commission',
     organization: 'Govt of Pakistan & HEC',
     summary:
-      'Awarded a laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted on academic merit and top CGPA departmental standing at CUI Wah.',
+      'Awarded a laptop under the Prime Minister’s National Laptop Scheme (Phase-III) in 2023, granted on academic merit and top CGPA departmental standing at COMSATS University Islamabad.',
     details: [
       'Selected on competitive academic merit criteria established by the Higher Education Commission (HEC) Pakistan.',
       'Granted to high-achieving undergraduate students maintaining top-tier CGPA rankings in accredited engineering disciplines.',
-      'Recognized for exceptional academic consistency across early undergraduate semesters at COMSATS University Islamabad, Wah Campus.',
+      'Recognized for exceptional academic consistency across early undergraduate semesters at COMSATS University Islamabad.',
     ],
     tools: ['PM Laptop', 'HEC Pakistan', 'Merit Award', 'Academic Excellence'],
   },
@@ -804,7 +829,7 @@ export const academicItems: AcademicItem[] = [
     period: '2022 – 2026',
     subtitle: 'Semester Academic Honors',
     domain: 'Semester Academic Performance Awards',
-    organization: 'CUI Wah Campus',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Earned 8 official merit certificates from the Director and Controller of Examinations for securing top positions across all 8 undergraduate semesters.',
     details: [
@@ -827,7 +852,7 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Design Competition Award',
     domain: 'BIM-to-AR Integration, Capstone Project Competition',
-    organization: 'Civil Dept, CUI Wah',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Awarded 3rd Position among all graduating capstone projects at the Departmental Open House & Job Fair Spring 2026.',
     details: [
@@ -861,7 +886,7 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Field Engineering Distinction',
     domain: 'Total Station Control, Contouring, Topographic Surveying',
-    organization: 'Civil Dept, CUI Wah',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Awarded Best Survey Group (Batch FA22) during the 15-day intensive undergraduate survey camp held in Abbottabad / Harnoi.',
     details: [
@@ -878,7 +903,7 @@ export const academicItems: AcademicItem[] = [
     period: '2022',
     subtitle: 'Competitive Engineering Award',
     domain: 'Structural Modeling, Truss Mechanics, Load-to-Weight Ratio',
-    organization: 'ICE Chapter, CUI Wah',
+    organization: 'COMSATS University Islamabad',
     summary:
       'Won 2nd Position in the model truss bridge design and destructive load-testing competition.',
     details: [
@@ -946,23 +971,6 @@ export const academicItems: AcademicItem[] = [
   {
     sectionId: 'volunteering',
     sectionTitle: 'Volunteering',
-    slug: 'volunteering-community-service-orphans',
-    title: 'Community Service for Orphans — Educational Support',
-    period: '2024',
-    subtitle: 'Volunteer Initiative',
-    domain: 'Child Welfare, Educational Donations, Mentorship',
-    organization: 'Community Services, CUI',
-    summary:
-      'Organized donation drives and distributed school supplies, bags, and books for orphan children in Wah Cantt.',
-    details: [
-      'Collaborated with civil engineering student societies to arrange academic kits and interactive learning sessions for underprivileged students.',
-      'Awarded official community service recognition signed by HoD and society conveners.',
-    ],
-    tools: ['Community Service', 'Orphan Care', 'Social Responsibility'],
-  },
-  {
-    sectionId: 'volunteering',
-    sectionTitle: 'Volunteering',
     slug: 'volunteering-academic-resource-database',
     title: 'Academic Resource Database Initiative',
     period: '2022 – 2026',
@@ -970,12 +978,32 @@ export const academicItems: AcademicItem[] = [
     domain: 'Open-Access Educational Repository, Curated Civil Engineering Notes',
     organization: 'Peer Knowledge Hub',
     summary:
-      'Co-founded and maintained an open-access cloud database of 4-year Civil Engineering course syllabi, lecture notes, lab manuals, and past solutions for junior students.',
+      'Co-founded and maintained with Faizan Manshad an open-access cloud database of 4-year Civil Engineering course syllabi, lecture notes, lab manuals, and past solutions for junior students.',
     details: [
+      'Collaborative knowledge-sharing initiative co-founded with Faizan Manshad, providing junior engineering students with verified academic resources.',
       'Curated comprehensive study guides across all 8 undergraduate semesters to assist junior cohorts with challenging core coursework.',
       'Organized and digitized reference material for ETABS, SAFE, Revit, and numerical analysis problem sets.',
     ],
     tools: ['Cloud Database', 'Knowledge Sharing', 'Peer Mentoring'],
+    link: 'https://drive.google.com/drive/folders/1m2kdWPX0X7Dn5LIPxeV_mcUl_yowBMoo?usp=sharing',
+    linkLabel: 'Open Google Drive Resource Archive ↗',
+  },
+  {
+    sectionId: 'volunteering',
+    sectionTitle: 'Volunteering',
+    slug: 'volunteering-community-service-orphans',
+    title: 'Community Service for Orphans — Educational Support',
+    period: '2024',
+    subtitle: 'Volunteer Initiative',
+    domain: 'Child Welfare, Educational Donations, Mentorship',
+    organization: 'COMSATS University Islamabad',
+    summary:
+      'Organized donation drives and distributed school supplies, bags, and books for orphan children in Wah Cantt.',
+    details: [
+      'Collaborated with civil engineering student societies to arrange academic kits and interactive learning sessions for underprivileged students.',
+      'Awarded official community service recognition signed by HoD and society conveners.',
+    ],
+    tools: ['Community Service', 'Orphan Care', 'Social Responsibility'],
   },
   {
     sectionId: 'volunteering',
@@ -1007,53 +1035,55 @@ export const academicItems: AcademicItem[] = [
     domain: 'Global Social Impact, Critical Thinking, Leadership',
     organization: 'Aspire Institute, USA',
     summary:
-      'Successfully completed all modules of the 40-hour 2026 Aspire Leaders Program.',
+      'Completed the intensive 40-hour international leadership program founded at Harvard, focusing on social innovation, masterclasses, and ethical leadership.',
     details: [
       'Selected for and completed the 40-hour intensive international leadership curriculum focused on social innovation and cross-cultural leadership.',
       'Engaged in interactive masterclasses led by Harvard Business School and Harvard Kennedy School faculty.',
       'Explored self-assessment, social impact project design, and leading high-performing teams.',
     ],
-    tools: ['Aspire Institute', 'Harvard Faculty', 'Global Leadership'],
+    tools: ['Aspire Leaders', 'Harvard Faculty'],
     link: 'https://engage.aspireleaders.org/profile/certificates',
     linkLabel: 'View Verified Certificate ↗',
+    organizationUrl: 'https://www.aspireleaders.org/',
   },
   {
     sectionId: 'extracurricular',
     sectionTitle: 'Extracurricular Activities & Leadership',
     slug: 'extra-wfeo-hackathon-2026',
-    title: 'WED 2026 Hackathon',
+    title: 'World Engineering Day 2026 Hackathon — Construction Digitalization',
     period: '2026',
-    subtitle: 'Global Engineering Hackathon',
-    domain: 'Infrastructure Resilience, Sustainable Engineering',
-    organization: 'WFEO & UNESCO',
+    subtitle: 'Global Student Hackathon',
+    domain: 'Augmented Reality, Building Information Modeling, Construction Waste Reduction',
+    organization: 'UNESCO & WFEO',
     summary:
-      'Participant in the WFEO Hackathon at World Engineering Day for Sustainable Development 2026.',
+      'Presented our final-year BIM-to-AR mobile layout framework at the global UNESCO & WFEO Hackathon to prevent on-site spatial errors and material waste.',
     details: [
-      'Competed in the global WFEO Hackathon addressing engineering challenges under the leadership of WFEO past and current presidents.',
-      'Presented BIM-to-AR research as a sustainable solution addressing SDG 12: Responsible Consumption and Production by reducing rework and construction waste.',
-      'Evaluated by international engineering panels for multidisciplinary technical feasibility and climate adaptation impact.',
+      'Global Hackathon Theme: Participated in the worldwide engineering hackathon organized by the World Federation of Engineering Organizations (WFEO) and UNESCO, focused on the official 2026 theme: "Smart engineering for a sustainable future through innovation and digitalization".',
+      'Core Problem Addressed: Tackled persistent field layout discrepancies between 2D paper blueprints and real physical construction. Traditional manual surveying and string-line layout methods are slow and error-prone, resulting in misaligned structural columns, costly on-site rework, project delays, and immense material wastage.',
+      'Proposed Engineering Solution: Presented our undergraduate Final Year Project—a standardized Building Information Modeling (BIM) to Augmented Reality (AR) mobile deployment framework. The system projects full-scale 3D digital structural models directly onto physical construction benchmarks using marker-based, ground-plane, and GPS tracking modes on mobile devices.',
+      'Sustainability & UN SDG Impact: Directly advances UN Sustainable Development Goal 12 (Responsible Consumption and Production) by cutting construction rework and material scrap, and Goal 9 (Industry, Innovation, and Infrastructure) by providing accessible digital layout verification without requiring specialized or expensive AR headsets.',
     ],
-    tools: ['WFEO', 'UNESCO', 'Hackathon 2026', 'Climate Adaptation'],
+    tools: ['WED 2026', 'Augmented Reality'],
     link: 'https://www.youtube.com/watch?v=z70xaKYh1ps',
-    linkLabel: 'Watch Presentation (YouTube) ↗',
+    linkLabel: 'Watch Hackathon Presentation (YouTube) ↗',
   },
   {
     sectionId: 'extracurricular',
     sectionTitle: 'Extracurricular Activities & Leadership',
     slug: 'extra-omlas-fellowship-2025',
-    title: 'OMLAS Fellowship',
+    title: 'One Million Leaders Asia (OMLAS) Fellowship',
     period: '2025',
     subtitle: 'International Sustainability Fellowship',
     domain: 'Sustainable Development Goals (SDGs), Environmental Stewardship',
-    organization: 'NELIS Global (OMLAS)',
+    organization: 'NELIS Global & OMLAS',
     summary:
-      'Completed the OMLAS Fellowship Program 2025 for Champions, showing excellent commitment.',
+      'Completed the One Million Leaders Asia Fellowship program, advancing sustainability initiatives and ethical leadership across Asian youth communities.',
     details: [
-      'Selected as an OMLAS Fellow / Champion across Asia, completing intensive training on sustainability-driven project frameworks.',
-      'Awarded official fellowship certificate on December 19, 2025 signed by NELIS Global leadership.',
-      'Formulated regional sustainability initiatives aligned with UN Sustainable Development Goals (SDGs 6, 9, and 11).',
+      'Selected as an OMLAS Fellow across Asia, completing intensive training on sustainability-driven project frameworks and ethical social leadership.',
+      'Awarded official fellowship certificate on December 19, 2025 signed by Next Leaders Initiative for Sustainability (NELIS Global) leadership.',
+      'Formulated regional sustainability initiatives aligned with United Nations Sustainable Development Goals (SDG 6: Clean Water, SDG 9: Industry & Innovation, and SDG 11: Sustainable Communities).',
     ],
-    tools: ['OMLAS Fellow', 'NELIS Global', 'UN SDGs', 'Sustainability'],
+    tools: ['OMLAS Fellow', 'Sustainability'],
     link: 'https://asia.omlglobal.org/Certificates/Validate/kashankashi27@gmail.com',
     linkLabel: 'Verify OMLAS Fellowship ↗',
   },
@@ -1061,18 +1091,18 @@ export const academicItems: AcademicItem[] = [
     sectionId: 'extracurricular',
     sectionTitle: 'Extracurricular Activities & Leadership',
     slug: 'extra-lgs-panel-discussion',
-    title: 'LGS Panel Discussion',
+    title: 'Leaders for Global Society (LGS) Panel Discussion',
     period: '2025',
-    subtitle: 'Leadership & Social Impact Dialogue',
-    domain: 'Leadership, Youth Empowerment, Sustainability',
-    organization: 'LGS & OMLAS',
+    subtitle: 'Youth Leadership & Social Impact',
+    domain: 'Youth Leadership, Social Innovation, Sustainability',
+    organization: 'Leaders for Global Society',
     summary:
-      'Actively participated in the Panel Discussion with OMLAS Champions and Fellow, organized by LGS.',
+      'Invited panelist sharing practical insights on youth leadership, community development, and sustainability alongside fellow Asian youth leaders.',
     details: [
-      'Invited speaker and panelist representing OMLAS Fellows, sharing insights on youth leadership and sustainability initiatives.',
-      'Engaged in interactive discussions with students and educators on ethical leadership and driving local community impact.',
+      'Invited speaker and panelist representing OMLAS Fellows, sharing practical insights on youth leadership and sustainability initiatives.',
+      'Engaged in interactive discussions with students and educators on ethical leadership, community development, and driving local grassroots impact.',
     ],
-    tools: ['Panel Discussion', 'LGS', 'OMLAS Champions', 'Public Speaking'],
+    tools: ['Panel Speaker', 'Youth Leadership'],
     link: 'https://drive.google.com/file/d/1GmNmxcFWTbMpbFelIVyxEeByvsLweTig/view?usp=sharing',
     linkLabel: 'View Participation Certificate (PDF) ↗',
   },
@@ -1080,19 +1110,19 @@ export const academicItems: AcademicItem[] = [
     sectionId: 'extracurricular',
     sectionTitle: 'Extracurricular Activities & Leadership',
     slug: 'extra-constructx-giki',
-    title: 'CONSTRUCTX-3.0 (ICE GIK)',
+    title: 'CONSTRUCTX-3.0 National Engineering Competition',
     period: '2025',
-    subtitle: 'National Engineering Competition',
-    domain: 'Civil Engineering Competitions, Structural Modeling',
-    organization: 'ICE Chapter, GIKI',
+    subtitle: 'National Civil Engineering Competition',
+    domain: 'Civil Engineering Competitions, Structural Modeling, Concrete Technology',
+    organization: 'ICE Chapter, GIK Institute',
     summary:
-      "Participated in the 3-day All Pak Event 'CONSTRUCTX-3.0' organized by ICE GIK Student Chapter.",
+      'Competed in the 3-day nationwide civil engineering festival at GIK Institute, participating in concrete mix design and structural load challenges.',
     details: [
-      'Represented university at the 3-day nationwide civil engineering competitive festival held at GIK Institute.',
-      'Contributed to lightweight concrete design, load-bridging challenges, and flume sink modules, plus technical workshops.',
-      'Gained practical exposure to innovative construction techniques and competitive multidisciplinary teamwork.',
+      'Represented university at the 3-day nationwide civil engineering competitive festival held at Ghulam Ishaq Khan Institute of Engineering Sciences and Technology (GIKI).',
+      'Contributed to lightweight concrete mix design, structural load-bridging challenges, and hydraulic flume sink modules, alongside specialized technical workshops.',
+      'Gained practical exposure to innovative construction techniques, rapid prototyping, and competitive multidisciplinary teamwork.',
     ],
-    tools: ['GIKI', 'CONSTRUCTX-3.0', 'ICE Chapter', 'All-Pak Event'],
+    tools: ['CONSTRUCTX-3.0', 'GIK Institute'],
     link: 'https://drive.google.com/file/d/10fVRUCY1fct-Y7zASTGMGHf6e2GC0DzE/view?usp=sharing',
     linkLabel: 'View Participation Certificate (PDF) ↗',
   },
@@ -1100,20 +1130,59 @@ export const academicItems: AcademicItem[] = [
     sectionId: 'extracurricular',
     sectionTitle: 'Extracurricular Activities & Leadership',
     slug: 'extra-wed-hackathon-2025',
-    title: 'WED 2025',
+    title: 'World Engineering Day 2025 Hackathon — Shelter For All Housing Solution',
     period: '2025',
-    subtitle: 'Global UNESCO Hackathon',
-    domain: 'Engineering Innovation, Water Solutions, Climate Action',
-    organization: 'UNESCO / WED',
+    subtitle: 'Global Student Hackathon',
+    domain: 'Affordable Housing, Solar Energy, Rainwater Harvesting, Sustainable Communities',
+    organization: 'UNESCO & WFEO',
     summary:
-      'Actively participated in World Environment Day 2025 initiatives, contributing to environmental awareness.',
+      'Engineered "Shelter For All"—a modular, self-sustaining housing model with solar power and rainwater harvesting to combat poverty in informal settlements.',
     details: [
-      'Participated in the global UNESCO engineering hackathon designing innovative solutions for sustainable community resilience.',
-      'Collaborated on engineering concept designs tackling urban stormwater conservation and water circularity.',
+      'Global Hackathon Theme: Participated in the international World Engineering Day 2025 Hackathon organized by the World Federation of Engineering Organizations (WFEO), UNESCO, and Engineers Without Borders International (EWB-I), under the global theme "Shaping Our Sustainable Future Through Engineering" and challenge "Engineering a World Without Poverty" (UN Sustainable Development Goal 1).',
+      'Core Problem Addressed: Tackled chronic informal housing deficits, acute energy poverty, lack of clean potable water, and climate vulnerability in marginalized communities where rapid urbanization outpaces municipal infrastructure.',
+      'Proposed Engineering Solution ("Shelter For All"): Engineered a modular, self-sustaining informal housing cluster integrating decentralized rooftop solar photovoltaic (PV) generation for off-grid lighting, gravity-fed rooftop rainwater harvesting cisterns with filtration for water resilience, and passive ventilation to reduce thermal cooling loads.',
+      'Implementation & UN SDG Framework: Developed practical public-private partnership models and community-driven construction guidelines for scalable, climate-resilient residential units, directly advancing UN Sustainable Development Goal 1 (No Poverty) and Goal 11 (Sustainable Cities and Communities).',
     ],
-    tools: ['UNESCO', 'WED Hackathon', 'Global Hackathon'],
+    tools: ['WED 2025', 'Shelter For All'],
     link: 'https://youtu.be/nDrsA6qMuOY?si=L8VNC9_oocDwSA2w',
-    linkLabel: 'View Presentation Video ↗',
+    linkLabel: 'View Hackathon Presentation Video ↗',
+  },
+  {
+    sectionId: 'extracurricular',
+    sectionTitle: 'Extracurricular Activities & Leadership',
+    slug: 'extra-civil-nexus-2025',
+    title: 'Civil Nexus 2025 Engineering Symposium',
+    period: '2025',
+    subtitle: 'Civil Engineering Symposium',
+    domain: 'Technical Collaboration, ASCE Student Chapter',
+    organization: 'ASCE Chapter, University of Wah',
+    summary:
+      'Participated in a multi-society symposium on modern construction practices, sustainable civil infrastructure, and inter-university technical collaboration.',
+    details: [
+      'Engaged with regional engineering societies on innovative civil infrastructure solutions, modern construction management practices, and cross-institutional networking.',
+    ],
+    tools: ['Civil Nexus', 'ASCE Chapter'],
+    link: 'https://drive.google.com/file/d/18zENPzmPJSIYG5UHTtEiPuSJVMeX1bEY/view?usp=sharing',
+    linkLabel: 'View Certificate (PDF) ↗',
+  },
+  {
+    sectionId: 'extracurricular',
+    sectionTitle: 'Extracurricular Activities & Leadership',
+    slug: 'extra-unesco-water-day-2025',
+    title: 'World Water Day 2025 Video Competition',
+    period: '2025',
+    subtitle: 'Glacier Preservation & Water Security',
+    domain: 'Glacier Preservation, Integrated Water Resources Management (IWRM)',
+    organization: 'UNESCO Water Chair & PCRWR',
+    summary:
+      'Produced an awareness video on legal policies and engineering solutions for Himalayan glacier conservation and sustainable water resource protection.',
+    details: [
+      'Featured international treaty frameworks and community pollution mitigation techniques to protect fragile Himalayan glacial basins.',
+      'Addressed climate policy, transboundary water agreements, and regional conservation benchmarks.',
+    ],
+    tools: ['World Water Day', 'Glacier Preservation'],
+    link: 'https://drive.google.com/file/d/1FhGL5GjQOtfxDr2127F2Rca69Hn9kfAZ/view?usp=sharing',
+    linkLabel: 'Watch Competition Entry (Drive) ↗',
   },
   {
     sectionId: 'extracurricular',
@@ -1125,51 +1194,14 @@ export const academicItems: AcademicItem[] = [
     domain: 'Youth Education, Mental Health Awareness, Public Speaking',
     organization: 'Pehla Qadam Society',
     summary:
-      'Organized and delivered an interactive mental well-being workshop for school students on positive thinking and coping techniques.',
+      'Organized and delivered an interactive mental well-being workshop for school students on positive thinking and emotional resilience.',
     details: [
       'Planned the complete event agenda, interactive exercises, and visual presentation for students.',
       'Delivered keynote on cognitive habits, emotional resilience, and constructive peer support.',
     ],
-    tools: ['Keynote Speaker', 'Mental Well-being', 'Youth Mentorship'],
+    tools: ['Keynote Speaker', 'Mental Well-Being'],
     link: 'https://www.facebook.com/share/v/1GDLYfzHTW/',
     linkLabel: 'View Seminar Recording (Facebook) ↗',
-  },
-  {
-    sectionId: 'extracurricular',
-    sectionTitle: 'Extracurricular Activities & Leadership',
-    slug: 'extra-unesco-water-day-2025',
-    title: 'World Water Day 2025 Video Competition (UNESCO / CUI)',
-    period: '2025',
-    subtitle: 'Awareness Competition',
-    domain: 'Glacier Preservation, Integrated Water Resources Management (IWRM)',
-    organization: 'UNESCO Chair & PCRWR',
-    summary:
-      'Co-produced group awareness video presenting legal and engineering solutions for glacier preservation and clean water protection.',
-    details: [
-      'Featured international treaty frameworks and community pollution mitigation techniques to protect fragile Himalayan glacial basins.',
-      'Addressed climate policy, transboundary water agreements, and regional conservation benchmarks.',
-    ],
-    tools: ['UNESCO Chair', 'PCRWR', 'Water Day 2025'],
-    link: 'https://drive.google.com/file/d/1FhGL5GjQOtfxDr2127F2Rca69Hn9kfAZ/view?usp=sharing',
-    linkLabel: 'Watch Competition Entry (Drive) ↗',
-  },
-  {
-    sectionId: 'extracurricular',
-    sectionTitle: 'Extracurricular Activities & Leadership',
-    slug: 'extra-civil-nexus-2025',
-    title: 'Civil Nexus 2025',
-    period: '2025',
-    subtitle: 'Engineering Collaboration & Symposium',
-    domain: 'Technical Collaboration, ASCE Student Chapter',
-    organization: 'ASCE Chapter, UOW',
-    summary:
-      'Participated in a multi-society collaborative civil engineering event organized by ASCE with five societies of University of Wah.',
-    details: [
-      'Engaged with regional engineering societies on innovative civil infrastructure solutions and cross-institutional networking.',
-    ],
-    tools: ['ASCE', 'University of Wah', 'Civil Nexus'],
-    link: 'https://drive.google.com/file/d/18zENPzmPJSIYG5UHTtEiPuSJVMeX1bEY/view?usp=sharing',
-    linkLabel: 'View Certificate (PDF) ↗',
   },
   {
     sectionId: 'extracurricular',
@@ -1179,13 +1211,13 @@ export const academicItems: AcademicItem[] = [
     period: '2024',
     subtitle: 'Cultural & Community Engagement',
     domain: 'Cross-Cultural Celebration, Event Management',
-    organization: 'Access Program, RELO',
+    organization: 'English Access Program, RELO',
     summary:
-      'Co-hosted and coordinated cultural celebration event for regional scholars and program alumni at CUI Wah.',
+      'Co-hosted a cross-cultural celebration for regional scholars and alumni at COMSATS University Islamabad, managing stage proceedings and cultural showcases.',
     details: [
       'Facilitated stage proceedings, guest reception, interactive cultural showcases, and group discussions.',
     ],
-    tools: ['Event Co-Host', 'Cultural Exchange', 'Community Leadership'],
+    tools: ['Event Co-Host', 'Cultural Exchange'],
     link: 'https://www.facebook.com/share/v/1EXxwLwiMq/',
     linkLabel: 'View Event Highlights (Facebook) ↗',
   },
@@ -1199,29 +1231,12 @@ export const academicItems: AcademicItem[] = [
     domain: 'Public Speaking, Oratory, Communication',
     organization: 'Sir Syed Memorial Society',
     summary:
-      'Participated in a school-level speech competition series ("Taqareer-e-Silsila Sir Syed").',
+      'Participated in a school-level public speaking competition, delivering persuasive speeches on historic and educational development themes.',
     details: [
       'Demonstrated oratory delivery, stage presence, and persuasive articulation on historic and educational themes.',
     ],
-    tools: ['Public Speaking', 'Oratory', 'Sir Syed Series'],
+    tools: ['Public Speaking', 'Sir Syed Society'],
     link: 'https://drive.google.com/file/d/1F1FidzbkugyrkO2oig6FMURn8BWDtUsM/view?usp=sharing',
     linkLabel: 'View Participation Certificate (PDF) ↗',
-  },
-  {
-    sectionId: 'extracurricular',
-    sectionTitle: 'Extracurricular Activities & Leadership',
-    slug: 'extra-shelter-for-all',
-    title: 'Shelter For All — Energy-Efficient Housing Concept',
-    period: '2025',
-    subtitle: 'Sustainable Housing Solution',
-    domain: 'Informal Housing, Solar Energy, Rainwater Harvesting, SDG 11',
-    organization: 'World Engineering Day',
-    summary:
-      'Proposed an energy-efficient informal-housing solution with solar power and rainwater harvesting for sustainable communities.',
-    details: [
-      'Designed self-sustaining community cluster models integrating decentralized solar photovoltaic panels and roof rainwater collection cisterns.',
-      'Formulated public-private partnership execution frameworks for scalable, resilient low-cost residential expansion.',
-    ],
-    tools: ['Sustainable Housing', 'Solar Integration', 'Rainwater Harvesting', 'SDG 11'],
   },
 ]

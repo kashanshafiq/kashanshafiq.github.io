@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { projects } from '../content/projects'
+import MediaArchiveWindow from '../components/MediaArchiveWindow.vue'
+import { getMediaArchive } from '../data/mediaArchiveData'
 import NotFoundView from './NotFoundView.vue'
 
 const route = useRoute()
@@ -23,13 +25,28 @@ const project = computed(() =>
   projects.find(p => p.slug === canonicalSlug.value || p.slug === route.params.slug || (p.aliases && p.aliases.includes(route.params.slug as string)))
 )
 
-const isModalOpen = ref(false)
+const mediaArchive = computed(() => (project.value ? getMediaArchive(project.value.slug) : null))
 
 watchEffect(() => {
   document.title = project.value
     ? `${project.value.title} · Projects — Kashan Shafiq`
     : 'Project not found — Kashan Shafiq'
 })
+
+function formatPersonMentions(text: string, slug?: string): string {
+  if (!text) return ''
+  let res = text
+  if (slug === 'tahir-residency-bim') {
+    res = res.replace(
+      /\bFaizan Manshad\b/g,
+      '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
+    ).replace(
+      /\bHaider Ali\b/g,
+      '<a href="https://www.linkedin.com/in/haider-ali-001780275/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Haider Ali LinkedIn profile">Haider Ali</a>'
+    )
+  }
+  return res
+}
 </script>
 
 <template>
@@ -56,11 +73,11 @@ watchEffect(() => {
 
         <!-- Institution / Organization Block -->
         <div v-if="project.organization || project.subtitle" class="archive-institution-block">
-          <h2 class="archive-institution-name">{{ project.organization || 'COMSATS University Islamabad, Wah Campus' }}</h2>
+          <h2 class="archive-institution-name">{{ project.organization || 'COMSATS University Islamabad' }}</h2>
           <p v-if="project.subtitle" class="archive-location-name">{{ project.subtitle }}</p>
         </div>
 
-        <!-- Outlined Pill Badge -->
+        <!-- Outlined Pill Badge: plain unlinked badge -->
         <div class="archive-badge-wrap">
           <span class="archive-pill-badge">
             {{ project.badge || project.subtitle || project.category }}
@@ -68,9 +85,7 @@ watchEffect(() => {
         </div>
 
         <!-- Comprehensive Brief Lead Summary -->
-        <p class="archive-summary-lead">
-          {{ project.summary }}
-        </p>
+        <p class="archive-summary-lead" v-html="formatPersonMentions(project.summary, project.slug)"></p>
 
         <!-- Subtle Divider Line -->
         <hr class="archive-divider-line" />
@@ -79,9 +94,7 @@ watchEffect(() => {
         <div class="archive-highlights-section">
           <h3 class="highlights-heading">Key highlights</h3>
           <ul class="highlights-list">
-            <li v-for="d in (project.details || project.scope)" :key="d">
-              {{ d }}
-            </li>
+            <li v-for="d in (project.details || project.scope)" :key="d" v-html="formatPersonMentions(d, project.slug)"></li>
           </ul>
         </div>
 
@@ -93,19 +106,6 @@ watchEffect(() => {
           </div>
         </div>
 
-        <!-- External Link (e.g. for collaborative/live projects) -->
-        <div v-if="project.link" class="project-external-link-row" style="margin-top: 18px;">
-          <a
-            :href="project.link"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button primary"
-            style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; font-size: 0.85rem;"
-          >
-            {{ project.linkLabel || 'View Live Project Details' }} <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-
         <!-- Bottom Navigation -->
         <nav class="archive-bottom-nav" aria-label="Section navigation">
           <RouterLink to="/work" class="text-link">
@@ -114,87 +114,18 @@ watchEffect(() => {
         </nav>
       </section>
 
-      <!-- Right Column: Document Archive Card -->
+      <!-- Right Column: Real Media Archive Window -->
       <aside class="archive-visual-col">
-        <div class="doc-archive-card">
-          <!-- Top Row -->
-          <div class="doc-archive-header">
-            <span class="doc-archive-tag">DOCUMENT ARCHIVE</span>
-            <button
-              type="button"
-              class="doc-enlarge-btn"
-              @click="isModalOpen = true"
-            >
-              Click to enlarge <span aria-hidden="true">↗</span>
-            </button>
-          </div>
-
-          <!-- Document Preview Canvas / Sheet -->
-          <div class="doc-sheet-container" @click="isModalOpen = true">
-            <div class="doc-sheet">
-              <div class="doc-sheet-seal">
-                <span class="seal-icon">✦</span>
-              </div>
-              <p class="doc-sheet-authority">{{ project.organization || 'COMSATS University Islamabad' }}</p>
-              <h4 class="doc-sheet-title">{{ project.title }}</h4>
-              <p class="doc-sheet-type">{{ project.subtitle || project.category || 'Engineering Case Study' }}</p>
-              <div class="doc-sheet-meta-box">
-                <p><strong>Candidate:</strong> Kashan Shafiq</p>
-                <p><strong>Section:</strong> Projects</p>
-                <p><strong>Standing / Metric:</strong> {{ project.badge || 'Verified Engineering Record' }}</p>
-                <p><strong>Period / Date:</strong> {{ project.period || '2026' }}</p>
-              </div>
-              <div class="doc-sheet-signatures">
-                <span>Verified Seal</span>
-                <span>Academic Archive</span>
-              </div>
-              <div class="doc-expand-corner" aria-hidden="true">⤢</div>
-            </div>
-          </div>
-
-
-        </div>
+        <MediaArchiveWindow
+          :archive="mediaArchive"
+          :fallback-title="project.title"
+          fallback-section="Projects"
+          :fallback-organization="project.organization"
+          :fallback-period="project.period"
+          :fallback-subtitle="project.subtitle"
+          :fallback-badge="project.badge"
+        />
       </aside>
-    </div>
-
-    <!-- Enlarge Modal Dialog -->
-    <div
-      v-if="isModalOpen"
-      class="doc-modal-overlay"
-      role="dialog"
-      aria-modal="true"
-      @click.self="isModalOpen = false"
-    >
-      <div class="doc-modal-content">
-        <div class="modal-header">
-          <h3>{{ project.title }}</h3>
-          <button
-            type="button"
-            class="modal-close-btn"
-            aria-label="Close dialog"
-            @click="isModalOpen = false"
-          >
-            ✕
-          </button>
-        </div>
-        <div class="modal-body-sheet">
-          <p class="modal-authority">{{ project.organization || 'COMSATS University Islamabad' }}</p>
-          <h2>{{ project.title }}</h2>
-          <p class="modal-sub">{{ project.subtitle || project.period }}</p>
-          <div class="modal-specs">
-            <p><strong>Candidate:</strong> Kashan Shafiq</p>
-            <p><strong>Section:</strong> Projects</p>
-            <p><strong>Scope / Domain:</strong> {{ project.domain || project.category || 'Civil Engineering' }}</p>
-            <p><strong>Timeline:</strong> {{ project.period || '2026' }}</p>
-          </div>
-          <p class="modal-note">
-            Official primary engineering record verified in Kashan Shafiq academic portfolio.
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="button" @click="isModalOpen = false">Close</button>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -218,6 +149,17 @@ watchEffect(() => {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: flex-start;
+}
+
+.archive-content-col {
+  min-width: 0;
+}
+
+.archive-visual-col {
+  position: sticky;
+  top: 90px;
+  min-width: 0;
+  width: 100%;
 }
 
 .archive-breadcrumb {
@@ -295,6 +237,7 @@ watchEffect(() => {
 .archive-pill-badge {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   font-family: var(--font-label);
   font-size: 0.72rem;
   font-weight: 700;
@@ -305,6 +248,44 @@ watchEffect(() => {
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   border: none;
+}
+
+.archive-pill-badge-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.25);
+}
+
+.archive-pill-badge-link:hover {
+  background: #991b1b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(185, 28, 28, 0.42);
+  color: #FFFFFF;
+}
+
+.badge-link-icon {
+  font-size: 0.88em;
+  transition: transform 0.16s ease;
+}
+
+.archive-pill-badge-link:hover .badge-link-icon {
+  transform: translate(2px, -2px);
+}
+
+:deep(.person-mention-link) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+  display: inline;
+}
+
+:deep(.person-mention-link:hover) {
+  color: #991b1b;
+  text-decoration-color: #991b1b;
 }
 
 .archive-summary-lead {
@@ -603,10 +584,13 @@ watchEffect(() => {
 @media (max-width: 960px) {
   .archive-split-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
-  .doc-archive-card {
+  .archive-visual-col {
     position: static;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 </style>

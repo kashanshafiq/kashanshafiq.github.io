@@ -35,7 +35,7 @@ function reset() {
     <PageIntro
       eyebrow="Projects / Engineering Archive &amp; Case Studies"
       title="Engineering in practice."
-      description="Engineering projects across structural design, building information modeling, quantity estimation, and environmental engineering."
+      description="Engineering projects across structural design, building information modeling, highway geometric design, quantity estimation, and environmental engineering."
     />
 
     <!-- Filter Controls Row (matches Honours & Awards section) -->

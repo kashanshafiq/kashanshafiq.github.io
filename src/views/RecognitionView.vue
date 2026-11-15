@@ -116,7 +116,7 @@ function reset() {
         </h2>
 
         <p class="featured-medal-institution">
-          {{ goldMedal.organization || 'COMSATS University Islamabad, Wah Campus' }} · Department of Civil Engineering
+          {{ goldMedal.organization || 'COMSATS University Islamabad' }} · Department of Civil Engineering
         </p>
 
         <p class="featured-medal-desc">
