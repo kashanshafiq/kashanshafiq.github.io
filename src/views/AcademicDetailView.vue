@@ -296,6 +296,7 @@ function formatPersonMentions(text: string, slug?: string): string {
           :fallback-period="item.period"
           :fallback-subtitle="item.subtitle"
           :fallback-badge="item.badge"
+          :is-project="item.sectionId === 'projects'"
         />
       </aside>
     </div>

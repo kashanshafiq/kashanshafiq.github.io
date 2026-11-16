@@ -10,6 +10,7 @@ const props = defineProps<{
   fallbackPeriod?: string
   fallbackSubtitle?: string
   fallbackBadge?: string
+  isProject?: boolean
 }>()
 
 const currentIndex = ref(0)
@@ -140,7 +141,7 @@ function toggleFolder(name: string) {
 </script>
 
 <template>
-  <div class="media-archive-card">
+  <div class="media-archive-card" :class="{ 'project-media-window': isProject }">
     <!-- Top Header Bar -->
     <div class="media-card-header">
       <div class="header-tag-group">
@@ -600,7 +601,7 @@ function toggleFolder(name: string) {
             <!-- 3. Large interactive scrollable PDF (with full zoom & scrolling) -->
             <div v-else-if="currentItem.kind === 'pdf'" class="modal-full-pdf-wrap">
               <iframe
-                :src="`${currentItem.src}#toolbar=1&navpanes=1&scrollbar=1`"
+                :src="`${currentItem.src}#toolbar=1&navpanes=1&scrollbar=0`"
                 class="modal-full-pdf"
                 title="Enlarged PDF View"
               ></iframe>
@@ -1800,8 +1801,9 @@ function toggleFolder(name: string) {
   border: 1px solid #292a30;
   border-radius: 6px;
   max-width: min(1200px, 94vw);
-  width: fit-content;
+  width: min(1200px, 94vw);
   min-width: min(520px, 94vw);
+  height: 92vh;
   max-height: 92vh;
   display: flex;
   flex-direction: column;
@@ -1821,74 +1823,89 @@ function toggleFolder(name: string) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 18px;
-  background: #18191e;
-  border-bottom: 1px solid #292a30;
-  gap: 12px;
+  padding: 10px 18px;
+  min-height: 56px;
+  background: #14161c;
+  border-bottom: 1px solid #282c35;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  gap: 14px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 20;
 }
 
 .modal-title-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
+  flex: 1;
 }
 
 .modal-topbar-nav {
   display: flex;
   align-items: center;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .modal-nav-arrow-btn {
-  background: #25262c;
-  border: 1px solid #3d3e48;
+  background: #23252d;
+  border: 1px solid #383a45;
   color: #ffffff;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .modal-nav-arrow-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent, #d8151b);
+  border-color: var(--accent, #d8151b);
 }
 
 .modal-counter {
   font-family: var(--mono);
   font-size: 0.75rem;
-  color: var(--accent);
-  background: rgba(216, 21, 27, 0.18);
-  padding: 2px 8px;
-  border-radius: 2px;
+  color: #ffffff;
+  background: rgba(216, 21, 27, 0.28);
+  border: 1px solid rgba(216, 21, 27, 0.5);
+  padding: 3px 8px;
+  border-radius: 3px;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .modal-tag-badge {
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: #94a3b8;
+  font-weight: 700;
+  color: #f87171;
+  background: rgba(220, 38, 38, 0.16);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  padding: 3px 8px;
+  border-radius: 3px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .modal-heading {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .modal-actions {
@@ -1901,21 +1918,31 @@ function toggleFolder(name: string) {
 .modal-raw-btn {
   font-family: var(--mono);
   font-size: 0.76rem;
-  color: #a0aec0;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 6px 12px;
+  border-radius: 4px;
   text-decoration: none;
-  transition: color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .modal-raw-btn:hover {
-  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
 }
 
 .modal-close-icon {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #dc2626;
+  border: 1px solid #ef4444;
   color: #ffffff;
-  font-size: 1.35rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
   width: 38px;
@@ -1924,25 +1951,30 @@ function toggleFolder(name: string) {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.45);
   transition: background 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
+  flex-shrink: 0;
 }
 
 .modal-close-icon:hover {
-  background: var(--accent, #d8151b);
-  border-color: var(--accent, #d8151b);
+  background: #b91c1c;
+  border-color: #b91c1c;
   color: #ffffff;
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 /* Modal Body */
 .media-modal-body {
   flex: 1;
+  min-height: 0;
   overflow: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 14px 18px;
   background: #08090b;
+  position: relative;
 }
 
 /* Full resolution image */
@@ -2043,18 +2075,27 @@ function toggleFolder(name: string) {
 
 /* Large Interactive Scrollable PDF */
 .modal-full-pdf-wrap {
-  width: min(1200px, 92vw);
-  height: 82vh;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+  align-self: stretch;
   border-radius: 4px;
   overflow: hidden;
   background: #525659;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid #2d3139;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-full-pdf {
   width: 100%;
   height: 100%;
+  min-height: 0;
+  flex: 1;
   border: none;
+  display: block;
 }
 
 /* Enlarged Excel Calculation Suite with Direct Download Links */
@@ -2496,11 +2537,76 @@ function toggleFolder(name: string) {
   background: #005582;
 }
 
+/* ==========================================================================
+   SCROLLBAR REMOVAL: Remove sliding bar while preserving full scrolling
+   ========================================================================== */
+.media-archive-card,
+.media-archive-card *,
+.media-modal-box,
+.media-modal-box *,
+.media-modal-overlay {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.media-archive-card::-webkit-scrollbar,
+.media-archive-card *::-webkit-scrollbar,
+.media-modal-box::-webkit-scrollbar,
+.media-modal-box *::-webkit-scrollbar,
+.media-modal-overlay::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ==========================================================================
+   PROJECTS SECTION: Increased Depth for Project Subpages
+   Exclusively deepens the media window on Projects subpages so technical
+   PDF design reports, drawings, and estimates are clearly visible.
+   ========================================================================== */
+.project-media-window .media-display-stage,
+.project-media-window .pdf-container,
+.project-media-window .image-frame,
+.project-media-window .video-container,
+.project-media-window .external-video-card,
+.project-media-window .excel-container {
+  height: 580px;
+  min-height: 580px;
+  max-height: 580px;
+}
+
+.project-media-window .doc-sheet {
+  min-height: 480px;
+}
+
+@media (max-width: 1200px) {
+  .project-media-window .media-display-stage,
+  .project-media-window .pdf-container,
+  .project-media-window .image-frame,
+  .project-media-window .video-container,
+  .project-media-window .external-video-card,
+  .project-media-window .excel-container {
+    height: 520px;
+    min-height: 520px;
+    max-height: 520px;
+  }
+}
+
 @media (max-width: 768px) {
   .media-display-stage {
     height: 270px;
     min-height: 270px;
     max-height: 270px;
+  }
+  .project-media-window .media-display-stage,
+  .project-media-window .pdf-container,
+  .project-media-window .image-frame,
+  .project-media-window .video-container,
+  .project-media-window .external-video-card,
+  .project-media-window .excel-container {
+    height: 420px;
+    min-height: 420px;
+    max-height: 420px;
   }
   .media-modal-box {
     min-width: 94vw;
