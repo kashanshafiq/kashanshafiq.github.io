@@ -551,9 +551,9 @@ export const academicCv: AcademicCvData = {
       title: 'Pakistan Ordnance Factory (POF) Scholarship – COMSATS University Islamabad',
       category: 'Scholarship',
       awarder: 'COMSATS University Islamabad & POF',
-      period: 'Received for 5 of 8 Semesters',
+      period: 'Semesters 4–8 (5 of 8 Semesters)',
       detail:
-        'Merit-based 50% tuition waiver awarded by the university to POF employees\' children, received for 5 of 8 semesters.',
+        'Merit-based 50% tuition waiver awarded by the university to POF employees\' children, received for 5 of 8 semesters (Semesters 4, 5, 6, 7, and 8).',
     },
     {
       title: 'English Access Micro Scholarship Program – United States Embassy, Islamabad Pakistan',

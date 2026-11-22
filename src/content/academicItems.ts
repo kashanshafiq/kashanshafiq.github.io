@@ -781,7 +781,7 @@ export const academicItems: AcademicItem[] = [
       'Awarded competitive 50% tuition waiver merit scholarship across 5 out of 8 undergraduate semesters based on top academic ranking.',
     details: [
       'Highly competitive merit-based scholarship strictly limited to the top 20 students per semester across the entire campus.',
-      'Awarded in Semesters 1, 3, 4, 5, and 7 based on departmental academic standing.',
+      'Awarded in Semesters 4, 5, 6, 7, and 8 based on departmental academic standing.',
     ],
     tools: ['POF Scholarship', '50% Tuition Waiver', 'Merit Award'],
   },
