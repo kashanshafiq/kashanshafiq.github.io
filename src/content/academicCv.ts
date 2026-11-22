@@ -210,7 +210,7 @@ export const academicCv: AcademicCvData = {
       scope: 'Scan-to-BIM Projects, Point Cloud Registration & LOD 300/350 Revit Modeling',
       responsibilities: [
         'Delivered LOD 300/350 Revit models from point cloud data for retail and commercial projects, providing accurate as-built baselines for design coordination and retrofitting.',
-        'Verified model accuracy against scan data and coordinated Structural and Architectural deliverables; on live construction projects, overlaid stage-by-stage point clouds on 2D drawings, flagging deviations to 2 mm accuracy so the site team could correct work against the drawings.',
+        'Verified model accuracy against scan data and coordinated Structural and Architectural deliverables; on live construction projects, overlaid stage-by-stage point clouds on 2D drawings and flagged deviations to 2 mm accuracy so the site team could correct work at each stage rather than after completion, when errors are costlier to fix and pose a safety risk to the structure and its occupants.',
         'Supported the registration team in registering raw point cloud data using Leica Cyclone, with some exposure to Autodesk ReCap, ensuring clean, usable datasets for modeling.',
         'Built accurate BIM models in Autodesk Revit in line with modeling standards and project specifications, delivering consistent, specification-compliant outputs.',
       ],
