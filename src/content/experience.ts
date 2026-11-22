@@ -58,13 +58,13 @@ export const experience: Experience[] = [
   },
   {
     slug: 'resolve-nstp-tower-intern',
-    organization: 'Resolve & NSTP Tower, NUST University Islamabad',
+    organization: 'Shoukat Iqbal Mir & Co (SIMCO), Islamabad',
     role: 'Engineering Internee',
     period: 'Jul 2024',
     location: 'Islamabad, Pakistan',
     domain: 'Site Management, Field Engineering & Cost Estimation',
     summary: 'Site supervision, drawing interpretation, QA/QC and quantity take-offs at NSTP Tower, NUST.',
-    context: 'During this engineering traineeship at Resolve & NSTP Tower, NUST University Islamabad, gained comprehensive hands-on exposure to live construction supervision, structural drawing verification, QA/QC controls, and material quantity take-offs.',
+    context: 'During this engineering traineeship at Shoukat Iqbal Mir & Co (SIMCO) on the NSTP Commercial Tower project, gained comprehensive hands-on exposure to live construction supervision, structural drawing verification, QA/QC controls, and material quantity take-offs.',
     details: [
       'Interpreted and cross-checked structural, architectural, and site-layout drawings against live construction activities, identifying discrepancies for engineer review.',
       'Supported field execution and inspection activities, including slab-related construction exposure, reinforcement, formwork, and concrete works.',

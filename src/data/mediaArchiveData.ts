@@ -1077,7 +1077,7 @@ export const mediaArchiveCatalog: Record<string, MediaArchiveEntry> = {
     ],
   },
   'resolve-nstp-tower-intern': {
-    title: 'Trainee Engineer — Resolve Engineering - SIMCO (NSTP Tower)',
+    title: 'Trainee Engineer — Shoukat Iqbal Mir & Co (SIMCO)',
     sectionTitle: 'Work Experience',
     items: [
       {
@@ -1350,7 +1350,7 @@ export const mediaArchiveCatalog: Record<string, MediaArchiveEntry> = {
     ],
   },
   'tahir-residency': {
-    title: 'Tahir Residency — BIM & Architectural Modeling',
+    title: 'Code Based BIM Modelling & Documentation',
     sectionTitle: 'Academic Projects',
     items: [
       {

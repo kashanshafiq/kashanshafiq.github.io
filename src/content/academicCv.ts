@@ -42,6 +42,7 @@ export interface AcademicCvData {
   workExperience: Array<{
     role: string
     organization: string
+    organizationUrl?: string
     location: string
     period: string
     scope: string
@@ -203,6 +204,7 @@ export const academicCv: AcademicCvData = {
     {
       role: 'BIM Modeler – Junior',
       organization: 'Archnetix',
+      organizationUrl: 'https://www.linkedin.com/company/archnetix/',
       location: 'Islamabad, Pakistan',
       period: 'Jul 2026 – Present',
       scope: 'Scan-to-BIM Projects, Point Cloud Registration & LOD 300/350 Revit Modeling',
@@ -217,6 +219,7 @@ export const academicCv: AcademicCvData = {
     {
       role: 'Engineering Internee',
       organization: 'Mount Khalid',
+      organizationUrl: 'https://mountkhalid.com/',
       location: 'Islamabad, Pakistan',
       period: 'Jul 2025 – Aug 2025',
       scope: '45-Storey High-Rise Residential Tower Construction & BIM Coordination',
@@ -231,7 +234,8 @@ export const academicCv: AcademicCvData = {
     },
     {
       role: 'Engineering Internee',
-      organization: 'Resolve & NSTP Tower, NUST University',
+      organization: 'Shoukat Iqbal Mir & Co (SIMCO)',
+      organizationUrl: 'https://simcodevelopers.com/',
       location: 'Islamabad, Pakistan',
       period: 'Jul 2024',
       scope: 'Site Management, Field Execution, QA/QC Inspection & Quantity Take-offs',
@@ -272,7 +276,7 @@ export const academicCv: AcademicCvData = {
       tools: ['CAD Takeoffs', 'BOQ Formulation', 'Reinforcement Estimation', 'Costing'],
     },
     {
-      title: 'Tahir Residency — BIM & Architectural Modeling',
+      title: 'Code Based BIM Modelling & Documentation',
       description:
         'Collaborative project contributed by Faizan Manshad and Haider Ali. Executed end-to-end parametric modeling and technical documentation for a contemporary multi-level residential dwelling in Autodesk Revit, including structural coordination, solar orientation analysis in Insight 360, and drawing sets.',
       tools: ['Autodesk Revit', 'Insight 360', 'Structural Coordination', 'Solar Studies', 'BOQ & Schedules'],

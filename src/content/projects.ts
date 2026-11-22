@@ -178,8 +178,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'tahir-residency-bim',
-    aliases: ['haroon-residence-bim'],
-    title: 'Tahir Residency — BIM & Architectural Modeling',
+    aliases: ['haroon-residence-bim', 'code-based-bim-modelling', 'code-based-bim-modeling'],
+    title: 'Code Based BIM Modelling & Documentation',
     category: 'BIM & Modeling',
     categoryBadge: 'BIM & MODELING',
     filterCategories: ['BIM & Modeling'],

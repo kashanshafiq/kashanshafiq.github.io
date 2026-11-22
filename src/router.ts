@@ -24,6 +24,8 @@ export const router = createRouter({
 
     // 4. Projects (main & subpages)
     { path: '/projects', component: () => import('./views/WorkView.vue'), meta: { title: 'Projects' } },
+    { path: '/projects/code-based-bim-modelling', redirect: '/projects/tahir-residency-bim' },
+    { path: '/projects/code-based-bim-modeling', redirect: '/projects/tahir-residency-bim' },
     { path: '/projects/:slug', component: () => import('./views/ProjectView.vue'), meta: { title: 'Project' } },
 
     // 5. Extracurriculars (main & subpages)

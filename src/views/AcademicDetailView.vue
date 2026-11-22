@@ -11,7 +11,7 @@ const router = useRouter()
 
 const effectiveSlug = computed(() => {
   const s = route.params.slug as string
-  if (s === 'haroon-residence-bim') return 'tahir-residency-bim'
+  if (s === 'haroon-residence-bim' || s === 'code-based-bim-modelling' || s === 'code-based-bim-modeling') return 'tahir-residency-bim'
   if (s === 'simco-site-engineering-intern' || s === 'simco-trainee-engineer') return 'resolve-nstp-tower-intern'
   if (s === 'extra-shelter-for-all') return 'extra-wed-hackathon-2025'
   return s
@@ -185,6 +185,42 @@ function formatPersonMentions(text: string, slug?: string): string {
     ).replace(
       /\bFaiz Fareed\b/g,
       '<a href="https://www.linkedin.com/in/faiz-fareed-b7b746235/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faiz Fareed LinkedIn profile">Faiz Fareed</a>'
+    )
+  }
+
+  // 4. English Access Scholarship (Image 4): RELO and COMSATS University Islamabad -> accesscuiwah
+  if (slug === 'award-english-access-scholarship') {
+    res = res.replace(
+      /\bRegional English Language Office \(RELO\)\b/g,
+      '<a href="https://pk.usembassy.gov/regional-english-language-office-relo/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Regional English Language Office (RELO)">Regional English Language Office (RELO)</a>'
+    ).replace(
+      /\bCOMSATS University Islamabad\b/g,
+      '<a href="https://www.facebook.com/accesscuiwah/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Access Program CUI Wah on Facebook">COMSATS University Islamabad</a>'
+    )
+  }
+
+  // 5. WED Competitions: World Engineering Day link
+  if (slug === 'extra-wfeo-hackathon-2026' || slug === 'extra-wed-hackathon-2025') {
+    res = res.replace(
+      /\bWorld Engineering Day\b/g,
+      '<a href="https://worldengineeringday.net/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit World Engineering Day Official Website">World Engineering Day</a>'
+    )
+  }
+
+  // 6. OMLAS: One Million Leaders Asia link
+  if (slug === 'extra-omlas-fellowship-2025' || slug === 'extra-lgs-panel-discussion') {
+    res = res.replace(
+      /\bOne Million Leaders Asia \(OMLAS\)\b/g,
+      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">One Million Leaders Asia (OMLAS)</a>'
+    ).replace(
+      /\bOne Million Leaders Asia\b/g,
+      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">One Million Leaders Asia</a>'
+    ).replace(
+      /\bOMLAS Fellows\b/g,
+      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">OMLAS Fellows</a>'
+    ).replace(
+      /\bOMLAS\b(?![^<]*>)/g,
+      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">OMLAS</a>'
     )
   }
 

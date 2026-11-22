@@ -58,6 +58,7 @@ export const academicItems: AcademicItem[] = [
     subtitle: 'Scan-to-BIM & As-Built Documentation',
     domain: 'Scan-to-BIM, Point Cloud Registration, LOD 300/350, Multi-Disciplinary Coordination',
     organization: 'Archnetix, Islamabad',
+    organizationUrl: 'https://www.linkedin.com/company/archnetix/',
     summary:
       'Worked on Scan-to-BIM projects converting raw point cloud data into coordinated 3D Revit models to LOD 300/350 across Structural, Architectural, and MEP disciplines.',
     details: [
@@ -77,6 +78,7 @@ export const academicItems: AcademicItem[] = [
     subtitle: 'High-Rise Construction & BIM Coordination',
     domain: 'High-Rise Structures, Post-Tensioned Slabs, LOD 300, Clash Detection',
     organization: 'Mount Khalid, Islamabad',
+    organizationUrl: 'https://mountkhalid.com/',
     summary:
       'Field engineering and structural BIM modeling on a landmark 45-storey high-rise residential tower in Islamabad.',
     details: [
@@ -96,7 +98,8 @@ export const academicItems: AcademicItem[] = [
     period: 'Jul 2024',
     subtitle: 'Site Management & Field Execution',
     domain: 'Field Execution, Drawing Interpretation, QA/QC, BOQ Reconciliation',
-    organization: 'Resolve & NSTP Tower, NUST University Islamabad',
+    organization: 'Shoukat Iqbal Mir & Co (SIMCO), Islamabad',
+    organizationUrl: 'https://simcodevelopers.com/',
     summary:
       'Site engineering supervision, drawing interpretation, QA/QC inspection, and quantity take-offs on live NUST construction projects.',
     details: [
@@ -187,7 +190,7 @@ export const academicItems: AcademicItem[] = [
     sectionId: 'projects',
     sectionTitle: 'Academic Projects',
     slug: 'tahir-residency-bim',
-    title: 'Tahir Residency — BIM & Architectural Modeling',
+    title: 'Code Based BIM Modelling & Documentation',
     period: '2025',
     subtitle: 'Residential Architecture & BIM (Collaborative Project)',
     domain: 'Autodesk Revit, Insight 360, Structural Coordination, Solar Analysis',
@@ -788,9 +791,11 @@ export const academicItems: AcademicItem[] = [
     slug: 'award-english-access-scholarship',
     title: 'U.S. Embassy English Access Scholarship Program',
     period: '2024 – 2025',
-    subtitle: 'International Merit Scholarship',
+    subtitle: 'Access Scholarship',
+    badge: 'Access Scholarship',
     domain: 'English Proficiency, Leadership, Public Diplomacy',
     organization: 'RELO, U.S. Embassy',
+    organizationUrl: 'https://pk.usembassy.gov/regional-english-language-office-relo/',
     summary:
       'Selected through a competitive merit screening for this prestigious 18-month U.S. Department of State scholarship program completing 400 intensive hours of advanced English language, leadership development, and cultural diplomacy.',
     details: [
@@ -1054,7 +1059,8 @@ export const academicItems: AcademicItem[] = [
     period: '2026',
     subtitle: 'Global Student Hackathon',
     domain: 'Augmented Reality, Building Information Modeling, Construction Waste Reduction',
-    organization: 'UNESCO & WFEO',
+    organization: 'World Engineering Day (UNESCO & WFEO)',
+    organizationUrl: 'https://worldengineeringday.net/',
     summary:
       'Presented our final-year BIM-to-AR mobile layout framework at the global UNESCO & WFEO Hackathon to prevent on-site spatial errors and material waste.',
     details: [
@@ -1075,7 +1081,8 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'International Sustainability Fellowship',
     domain: 'Sustainable Development Goals (SDGs), Environmental Stewardship',
-    organization: 'NELIS Global & OMLAS',
+    organization: 'One Million Leaders Asia (OMLAS) & NELIS Global',
+    organizationUrl: 'https://onemillionleadersasia.org/',
     summary:
       'Completed the One Million Leaders Asia Fellowship program, advancing sustainability initiatives and ethical leadership across Asian youth communities.',
     details: [
@@ -1095,7 +1102,8 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Youth Leadership & Social Impact',
     domain: 'Youth Leadership, Social Innovation, Sustainability',
-    organization: 'Leaders for Global Society',
+    organization: 'Leaders for Global Society & OMLAS',
+    organizationUrl: 'https://onemillionleadersasia.org/',
     summary:
       'Invited panelist sharing practical insights on youth leadership, community development, and sustainability alongside fellow Asian youth leaders.',
     details: [
@@ -1134,7 +1142,8 @@ export const academicItems: AcademicItem[] = [
     period: '2025',
     subtitle: 'Global Student Hackathon',
     domain: 'Affordable Housing, Solar Energy, Rainwater Harvesting, Sustainable Communities',
-    organization: 'UNESCO & WFEO',
+    organization: 'World Engineering Day (UNESCO & WFEO)',
+    organizationUrl: 'https://worldengineeringday.net/',
     summary:
       'Engineered "Shelter For All"—a modular, self-sustaining housing model with solar power and rainwater harvesting to combat poverty in informal settlements.',
     details: [
