@@ -89,7 +89,7 @@ function reset() {
       <RouterLink
         v-for="item in filteredItems"
         :key="item.slug"
-        :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'community' } }"
+        :to="{ path: `/extracurriculars/${item.slug}`, query: { from: 'extracurriculars' } }"
         class="community-card"
         :aria-label="`View details for ${item.title}`"
       >

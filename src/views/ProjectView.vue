@@ -56,7 +56,7 @@ function formatPersonMentions(text: string, slug?: string): string {
       <section class="archive-content-col">
         <!-- Breadcrumb back link -->
         <div class="archive-breadcrumb">
-          <RouterLink to="/work" class="breadcrumb-link">
+          <RouterLink to="/projects" class="breadcrumb-link">
             Projects / Academic archive <span aria-hidden="true">↗</span>
           </RouterLink>
         </div>
@@ -108,7 +108,7 @@ function formatPersonMentions(text: string, slug?: string): string {
 
         <!-- Bottom Navigation -->
         <nav class="archive-bottom-nav" aria-label="Section navigation">
-          <RouterLink to="/work" class="text-link">
+          <RouterLink to="/projects" class="text-link">
             ← Back to Projects
           </RouterLink>
         </nav>

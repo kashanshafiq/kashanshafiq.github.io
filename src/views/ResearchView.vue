@@ -17,7 +17,7 @@ const researchItems = academicItems.filter(item => item.sectionId === 'research-
       <RouterLink
         v-for="item in researchItems"
         :key="item.slug"
-        :to="{ path: `/academic/research-experience/${item.slug}`, query: { from: 'research' } }"
+        :to="{ path: `/research/${item.slug}`, query: { from: 'research' } }"
         class="record record-interactive"
         :aria-label="`View details for ${item.title}`"
       >

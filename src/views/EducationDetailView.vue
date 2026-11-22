@@ -24,8 +24,8 @@ watchEffect(() => {
       <section class="archive-content-col">
         <!-- Breadcrumb back link -->
         <div class="archive-breadcrumb">
-          <RouterLink to="/cv#education" class="breadcrumb-link">
-            Education / Academic archive <span aria-hidden="true">↗</span>
+          <RouterLink to="/academics#education" class="breadcrumb-link">
+            Academics / Education <span aria-hidden="true">↗</span>
           </RouterLink>
         </div>
 
@@ -95,8 +95,8 @@ watchEffect(() => {
 
         <!-- Bottom Navigation -->
         <nav class="archive-bottom-nav" aria-label="Education navigation">
-          <RouterLink to="/cv#education" class="text-link">
-            ← Back to Education
+          <RouterLink to="/academics#education" class="text-link">
+            ← Back to Education (Academics)
           </RouterLink>
         </nav>
       </section>

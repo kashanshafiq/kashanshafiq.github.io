@@ -13,7 +13,7 @@ const workExperience = academicItems.filter(item => item.sectionId === 'work-exp
       <RouterLink
         v-for="item in workExperience"
         :key="item.slug"
-        :to="{ path: `/academic/work-experience/${item.slug}`, query: { from: 'experience' } }"
+        :to="{ path: `/work/${item.slug}`, query: { from: 'work' } }"
         class="record record-interactive"
         :aria-label="`View details for ${item.title} at ${item.organization}`"
       >

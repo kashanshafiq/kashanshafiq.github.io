@@ -56,7 +56,7 @@ import { profile } from '../content/profile'
       </a>
     </div>
 
-    <RouterLink class="text-link" to="/cv">
+    <RouterLink class="text-link" to="/academics">
       View academic CV <span aria-hidden="true">↗</span>
     </RouterLink>
   </div>

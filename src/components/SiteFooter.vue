@@ -6,12 +6,12 @@
         <span class="footer-description">Sustainable Construction</span>
       </div>
       <nav aria-label="Footer navigation">
-        <RouterLink to="/experience">Work</RouterLink>
+        <RouterLink to="/work">Work</RouterLink>
         <RouterLink to="/research">Research</RouterLink>
-        <RouterLink to="/recognition">Honours and Awards</RouterLink>
-        <RouterLink to="/work">Projects</RouterLink>
-        <RouterLink to="/community">Extracurriculars</RouterLink>
-        <RouterLink to="/cv">Academics</RouterLink>
+        <RouterLink to="/honours-and-awards">Honours and Awards</RouterLink>
+        <RouterLink to="/projects">Projects</RouterLink>
+        <RouterLink to="/extracurriculars">Extracurriculars</RouterLink>
+        <RouterLink to="/academics">Academics</RouterLink>
       </nav>
     </div>
   </footer>

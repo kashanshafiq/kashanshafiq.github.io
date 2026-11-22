@@ -153,7 +153,7 @@ function reset() {
             </span>
           </div>
           <div class="featured-medal-actions">
-            <RouterLink :to="{ path: `/academic/honors-awards/${goldMedal.slug}`, query: { from: 'recognition' } }" class="featured-primary-btn">
+            <RouterLink :to="{ path: `/honours-and-awards/${goldMedal.slug}`, query: { from: 'honours-and-awards' } }" class="featured-primary-btn">
               View Gold Medal record <span aria-hidden="true">↗</span>
             </RouterLink>
             <a
@@ -206,7 +206,7 @@ function reset() {
       <RouterLink
         v-for="item in filtered"
         :key="item.slug"
-        :to="{ path: `/academic/honors-awards/${item.slug}`, query: { from: 'recognition' } }"
+        :to="{ path: `/honours-and-awards/${item.slug}`, query: { from: 'honours-and-awards' } }"
         class="award-card"
         :aria-label="`View details for ${item.title}`"
       >

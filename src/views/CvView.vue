@@ -82,6 +82,24 @@ const getVisibleItems = (sectionId: string) => {
   return items.slice(0, 6)
 }
 
+function getItemPath(item: { sectionId: string; slug: string }): string {
+  switch (item.sectionId) {
+    case 'work-experience':
+      return `/work/${item.slug}`
+    case 'research-experience':
+      return `/research/${item.slug}`
+    case 'projects':
+      return `/projects/${item.slug}`
+    case 'honors-awards':
+      return `/honours-and-awards/${item.slug}`
+    case 'volunteering':
+    case 'extracurricular':
+      return `/extracurriculars/${item.slug}`
+    default:
+      return `/academics/${item.sectionId}/${item.slug}`
+  }
+}
+
 const skillsCategories = [
   {
     title: 'Core Competencies',
@@ -284,7 +302,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="edu in educationList"
               :key="edu.slug"
-              :to="`/education/${edu.slug}`"
+              :to="`/academics/education/${edu.slug}`"
               class="education-row"
               :aria-label="`View details for ${edu.shortDegree} at ${edu.institution}`"
             >
@@ -313,7 +331,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('research-experience')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -342,7 +360,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('work-experience')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -371,7 +389,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('projects')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -413,7 +431,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('certifications')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -455,7 +473,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('professional-trainings')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -497,7 +515,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('conferences')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -553,7 +571,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('honors-awards')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >
@@ -595,7 +613,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getSectionItems('volunteering')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="education-row"
               :aria-label="`View details for ${item.title}`"
             >
@@ -624,7 +642,7 @@ onBeforeUnmount(() => {
             <RouterLink
               v-for="item in getVisibleItems('extracurricular')"
               :key="item.slug"
-              :to="{ path: `/academic/${item.sectionId}/${item.slug}`, query: { from: 'cv' } }"
+              :to="{ path: getItemPath(item), query: { from: 'academics' } }"
               class="cv-grid-item"
               :aria-label="`View details for ${item.title}`"
             >

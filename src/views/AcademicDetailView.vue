@@ -17,9 +17,31 @@ const effectiveSlug = computed(() => {
   return s
 })
 
-const item = computed(() =>
-  academicItems.find((i) => i.sectionId === route.params.section && i.slug === effectiveSlug.value)
-)
+const targetSection = computed(() => {
+  const p = route.path
+  if (p.startsWith('/honours-and-awards') || p.startsWith('/honors-awards') || p.startsWith('/recognition')) return 'honors-awards'
+  if (p.startsWith('/work') || p.startsWith('/experience')) return 'work-experience'
+  if (p.startsWith('/research')) return 'research-experience'
+  if (p.startsWith('/extracurriculars') || p.startsWith('/community')) return 'volunteering'
+  if (route.params.section) return route.params.section as string
+  return null
+})
+
+const item = computed(() => {
+  if (targetSection.value) {
+    const match = academicItems.find(
+      (i) => i.sectionId === targetSection.value && i.slug === effectiveSlug.value
+    )
+    if (match) return match
+    if (targetSection.value === 'volunteering') {
+      const matchExtra = academicItems.find(
+        (i) => i.sectionId === 'extracurricular' && i.slug === effectiveSlug.value
+      )
+      if (matchExtra) return matchExtra
+    }
+  }
+  return academicItems.find((i) => i.slug === effectiveSlug.value) || null
+})
 
 const mediaArchive = computed(() => (item.value ? getMediaArchive(item.value.slug) : null))
 
@@ -27,112 +49,102 @@ const sourceContext = computed(() => {
   const fromQuery = route.query.from as string | undefined
   if (fromQuery) return fromQuery
 
+  const path = route.path
+  if (path.startsWith('/honours-and-awards') || path.startsWith('/honors-awards') || path.startsWith('/recognition')) return 'honours-and-awards'
+  if (path.startsWith('/work') || path.startsWith('/experience')) return 'work'
+  if (path.startsWith('/research')) return 'research'
+  if (path.startsWith('/extracurriculars') || path.startsWith('/community')) return 'extracurriculars'
+  if (path.startsWith('/projects')) return 'projects'
+  if (path.startsWith('/academics') || path.startsWith('/cv') || path.startsWith('/academic')) return 'academics'
+
   if (typeof window !== 'undefined' && window.history?.state?.back) {
     const backUrl = String(window.history.state.back)
-    if (backUrl.includes('/cv')) return 'cv'
-    if (backUrl.includes('/community')) return 'community'
-    if (backUrl.includes('/recognition')) return 'recognition'
-    if (backUrl.includes('/experience')) return 'experience'
+    if (backUrl.includes('/academics') || backUrl.includes('/cv')) return 'academics'
+    if (backUrl.includes('/extracurriculars') || backUrl.includes('/community')) return 'extracurriculars'
+    if (backUrl.includes('/honours-and-awards') || backUrl.includes('/recognition') || backUrl.includes('/honors-awards')) return 'honours-and-awards'
+    if (backUrl.includes('/work') || backUrl.includes('/experience')) return 'work'
     if (backUrl.includes('/research')) return 'research'
-    if (backUrl.includes('/work')) return 'work'
+    if (backUrl.includes('/projects')) return 'projects'
   }
   return null
 })
 
 const backTarget = computed<{ to: string | { path: string; hash?: string }; label: string }>(() => {
-  if (!item.value) return { to: '/cv', label: 'Academics' }
+  if (!item.value) return { to: '/academics', label: 'Academics' }
   const sec = item.value.sectionId
   const secTitle = item.value.sectionTitle || 'Academics'
-  const isFromCv = sourceContext.value === 'cv'
-  const isFromWork = sourceContext.value === 'work'
-  const isFromCommunity = sourceContext.value === 'community'
+  const isFromAcademics = sourceContext.value === 'academics' || sourceContext.value === 'cv'
 
-  if (isFromWork) {
-    return { to: '/work', label: 'Projects' }
-  }
-
-  if (isFromCommunity) {
-    return { to: '/community', label: 'Volunteering' }
-  }
-
-  // If user came from Academics (/cv):
-  if (isFromCv) {
+  // If user came from Academics:
+  if (isFromAcademics) {
     return {
-      to: { path: '/cv', hash: `#${sec}` },
+      to: { path: '/academics', hash: `#${sec}` },
       label: `${secTitle} (Academics)`,
     }
   }
 
-  // If user came from main web pages, or direct fallback:
+  // Hierarchical back links matching the page name:
   switch (sec) {
     case 'volunteering':
-      return { to: '/community', label: 'Volunteering' }
+    case 'extracurricular':
+      return { to: '/extracurriculars', label: 'Extracurriculars' }
     case 'honors-awards':
-      return { to: '/recognition', label: 'Honours and Awards' }
+      return { to: '/honours-and-awards', label: 'Honours and Awards' }
     case 'work-experience':
-      return { to: '/experience', label: 'Work' }
+      return { to: '/work', label: 'Work' }
     case 'research-experience':
       return { to: '/research', label: 'Research' }
     case 'projects':
-      return { to: '/work', label: 'Projects' }
+      return { to: '/projects', label: 'Projects' }
     case 'certifications':
-      return { to: { path: '/cv', hash: '#certifications' }, label: 'Certifications' }
+      return { to: { path: '/academics', hash: '#certifications' }, label: 'Certifications (Academics)' }
     case 'professional-trainings':
-      return { to: { path: '/cv', hash: '#professional-trainings' }, label: 'Continuing Professional Development Seminars' }
+      return { to: { path: '/academics', hash: '#professional-trainings' }, label: 'Continuing Professional Development Seminars' }
     case 'conferences':
-      return { to: { path: '/cv', hash: '#conferences' }, label: 'Conferences' }
-    case 'extracurricular':
-      return { to: { path: '/cv', hash: '#extracurricular' }, label: 'Extracurricular Activities' }
+      return { to: { path: '/academics', hash: '#conferences' }, label: 'Conferences (Academics)' }
     default:
-      return { to: { path: '/cv', hash: `#${sec}` }, label: secTitle }
+      return { to: { path: '/academics', hash: `#${sec}` }, label: secTitle }
   }
 })
 
 const breadcrumbTarget = computed<{ to: string | { path: string; hash?: string }; label: string }>(() => {
-  if (!item.value) return { to: '/cv', label: 'Academics' }
+  if (!item.value) return { to: '/academics', label: 'Academics' }
   const sec = item.value.sectionId
   const secTitle = item.value.sectionTitle || 'Academics'
-  const isFromCv = sourceContext.value === 'cv'
-  const isFromWork = sourceContext.value === 'work'
-  const isFromCommunity = sourceContext.value === 'community'
+  const isFromAcademics = sourceContext.value === 'academics' || sourceContext.value === 'cv'
 
-  if (isFromWork) {
-    return { to: '/work', label: 'Projects / Academic archive' }
-  }
-
-  if (isFromCommunity) {
-    return { to: '/community', label: 'Volunteering / Academic archive' }
-  }
-
-  if (isFromCv) {
+  if (isFromAcademics) {
     return {
-      to: { path: '/cv', hash: `#${sec}` },
+      to: { path: '/academics', hash: `#${sec}` },
       label: `Academics / ${secTitle}`,
     }
   }
 
   switch (sec) {
     case 'volunteering':
-      return { to: '/community', label: 'Volunteering / Academic archive' }
+    case 'extracurricular':
+      return { to: '/extracurriculars', label: 'Extracurriculars / Academic archive' }
     case 'honors-awards':
-      return { to: '/recognition', label: 'Honours and Awards / Academic archive' }
+      return { to: '/honours-and-awards', label: 'Honours and Awards / Academic archive' }
     case 'work-experience':
-      return { to: '/experience', label: 'Work / Academic archive' }
+      return { to: '/work', label: 'Work / Academic archive' }
     case 'research-experience':
       return { to: '/research', label: 'Research / Academic archive' }
     case 'projects':
-      return { to: '/work', label: 'Projects / Academic archive' }
+      return { to: '/projects', label: 'Projects / Academic archive' }
     default:
-      return { to: { path: '/cv', hash: `#${sec}` }, label: `${secTitle} / Academic archive` }
+      return { to: { path: '/academics', hash: `#${sec}` }, label: `${secTitle} / Academic archive` }
   }
 })
 
 watchEffect(() => {
   if (route.params.slug === 'haroon-residence-bim') {
-    router.replace(`/academic/${route.params.section}/tahir-residency-bim`)
+    const basePath = route.path.startsWith('/work') ? '/work' : (route.path.startsWith('/honours-and-awards') ? '/honours-and-awards' : `/academics/${route.params.section || 'work-experience'}`)
+    router.replace(`${basePath}/tahir-residency-bim`)
   }
   if (route.params.slug === 'simco-site-engineering-intern' || route.params.slug === 'simco-trainee-engineer') {
-    router.replace(`/academic/${route.params.section}/resolve-nstp-tower-intern`)
+    const basePath = route.path.startsWith('/work') ? '/work' : `/academics/${route.params.section || 'work-experience'}`
+    router.replace(`${basePath}/resolve-nstp-tower-intern`)
   }
   document.title = item.value
     ? `${item.value.title} · ${item.value.sectionTitle} — Kashan Shafiq`
