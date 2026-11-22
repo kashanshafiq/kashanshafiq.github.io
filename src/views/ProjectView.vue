@@ -33,10 +33,10 @@ watchEffect(() => {
     : 'Project not found — Kashan Shafiq'
 })
 
-function formatPersonMentions(text: string, slug?: string): string {
+function formatPersonMentions(text: string, slug?: string, context: 'summary' | 'detail' = 'summary'): string {
   if (!text) return ''
   let res = text
-  if (slug === 'tahir-residency-bim') {
+  if (slug === 'tahir-residency-bim' && context === 'summary') {
     res = res.replace(
       /\bFaizan Manshad\b/g,
       '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
@@ -85,7 +85,7 @@ function formatPersonMentions(text: string, slug?: string): string {
         </div>
 
         <!-- Comprehensive Brief Lead Summary -->
-        <p class="archive-summary-lead" v-html="formatPersonMentions(project.summary, project.slug)"></p>
+        <p class="archive-summary-lead" v-html="formatPersonMentions(project.summary, project.slug, 'summary')"></p>
 
         <!-- Subtle Divider Line -->
         <hr class="archive-divider-line" />
@@ -94,7 +94,7 @@ function formatPersonMentions(text: string, slug?: string): string {
         <div class="archive-highlights-section">
           <h3 class="highlights-heading">Key highlights</h3>
           <ul class="highlights-list">
-            <li v-for="d in (project.details || project.scope)" :key="d" v-html="formatPersonMentions(d, project.slug)"></li>
+            <li v-for="d in (project.details || project.scope)" :key="d" v-html="formatPersonMentions(d, project.slug, 'detail')"></li>
           </ul>
         </div>
 

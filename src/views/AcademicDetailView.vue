@@ -151,20 +151,20 @@ watchEffect(() => {
     : 'Archive record not found — Kashan Shafiq'
 })
 
-function formatPersonMentions(text: string, slug?: string): string {
+function formatPersonMentions(text: string, slug?: string, context: 'summary' | 'detail' = 'summary'): string {
   if (!text) return ''
   let res = text
 
-  // 1. Faizan Manshad in Academic Resource Database (Image 1)
-  if (slug === 'volunteering-academic-resource-database') {
+  // 1. Faizan Manshad in Academic Resource Database: ONLY in the start (summary)
+  if (slug === 'volunteering-academic-resource-database' && context === 'summary') {
     res = res.replace(
       /\bFaizan Manshad\b/g,
       '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
     )
   }
 
-  // 2. Faizan Manshad and Haider Ali in Tahir Residency (Image 2)
-  if (slug === 'tahir-residency-bim') {
+  // 2. Faizan Manshad and Haider Ali in Code Based BIM / Tahir Residency: ONLY in the start (summary)
+  if (slug === 'tahir-residency-bim' && context === 'summary') {
     res = res.replace(
       /\bFaizan Manshad\b/g,
       '<a href="https://www.linkedin.com/in/faizanmanshad/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Faizan Manshad LinkedIn profile">Faizan Manshad</a>'
@@ -174,8 +174,8 @@ function formatPersonMentions(text: string, slug?: string): string {
     )
   }
 
-  // 3. Authors in BIM to AR (Image 3)
-  if (slug === 'bim-to-ar-research') {
+  // 3. Authors in BIM to AR: only appears once in key highlights
+  if (slug === 'bim-to-ar-research' && context === 'detail') {
     res = res.replace(
       /\bHassan Ashraf\b/g,
       '<a href="https://www.linkedin.com/in/hassan-ashraf-a0770535/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Hassan Ashraf LinkedIn profile">Hassan Ashraf</a>'
@@ -188,39 +188,12 @@ function formatPersonMentions(text: string, slug?: string): string {
     )
   }
 
-  // 4. English Access Scholarship (Image 4): RELO and COMSATS University Islamabad -> accesscuiwah
-  if (slug === 'award-english-access-scholarship') {
+  // 4. English Access Scholarship: RELO is already linked at the top in the institution header!
+  // ONLY link the marked COMSATS University Islamabad to Facebook page once in key highlights:
+  if (slug === 'award-english-access-scholarship' && context === 'detail') {
     res = res.replace(
-      /\bRegional English Language Office \(RELO\)\b/g,
-      '<a href="https://pk.usembassy.gov/regional-english-language-office-relo/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Regional English Language Office (RELO)">Regional English Language Office (RELO)</a>'
-    ).replace(
       /\bCOMSATS University Islamabad\b/g,
       '<a href="https://www.facebook.com/accesscuiwah/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit Access Program CUI Wah on Facebook">COMSATS University Islamabad</a>'
-    )
-  }
-
-  // 5. WED Competitions: World Engineering Day link
-  if (slug === 'extra-wfeo-hackathon-2026' || slug === 'extra-wed-hackathon-2025') {
-    res = res.replace(
-      /\bWorld Engineering Day\b/g,
-      '<a href="https://worldengineeringday.net/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit World Engineering Day Official Website">World Engineering Day</a>'
-    )
-  }
-
-  // 6. OMLAS: One Million Leaders Asia link
-  if (slug === 'extra-omlas-fellowship-2025' || slug === 'extra-lgs-panel-discussion') {
-    res = res.replace(
-      /\bOne Million Leaders Asia \(OMLAS\)\b/g,
-      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">One Million Leaders Asia (OMLAS)</a>'
-    ).replace(
-      /\bOne Million Leaders Asia\b/g,
-      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">One Million Leaders Asia</a>'
-    ).replace(
-      /\bOMLAS Fellows\b/g,
-      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">OMLAS Fellows</a>'
-    ).replace(
-      /\bOMLAS\b(?![^<]*>)/g,
-      '<a href="https://onemillionleadersasia.org/" target="_blank" rel="noopener noreferrer" class="person-mention-link" title="Visit One Million Leaders Asia Official Website">OMLAS</a>'
     )
   }
 
@@ -305,7 +278,7 @@ function formatPersonMentions(text: string, slug?: string): string {
         </div>
 
         <!-- Comprehensive Brief Lead Summary -->
-        <p class="archive-summary-lead" v-html="formatPersonMentions(item.summary, item.slug)"></p>
+        <p class="archive-summary-lead" v-html="formatPersonMentions(item.summary, item.slug, 'summary')"></p>
 
         <!-- Subtle Divider Line matching reference image -->
         <hr class="archive-divider-line" />
@@ -314,7 +287,7 @@ function formatPersonMentions(text: string, slug?: string): string {
         <div class="archive-highlights-section">
           <h3 class="highlights-heading">Key highlights</h3>
           <ul class="highlights-list">
-            <li v-for="d in item.details" :key="d" v-html="formatPersonMentions(d, item.slug)"></li>
+            <li v-for="d in item.details" :key="d" v-html="formatPersonMentions(d, item.slug, 'detail')"></li>
           </ul>
         </div>
 
