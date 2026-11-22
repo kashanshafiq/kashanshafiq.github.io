@@ -274,8 +274,9 @@ function formatPersonMentions(text: string, slug?: string): string {
   transform: translate(2px, -2px);
 }
 
-:deep(.person-mention-link) {
-  color: var(--accent);
+:deep(.person-mention-link),
+:deep(.rich-mention-link) {
+  color: var(--accent) !important;
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
@@ -284,9 +285,10 @@ function formatPersonMentions(text: string, slug?: string): string {
   display: inline;
 }
 
-:deep(.person-mention-link:hover) {
-  color: #991b1b;
-  text-decoration-color: #991b1b;
+:deep(.person-mention-link:hover),
+:deep(.rich-mention-link:hover) {
+  color: var(--accent-hover, #991b1b) !important;
+  text-decoration-color: var(--accent-hover, #991b1b);
 }
 
 .archive-summary-lead {

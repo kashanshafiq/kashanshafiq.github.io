@@ -1947,6 +1947,53 @@ svg {
 }
 
 /* ==========================================================================
+   ADDED CONTENT HYPERLINKS (RED ACCENT TEXT COLOR)
+   ========================================================================== */
+.person-mention-link,
+.rich-mention-link,
+.institution-title-link,
+.home-inline-link,
+.archive-summary-lead a,
+.highlights-list a,
+.archive-institution-name a {
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.person-mention-link:hover,
+.rich-mention-link:hover,
+.institution-title-link:hover,
+.home-inline-link:hover,
+.archive-summary-lead a:hover,
+.highlights-list a:hover,
+.archive-institution-name a:hover {
+  color: var(--accent-hover, #991b1b) !important;
+  text-decoration-color: var(--accent-hover, #991b1b);
+}
+
+.institution-title-link .external-icon,
+.person-mention-link .mention-arrow,
+.rich-mention-link .mention-arrow,
+.home-inline-link .external-icon {
+  color: var(--accent) !important;
+  display: inline-block;
+  margin-left: 3px;
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.institution-title-link:hover .external-icon,
+.person-mention-link:hover .mention-arrow,
+.rich-mention-link:hover .mention-arrow,
+.home-inline-link:hover .external-icon {
+  color: var(--accent-hover, #991b1b) !important;
+  transform: translate(2px, -2px);
+}
+
+/* ==========================================================================
    PRINT STYLES
    ========================================================================== */
 @media print {

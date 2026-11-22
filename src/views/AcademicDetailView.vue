@@ -410,25 +410,30 @@ function formatPersonMentions(text: string, slug?: string): string {
 }
 
 .institution-title-link {
-  color: var(--text);
-  text-decoration: none;
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: color 150ms ease;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
 .institution-title-link:hover {
-  color: var(--accent);
+  color: var(--accent-hover, #991b1b) !important;
+  text-decoration-color: var(--accent-hover, #991b1b);
 }
 
 .institution-title-link .external-icon {
   font-size: 0.82em;
-  color: var(--accent);
-  transition: transform 150ms ease;
+  color: var(--accent) !important;
+  transition: transform 150ms ease, color 150ms ease;
 }
 
 .institution-title-link:hover .external-icon {
+  color: var(--accent-hover, #991b1b) !important;
   transform: translate(2px, -2px);
 }
 
@@ -481,8 +486,9 @@ function formatPersonMentions(text: string, slug?: string): string {
   transform: translate(2px, -2px);
 }
 
-:deep(.person-mention-link) {
-  color: var(--accent);
+:deep(.person-mention-link),
+:deep(.rich-mention-link) {
+  color: var(--accent) !important;
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
@@ -491,9 +497,10 @@ function formatPersonMentions(text: string, slug?: string): string {
   display: inline;
 }
 
-:deep(.person-mention-link:hover) {
-  color: #991b1b;
-  text-decoration-color: #991b1b;
+:deep(.person-mention-link:hover),
+:deep(.rich-mention-link:hover) {
+  color: var(--accent-hover, #991b1b) !important;
+  text-decoration-color: var(--accent-hover, #991b1b);
 }
 
 .archive-summary-lead {

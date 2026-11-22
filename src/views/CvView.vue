@@ -940,13 +940,13 @@ onBeforeUnmount(() => {
 }
 
 .personal-meta-horizontal .link-val {
-  color: #0b0f12;
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .personal-meta-horizontal .link-val:hover {
-  color: var(--accent);
+  color: var(--accent-hover, #991b1b);
 }
 
 .link-val {

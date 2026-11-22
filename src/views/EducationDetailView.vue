@@ -212,25 +212,30 @@ watchEffect(() => {
 }
 
 .institution-title-link {
-  color: var(--text);
-  text-decoration: none;
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: color 150ms ease;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
 .institution-title-link:hover {
-  color: var(--accent);
+  color: var(--accent-hover, #991b1b) !important;
+  text-decoration-color: var(--accent-hover, #991b1b);
 }
 
 .institution-title-link .external-icon {
   font-size: 0.82em;
-  color: var(--accent);
-  transition: transform 150ms ease;
+  color: var(--accent) !important;
+  transition: transform 150ms ease, color 150ms ease;
 }
 
 .institution-title-link:hover .external-icon {
+  color: var(--accent-hover, #991b1b) !important;
   transform: translate(2px, -2px);
 }
 
