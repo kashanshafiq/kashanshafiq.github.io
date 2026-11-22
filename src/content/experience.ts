@@ -8,13 +8,13 @@ export const experience: Experience[] = [
     period: 'Jul 2026 – Present',
     location: 'Islamabad, Pakistan',
     domain: 'Scan-to-BIM & Digital Documentation',
-    summary: 'Scan-to-BIM modeling, point cloud registration, and multi-disciplinary Revit coordination.',
+    summary: 'Worked on Scan-to-BIM projects converting raw point cloud data into coordinated 3D Revit models to LOD 300/350 across Structural and Architectural disciplines, mainly on retail and commercial projects, including retrofitting and live construction deviation monitoring.',
     context: 'Archnetix specializes in digital construction, high-precision laser scanning, and BIM implementations. Responsible for registering raw point cloud data and building coordinated 3D Revit models to LOD 300/350 in line with modeling standards and project specifications.',
     details: [
-      'Worked on Scan-to-BIM projects, converting point cloud data into coordinated 3D Revit models to LOD 300/350.',
-      'Verified model accuracy against scan data and coordinated deliverables across Structural, Architectural, and MEP disciplines.',
-      'Worked alongside the registration team on registering raw point cloud data using Leica Cyclone, with some exposure to Autodesk ReCap.',
-      'Responsible for building accurate BIM models in Autodesk Revit in line with modeling standards and project specifications.',
+      'Delivered LOD 300/350 Revit models from point cloud data for retail and commercial projects, providing accurate as-built baselines for design coordination and retrofitting.',
+      'Verified model accuracy against scan data and coordinated Structural and Architectural deliverables; on live construction projects, overlaid stage-by-stage point clouds on 2D drawings, flagging deviations to 2 mm accuracy so the site team could correct work against the drawings.',
+      'Supported the registration team in registering raw point cloud data using Leica Cyclone, with some exposure to Autodesk ReCap, ensuring clean, usable datasets for modeling.',
+      'Built accurate BIM models in Autodesk Revit in line with modeling standards and project specifications, delivering consistent, specification-compliant outputs.',
     ],
     tools: ['Autodesk Revit', 'Point Cloud Processing', 'Leica Cyclone', 'Autodesk ReCap', 'LOD 300 / LOD 350', 'BIM Coordination'],
     achievements: [

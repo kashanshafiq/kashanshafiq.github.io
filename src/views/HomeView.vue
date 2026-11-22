@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import BridgeHero from '../components/BridgeHero.vue'
 import { profile } from '../content/profile'
 
@@ -150,7 +151,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Academic Merit</h2>
           </div>
           <p class="pillar-proof">
-            Gold Medalist, POF merit scholar, and <a href="https://lnkd.in/p/db6zsURx" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Aspire Institute Skill Advancement Grant">Skill Advancement Grant ↗</a> winner.
+            <RouterLink to="/honours-and-awards/award-gold-medalist" class="home-inline-link" title="BS Civil Engineering Gold Medalist">Gold Medalist ↗</RouterLink>, <RouterLink to="/honours-and-awards/award-pof-scholarship" class="home-inline-link" title="POF Merit Scholarship">POF merit scholar ↗</RouterLink>, and <a href="https://lnkd.in/p/db6zsURx" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Aspire Institute Skill Advancement Grant">Skill Advancement Grant ↗</a> winner.
           </p>
         </article>
 
@@ -167,7 +168,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Global Collaboration</h2>
           </div>
           <p class="pillar-proof">
-            400-hour U.S. Embassy English Access Program with peers from diverse backgrounds. <a href="https://www.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Aspire Institute Official Website">Aspire Leaders ↗</a> alumnus, OMLAS Fellow, and panelist at Leaders for Global Society 2025.
+            400-hour U.S. Embassy <a href="https://www.facebook.com/accesscuiwah/" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Visit Access Program CUI Wah on Facebook">English Access Program ↗</a> with peers from diverse backgrounds. <a href="https://www.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="Aspire Institute Official Website">Aspire Leaders ↗</a> alumnus, OMLAS Fellow, and panelist at Leaders for Global Society 2025.
           </p>
         </article>
 
@@ -183,7 +184,7 @@ async function copyValue(val: string, label: string) {
             <h2 class="pillar-title">Sustainability &amp; SDGs</h2>
           </div>
           <p class="pillar-proof">
-            World Engineering Day hackathons (2025, 2026) and World Water Day 2025. Open-access study database for 200+ juniors (UN Sustainable Development Goal 4).
+            <a href="https://worldengineeringday.net/" target="_blank" rel="noopener noreferrer" class="home-inline-link" title="World Engineering Day Official Website">World Engineering Day ↗</a> hackathons (2025, 2026) and World Water Day 2025. Open-access study database for 200+ juniors (UN Sustainable Development Goal 4).
           </p>
         </article>
       </div>
